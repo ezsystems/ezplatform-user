@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="not.available">
+    <header>
+      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+      <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
+    </header>
+    <body>
+      <trans-unit id="0727f822c8bebb99cd8a75ec16d4008c74d30b24" resname="ezplatform.change_user_password.not_match">
+        <source>Old password does not match.</source>
+        <target state="new">Old password does not match.</target>
+        <note>key: ezplatform.change_user_password.not_match</note>
+      </trans-unit>
+      <trans-unit id="54d912b0089483cfd533714e50262851b6d1421a" resname="ezplatform.change_user_password.passwords_must_match">
+        <source>The password fields must match.</source>
+        <target state="new">The password fields must match.</target>
+        <note>key: ezplatform.change_user_password.passwords_must_match</note>
+      </trans-unit>
+      <trans-unit id="58f9ad2e8a8df010fb8abb25e39b46f2ccf92294" resname="ezplatform.reset_user_password.passwords_must_match">
+        <source>The password fields must match.</source>
+        <target state="new">The password fields must match.</target>
+        <note>key: ezplatform.reset_user_password.passwords_must_match</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

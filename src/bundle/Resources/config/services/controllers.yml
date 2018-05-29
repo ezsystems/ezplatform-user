@@ -1,0 +1,5 @@
+services:
+    EzSystems\EzPlatformUserBundle\Controller\:
+        resource: "../../Controller/*"
+        exclude: "../../Controller/{Controller}"
+        parent: EzSystems\EzPlatformUserBundle\Controller\Controller

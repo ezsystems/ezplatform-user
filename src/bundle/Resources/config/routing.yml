@@ -1,0 +1,23 @@
+#
+# Profile
+#
+
+ezplatform.user_profile.change_password:
+    path: /user/change-password
+    defaults:
+        _controller: 'EzPlatformUserBundle:PasswordChange:userPasswordChange'
+
+ezplatform.user.forgot_password:
+    path: /user/forgot-password
+    defaults:
+        _controller: 'EzPlatformUserBundle:PasswordReset:userForgotPassword'
+
+ezplatform.user.forgot_password.login:
+    path: /user/forgot-password/login
+    defaults:
+        _controller: 'EzPlatformUserBundle:PasswordReset:userForgotPasswordLogin'
+
+ezplatform.user.reset_password:
+    path: /user/reset-password/{hashKey}
+    defaults:
+        _controller: 'EzPlatformUserBundle:PasswordReset:userResetPassword'

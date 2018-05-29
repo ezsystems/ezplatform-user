@@ -1,0 +1,14 @@
+{% extends 'EzPublishCoreBundle::pagelayout.html.twig' %}
+
+{%- block content -%}
+    <h2>{{ 'authentication.reset_your_password'|trans|desc('Reset your password') }}</h2>
+    <p>
+        {{ 'ezplatform.forgot_user_password.login'|trans|desc('This email is connected with several accounts. Please enter your login.') }}
+    </p>
+    {{ form_start(form_forgot_user_password_with_login) }}
+    {{ form_widget(form_forgot_user_password_with_login) }}
+    {{ form_end(form_forgot_user_password_with_login) }}
+    <p>
+    {{ 'ezplatform.forgot_user_password.contact_administrator'|trans|desc('If you do not remember your login, please contact the site administrator.') }}
+    </p>
+{%- endblock content -%}

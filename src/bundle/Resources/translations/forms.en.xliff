@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="not.available">
+    <header>
+      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+      <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
+    </header>
+    <body>
+      <trans-unit id="56281d5c292a4fe95f9b1af5ae0b1deaebab7342" resname="ezplatform.change_user_password.change">
+        <source>Change</source>
+        <target state="new">Change</target>
+        <note>key: ezplatform.change_user_password.change</note>
+      </trans-unit>
+      <trans-unit id="390eb98ace269d5909c838416c36248c40895058" resname="ezplatform.change_user_password.confirm_new_password">
+        <source>Confirm password</source>
+        <target state="new">Confirm password</target>
+        <note>key: ezplatform.change_user_password.confirm_new_password</note>
+      </trans-unit>
+      <trans-unit id="43521bfea046f591270e027a69fc52cccc486e23" resname="ezplatform.change_user_password.new_password">
+        <source>New password</source>
+        <target state="new">New password</target>
+        <note>key: ezplatform.change_user_password.new_password</note>
+      </trans-unit>
+      <trans-unit id="7d2421be11a5351c12c952611c7a1a7f00f51cd9" resname="ezplatform.change_user_password.old_password">
+        <source>Old password</source>
+        <target state="new">Old password</target>
+        <note>key: ezplatform.change_user_password.old_password</note>
+      </trans-unit>
+      <trans-unit id="859bfc3d21113eecb4a19d4a9305f2519eb4b331" resname="ezplatform.forgot_user_password.email">
+        <source>Enter your email address:</source>
+        <target state="new">Enter your email address:</target>
+        <note>key: ezplatform.forgot_user_password.email</note>
+      </trans-unit>
+      <trans-unit id="ffb6990d5e75fe6dc86e94166b77e40a79e4e2a3" resname="ezplatform.forgot_user_password.login">
+        <source>Enter your login:</source>
+        <target state="new">Enter your login:</target>
+        <note>key: ezplatform.forgot_user_password.login</note>
+      </trans-unit>
+      <trans-unit id="0f7bbe027d2c53c78c7b3ce938af6c0ef6c1c2e2" resname="ezplatform.forgot_user_password.reset">
+        <source>Reset</source>
+        <target state="new">Reset</target>
+        <note>key: ezplatform.forgot_user_password.reset</note>
+      </trans-unit>
+      <trans-unit id="877b8a2a4e3b2c7c137b7776a54cd7531421e5d3" resname="ezplatform.reset_user_password.confirm_new_password">
+        <source>Confirm password</source>
+        <target state="new">Confirm password</target>
+        <note>key: ezplatform.reset_user_password.confirm_new_password</note>
+      </trans-unit>
+      <trans-unit id="943fa9c11c71de16802dad7eea78690f53eb9888" resname="ezplatform.reset_user_password.new_password">
+        <source>New password</source>
+        <target state="new">New password</target>
+        <note>key: ezplatform.reset_user_password.new_password</note>
+      </trans-unit>
+      <trans-unit id="7f0836bb06a0030f7595c4c5d5d4079cdcece47f" resname="ezplatform.reset_user_password.update">
+        <source>Update</source>
+        <target state="new">Update</target>
+        <note>key: ezplatform.reset_user_password.update</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,44 @@
+imports:
+    - { resource: services/controllers.yml }
+    - { resource: services/validators.yml }
+
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    EzSystems\EzPlatformUserBundle\Controller\Controller:
+        tags: ['controller.service_arguments']
+        calls:
+            - [setContainer, ["@service_container"]]
+            - [performAccessCheck, []]
+
+    EzSystems\EzPlatformUser\EventListener\:
+        resource: "../../../lib/EventListener/*"
+        public: true
+        tags:
+            - { name: kernel.event_subscriber }
+
+    EzSystems\EzPlatformUserBundle\Controller\PasswordResetController:
+        tags: [controller.service_arguments]
+        calls:
+            - [setContainer, ['@service_container']]
+        arguments:
+            $tokenIntervalSpec: '$security.token_interval_spec$'
+            $forgotPasswordMail: '$user_forgot_password.templates.mail$'
+
+    EzSystems\RepositoryForms\EventListener\ViewTemplatesListener:
+        tags:
+            - { name: kernel.event_subscriber }
+        calls:
+            - [setViewTemplate, ['EzSystems\EzPlatformUser\View\UserChangePasswordFormView', "$user_change_password.templates.form$"]]
+            - [setViewTemplate, ['EzSystems\EzPlatformUser\View\UserForgotPasswordFormView', "$user_forgot_password.templates.form$"]]
+            - [setViewTemplate, ['EzSystems\EzPlatformUser\View\UserForgotPasswordSuccessView', "$user_forgot_password_success.templates.form$"]]
+            - [setViewTemplate, ['EzSystems\EzPlatformUser\View\UserForgotPasswordLoginView', "$user_forgot_password_login.templates.form$"]]
+            - [setViewTemplate, ['EzSystems\EzPlatformUser\View\UserResetPasswordFormView', "$user_reset_password.templates.form$"]]
+            - [setViewTemplate, ['EzSystems\EzPlatformUser\View\UserResetPasswordInvalidLinkView', "$user_reset_password.templates.invalid_link$"]]
+            - [setViewTemplate, ['EzSystems\EzPlatformUser\View\UserResetPasswordSuccessView', "$user_reset_password.templates.success$"]]
+

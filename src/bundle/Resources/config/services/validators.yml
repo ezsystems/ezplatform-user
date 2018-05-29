@@ -1,0 +1,12 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    EzSystems\EzPlatformUser\Validator\Constraints\:
+        resource: "../../../lib/Validator/Constraints"
+
+    EzSystems\EzPlatformUser\Validator\Constraints\UserPasswordValidator:
+        tags:
+            - { name: validator.constraint_validator }

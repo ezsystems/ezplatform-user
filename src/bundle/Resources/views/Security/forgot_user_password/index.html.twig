@@ -1,0 +1,8 @@
+{% extends 'EzPublishCoreBundle::pagelayout.html.twig' %}
+
+{% block content %}
+    <h2>{{ 'authentication.reset_your_password'|trans|desc('Reset your password') }}</h2>
+    {{ form_start(form_forgot_user_password) }}
+    {{ form_widget(form_forgot_user_password) }}
+    {{ form_end(form_forgot_user_password) }}
+{% endblock %}

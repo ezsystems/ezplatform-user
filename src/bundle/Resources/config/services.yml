@@ -46,4 +46,5 @@ services:
             - [setViewTemplate, ['EzSystems\EzPlatformUser\View\UserResetPasswordFormView', "$user_reset_password.templates.form$"]]
             - [setViewTemplate, ['EzSystems\EzPlatformUser\View\UserResetPasswordInvalidLinkView', "$user_reset_password.templates.invalid_link$"]]
             - [setViewTemplate, ['EzSystems\EzPlatformUser\View\UserResetPasswordSuccessView', "$user_reset_password.templates.success$"]]
+            - [setPagelayout, ["$pagelayout$"]]
 

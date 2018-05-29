@@ -8,9 +8,7 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformUserBundle\Controller;
 
-use eZ\Publish\API\Repository\Values\Content\Location;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 
 abstract class Controller extends BaseController
 {

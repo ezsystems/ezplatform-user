@@ -88,7 +88,6 @@ class PasswordResetController extends Controller
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     *
      * @return \EzSystems\EzPlatformUser\View\UserForgotPasswordFormView|\EzSystems\EzPlatformUser\View\UserForgotPasswordSuccessView|\Symfony\Component\HttpFoundation\RedirectResponse
      *
      * @throws \eZ\Publish\Core\Base\Exceptions\InvalidArgumentType
@@ -153,6 +152,7 @@ class PasswordResetController extends Controller
 
             return new UserForgotPasswordSuccessView(null);
         }
+
         return new UserForgotPasswordLoginView(null, [
             'form_forgot_user_password_with_login' => $form->createView(),
         ]);

@@ -12,7 +12,6 @@ use EzSystems\EzPlatformAdminUi\Menu\Event\ConfigureMenuEvent;
 use JMS\TranslationBundle\Translation\TranslationContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use JMS\TranslationBundle\Model\Message;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class UserPasswordChangeRightSidebarListener implements EventSubscriberInterface, TranslationContainerInterface
 {

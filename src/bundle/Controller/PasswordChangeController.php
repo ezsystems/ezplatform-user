@@ -95,13 +95,13 @@ class PasswordChangeController extends Controller
                 $user = $this->tokenStorage->getToken()->getUser()->getAPIUser();
                 $this->userService->updateUser($user, $userUpdateStruct);
 
-                if ((new IsAdmin($this->siteAccessGroups))->isSatisfiedBy($request->attributes->get('siteaccess'))){
+                if ((new IsAdmin($this->siteAccessGroups))->isSatisfiedBy($request->attributes->get('siteaccess'))) {
                     $this->notificationHandler->success(
                         $this->translator->trans(
-                        /** @Desc("Your password has been successfully changed.") */
-                            'user.change_password.success',
+                            /** @Desc("Your password has been successfully changed.") */
+                            'ezplatform.change_password.success',
                             [],
-                            'user_change_password'
+                            'change_password'
                         )
                     );
 
@@ -109,7 +109,6 @@ class PasswordChangeController extends Controller
                 }
 
                 return new UserChangePasswordSuccessView(null);
-
             } catch (Exception $e) {
                 $this->notificationHandler->error($e->getMessage());
             }

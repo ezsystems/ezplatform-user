@@ -26,7 +26,7 @@ class FormFactory
     /** @var \Symfony\Component\Form\FormFactoryInterface */
     protected $formFactory;
 
-    /** @var \Symfony\Component\Routing\Generator\UrlGeneratorInterface  */
+    /** @var \Symfony\Component\Routing\Generator\UrlGeneratorInterface */
     protected $urlGenerator;
 
     /**
@@ -104,5 +104,4 @@ class FormFactory
 
         return $this->formFactory->createNamed($name, UserPasswordResetType::class, $data);
     }
-
 }

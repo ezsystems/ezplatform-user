@@ -2,6 +2,7 @@ parameters:
     # Security
     ezsettings.default.security.token_interval_spec: PT1H
     ezsettings.default.user_change_password.templates.form: "EzPlatformUserBundle:user-profile:change_user_password.html.twig"
+    ezsettings.default.user_change_password.templates.success: "EzPlatformUserBundle:user-profile:change_user_password_success.html.twig"
     ezsettings.default.user_forgot_password.templates.form: "EzPlatformUserBundle:Security/forgot_user_password:index.html.twig"
     ezsettings.default.user_forgot_password_success.templates.form: "EzPlatformUserBundle:Security/forgot_user_password:success.html.twig"
     ezsettings.default.user_forgot_password_login.templates.form: "EzPlatformUserBundle:Security/forgot_user_password:with_login.html.twig"

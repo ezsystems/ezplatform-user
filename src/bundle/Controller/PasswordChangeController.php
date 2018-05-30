@@ -12,9 +12,11 @@ use eZ\Publish\API\Repository\Exceptions\ContentFieldValidationException;
 use eZ\Publish\API\Repository\Exceptions\ContentValidationException;
 use eZ\Publish\API\Repository\UserService;
 use eZ\Publish\API\Repository\LanguageService;
+use EzSystems\EzPlatformAdminUi\Specification\SiteAccess\IsAdmin;
 use EzSystems\EzPlatformUser\Form\Factory\FormFactory;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
 use EzSystems\EzPlatformUser\View\UserChangePasswordFormView;
+use EzSystems\EzPlatformUser\View\UserChangePasswordSuccessView;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
@@ -40,25 +42,31 @@ class PasswordChangeController extends Controller
     /** @var TokenStorageInterface */
     private $tokenStorage;
 
+    /** @var array */
+    private $siteAccessGroups;
+
     /**
      * @param NotificationHandlerInterface $notificationHandler
      * @param TranslatorInterface $translator
      * @param UserService $userService
      * @param FormFactory $formFactory
      * @param TokenStorageInterface $tokenStorage
+     * @param array $siteAccessGroups
      */
     public function __construct(
         NotificationHandlerInterface $notificationHandler,
         TranslatorInterface $translator,
         UserService $userService,
         FormFactory $formFactory,
-        TokenStorageInterface $tokenStorage
+        TokenStorageInterface $tokenStorage,
+        array $siteAccessGroups
     ) {
         $this->notificationHandler = $notificationHandler;
         $this->translator = $translator;
         $this->userService = $userService;
         $this->formFactory = $formFactory;
         $this->tokenStorage = $tokenStorage;
+        $this->siteAccessGroups = $siteAccessGroups;
     }
 
     /**
@@ -85,19 +93,23 @@ class PasswordChangeController extends Controller
                 $userUpdateStruct = $this->userService->newUserUpdateStruct();
                 $userUpdateStruct->password = $newPassword;
                 $user = $this->tokenStorage->getToken()->getUser()->getAPIUser();
-
                 $this->userService->updateUser($user, $userUpdateStruct);
 
-                $this->notificationHandler->success(
-                    $this->translator->trans(
+                if ((new IsAdmin($this->siteAccessGroups))->isSatisfiedBy($request->attributes->get('siteaccess'))){
+                    $this->notificationHandler->success(
+                        $this->translator->trans(
                         /** @Desc("Your password has been successfully changed.") */
-                        'user.change_password.success',
-                        [],
-                        'user_change_password'
-                    )
-                );
+                            'user.change_password.success',
+                            [],
+                            'user_change_password'
+                        )
+                    );
 
-                return new RedirectResponse($this->generateUrl('ezplatform.dashboard'));
+                    return new RedirectResponse($this->generateUrl('ezplatform.dashboard'));
+                }
+
+                return new UserChangePasswordSuccessView(null);
+
             } catch (Exception $e) {
                 $this->notificationHandler->error($e->getMessage());
             }

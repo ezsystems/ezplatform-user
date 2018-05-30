@@ -30,11 +30,16 @@ services:
             $tokenIntervalSpec: '$security.token_interval_spec$'
             $forgotPasswordMail: '$user_forgot_password.templates.mail$'
 
+    EzSystems\EzPlatformUserBundle\Controller\PasswordChangeController:
+        arguments:
+            $siteAccessGroups: '%ezpublish.siteaccess.groups%'
+
     EzSystems\RepositoryForms\EventListener\ViewTemplatesListener:
         tags:
             - { name: kernel.event_subscriber }
         calls:
             - [setViewTemplate, ['EzSystems\EzPlatformUser\View\UserChangePasswordFormView', "$user_change_password.templates.form$"]]
+            - [setViewTemplate, ['EzSystems\EzPlatformUser\View\UserChangePasswordSuccessView', "$user_change_password.templates.success$"]]
             - [setViewTemplate, ['EzSystems\EzPlatformUser\View\UserForgotPasswordFormView', "$user_forgot_password.templates.form$"]]
             - [setViewTemplate, ['EzSystems\EzPlatformUser\View\UserForgotPasswordSuccessView', "$user_forgot_password_success.templates.form$"]]
             - [setViewTemplate, ['EzSystems\EzPlatformUser\View\UserForgotPasswordLoginView', "$user_forgot_password_login.templates.form$"]]

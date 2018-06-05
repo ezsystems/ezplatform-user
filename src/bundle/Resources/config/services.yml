@@ -51,3 +51,18 @@ services:
             - [setViewTemplate, ['EzSystems\EzPlatformUser\View\UserResetPasswordSuccessView', "$user_reset_password.templates.success$"]]
             - [setPagelayout, ["$pagelayout$"]]
 
+    EzSystems\EzPlatformUser\ConfigResolver\ConfigurableRegistrationGroupLoader:
+        calls:
+            - [setParam, ["groupId", "$user_registration.group_id$"]]
+
+    EzSystems\EzPlatformUser\ConfigResolver\ConfigurableRegistrationContentTypeLoader:
+        calls:
+            - [setParam, ["contentTypeIdentifier", "%ezrepoforms.user_content_type_identifier%"]]
+
+    EzSystems\EzPlatformUser\Form\DataMapper\UserRegisterMapper:
+        calls:
+            - [setParam, ["language", "@=service('ezpublish.config.resolver').getParameter('languages', null, null)[0]"]]
+
+    EzSystems\EzPlatformUser\Form\Processor\UserRegisterFormProcessor:
+        tags:
+            - { name: kernel.event_subscriber }

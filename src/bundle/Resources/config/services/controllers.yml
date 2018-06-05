@@ -3,3 +3,8 @@ services:
         resource: "../../Controller/*"
         exclude: "../../Controller/{Controller}"
         parent: EzSystems\EzPlatformUserBundle\Controller\Controller
+
+    EzSystems\EzPlatformUserBundle\Controller\UserRegisterController:
+        autowire: true
+        arguments:
+            $userActionDispatcher: '@ezrepoforms.action_dispatcher.user'

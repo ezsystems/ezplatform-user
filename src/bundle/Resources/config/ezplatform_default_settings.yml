@@ -10,3 +10,8 @@ parameters:
     ezsettings.default.user_reset_password.templates.form: "EzPlatformUserBundle:reset_password:index.html.twig"
     ezsettings.default.user_reset_password.templates.invalid_link: "EzPlatformUserBundle:reset_password:invalid_link.html.twig"
     ezsettings.default.user_reset_password.templates.success: "EzPlatformUserBundle:reset_password:success.html.twig"
+
+    # Registration
+    ezsettings.default.user_registration.group_id: 11
+    ezsettings.default.user_registration.templates.form: "EzSystemsRepositoryFormsBundle:Content:content_edit.html.twig"
+    ezsettings.default.user_registration.templates.confirmation: "EzPlatformUserBundle:User:register_confirmation.html.twig"

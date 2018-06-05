@@ -21,3 +21,13 @@ ezplatform.user.reset_password:
     path: /user/reset-password/{hashKey}
     defaults:
         _controller: 'EzPlatformUserBundle:PasswordReset:userResetPassword'
+
+ezplatform.user.register:
+    path: /register
+    defaults:
+        _controller: "EzPlatformUserBundle:UserRegister:register"
+
+ezplatform.user.register_confirmation:
+    path: /register-confirm
+    defaults:
+        _controller: "EzPlatformUserBundle:UserRegister:registerConfirm"

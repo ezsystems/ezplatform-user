@@ -7,10 +7,10 @@
 namespace EzSystems\EzPlatformUser\Form\DataMapper;
 
 use eZ\Publish\API\Repository\Values\Content\Field;
+use EzSystems\EzPlatformUser\ConfigResolver\RegistrationContentTypeLoader;
+use EzSystems\EzPlatformUser\ConfigResolver\RegistrationGroupLoader;
 use EzSystems\RepositoryForms\Data\Content\FieldData;
 use EzSystems\RepositoryForms\Data\User\UserRegisterData;
-use EzSystems\RepositoryForms\User\RegistrationContentTypeLoader;
-use EzSystems\RepositoryForms\User\RegistrationGroupLoader;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -18,27 +18,31 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class UserRegisterMapper
 {
-    /**
-     * @var RegistrationContentTypeLoader
-     */
+    /** @var \EzSystems\EzPlatformUser\ConfigResolver\RegistrationContentTypeLoader */
     private $contentTypeLoader;
 
-    /**
-     * @var RegistrationGroupLoader
-     */
+    /** @var \EzSystems\EzPlatformUser\ConfigResolver\RegistrationContentTypeLoader */
     private $parentGroupLoader;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $params;
 
-    public function __construct(RegistrationContentTypeLoader $contentTypeLoader, RegistrationGroupLoader $registrationGroupLoader)
-    {
+    /**
+     * @param \EzSystems\EzPlatformUser\ConfigResolver\RegistrationContentTypeLoader $contentTypeLoader
+     * @param \EzSystems\EzPlatformUser\ConfigResolver\RegistrationGroupLoader $registrationGroupLoader
+     */
+    public function __construct(
+        RegistrationContentTypeLoader $contentTypeLoader,
+        RegistrationGroupLoader $registrationGroupLoader
+    ) {
         $this->contentTypeLoader = $contentTypeLoader;
         $this->parentGroupLoader = $registrationGroupLoader;
     }
 
+    /**
+     * @param $name
+     * @param $value
+     */
     public function setParam($name, $value)
     {
         $this->params[$name] = $value;

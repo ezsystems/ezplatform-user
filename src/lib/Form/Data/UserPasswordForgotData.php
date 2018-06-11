@@ -6,40 +6,40 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformUser\Form\Data\User;
+namespace EzSystems\EzPlatformUser\Form\Data;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-class UserPasswordForgotWithLoginData
+class UserPasswordForgotData
 {
     /**
      * @Assert\NotBlank()
      *
      * @var string
      */
-    private $login;
+    private $email;
 
     /**
-     * @param string|null $login
+     * @param string|null $email
      */
-    public function __construct(?string $login = null)
+    public function __construct(?string $email = null)
     {
-        $this->login = $login;
+        $this->email = $email;
     }
 
     /**
-     * @param string|null $login
+     * @param string|null $email
      */
-    public function setLogin(?string $login): void
+    public function setEmail(?string $email): void
     {
-        $this->login = $login;
+        $this->email = $email;
     }
 
     /**
      * @return string|null
      */
-    public function getLogin(): ?string
+    public function getEmail(): ?string
     {
-        return $this->login;
+        return $this->email;
     }
 }

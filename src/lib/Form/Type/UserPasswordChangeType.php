@@ -6,9 +6,9 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformUser\Form\Type\User;
+namespace EzSystems\EzPlatformUser\Form\Type;
 
-use EzSystems\EzPlatformUser\Form\Data\User\UserPasswordChangeData;
+use EzSystems\EzPlatformUser\Form\Data\UserPasswordChangeData;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;

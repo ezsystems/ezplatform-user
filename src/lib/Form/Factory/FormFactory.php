@@ -8,14 +8,14 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformUser\Form\Factory;
 
-use EzSystems\EzPlatformUser\Form\Data\User\UserPasswordForgotData;
-use EzSystems\EzPlatformUser\Form\Data\User\UserPasswordChangeData;
-use EzSystems\EzPlatformUser\Form\Type\User\UserPasswordChangeType;
-use EzSystems\EzPlatformUser\Form\Type\User\UserPasswordForgotType;
-use EzSystems\EzPlatformUser\Form\Data\User\UserPasswordForgotWithLoginData;
-use EzSystems\EzPlatformUser\Form\Type\User\UserPasswordForgotWithLoginType;
-use EzSystems\EzPlatformUser\Form\Data\User\UserPasswordResetData;
-use EzSystems\EzPlatformUser\Form\Type\User\UserPasswordResetType;
+use EzSystems\EzPlatformUser\Form\Data\UserPasswordForgotData;
+use EzSystems\EzPlatformUser\Form\Data\UserPasswordChangeData;
+use EzSystems\EzPlatformUser\Form\Type\UserPasswordChangeType;
+use EzSystems\EzPlatformUser\Form\Type\UserPasswordForgotType;
+use EzSystems\EzPlatformUser\Form\Data\UserPasswordForgotWithLoginData;
+use EzSystems\EzPlatformUser\Form\Type\UserPasswordForgotWithLoginType;
+use EzSystems\EzPlatformUser\Form\Data\UserPasswordResetData;
+use EzSystems\EzPlatformUser\Form\Type\UserPasswordResetType;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Form\FormInterface;
@@ -40,7 +40,7 @@ class FormFactory
     }
 
     /**
-     * @param \EzSystems\EzPlatformUser\Form\Data\User\UserPasswordChangeData|null $data
+     * @param \EzSystems\EzPlatformUser\Form\Data\UserPasswordChangeData|null $data
      * @param string|null $name
      *
      * @return \Symfony\Component\Form\FormInterface
@@ -55,7 +55,7 @@ class FormFactory
     }
 
     /**
-     * @param \EzSystems\EzPlatformUser\Form\Data\User\UserPasswordForgotData $data
+     * @param \EzSystems\EzPlatformUser\Form\Data\UserPasswordForgotData $data
      * @param string|null $name
      *
      * @return \Symfony\Component\Form\FormInterface
@@ -72,7 +72,7 @@ class FormFactory
     }
 
     /**
-     * @param \EzSystems\EzPlatformUser\Form\Data\User\UserPasswordForgotWithLoginData $data
+     * @param \EzSystems\EzPlatformUser\Form\Data\UserPasswordForgotWithLoginData $data
      * @param null|string $name
      *
      * @return \Symfony\Component\Form\FormInterface
@@ -89,7 +89,7 @@ class FormFactory
     }
 
     /**
-     * @param \EzSystems\EzPlatformUser\Form\Data\User\UserPasswordResetData $data
+     * @param \EzSystems\EzPlatformUser\Form\Data\UserPasswordResetData $data
      * @param null|string $name
      *
      * @return \Symfony\Component\Form\FormInterface

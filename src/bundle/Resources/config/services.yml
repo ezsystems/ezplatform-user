@@ -33,6 +33,9 @@ services:
     EzSystems\EzPlatformUserBundle\Controller\PasswordChangeController:
         arguments:
             $siteAccessGroups: '%ezpublish.siteaccess.groups%'
+        calls:
+            - [setContainer, ['@service_container']]
+            - [performAccessCheck, []]
 
     EzSystems\RepositoryForms\EventListener\ViewTemplatesListener:
         tags:

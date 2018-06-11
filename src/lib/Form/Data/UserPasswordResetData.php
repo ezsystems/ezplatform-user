@@ -6,21 +6,12 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformUser\Form\Data\User;
+namespace EzSystems\EzPlatformUser\Form\Data;
 
 use Symfony\Component\Validator\Constraints as Assert;
-use EzSystems\EzPlatformUser\Validator\Constraints as UserAssert;
 
-class UserPasswordChangeData
+class UserPasswordResetData
 {
-    /**
-     * @UserAssert\UserPassword()
-     * @Assert\NotBlank()
-     *
-     * @var string
-     */
-    private $oldPassword;
-
     /**
      * @Assert\NotBlank()
      *
@@ -29,21 +20,11 @@ class UserPasswordChangeData
     private $newPassword;
 
     /**
-     * @param string|null $oldPassword
      * @param string|null $newPassword
      */
-    public function __construct(?string $oldPassword = null, ?string $newPassword = null)
+    public function __construct(?string $newPassword = null)
     {
-        $this->oldPassword = $oldPassword;
         $this->newPassword = $newPassword;
-    }
-
-    /**
-     * @param string|null $oldPassword
-     */
-    public function setOldPassword(?string $oldPassword): void
-    {
-        $this->oldPassword = $oldPassword;
     }
 
     /**
@@ -52,14 +33,6 @@ class UserPasswordChangeData
     public function setNewPassword(?string $newPassword): void
     {
         $this->newPassword = $newPassword;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getOldPassword(): ?string
-    {
-        return $this->oldPassword;
     }
 
     /**

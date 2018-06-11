@@ -69,6 +69,11 @@ class PasswordChangeController extends Controller
         $this->siteAccessGroups = $siteAccessGroups;
     }
 
+    public function performAccessCheck()
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
+    }
+
     /**
      * @param Request $request
      *

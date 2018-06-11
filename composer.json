@@ -17,6 +17,7 @@
         "symfony/symfony": "^3.4",
         "jms/translation-bundle": "^1.3.2",
         "ezsystems/ezpublish-kernel": "^7.1@dev",
-        "ezsystems/ezplatform-admin-ui": "^1.1"
+        "ezsystems/ezplatform-admin-ui": "^1.1",
+        "symfony/swiftmailer-bundle": "^3.0"
     }
 }

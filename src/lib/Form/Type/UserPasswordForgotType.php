@@ -6,9 +6,9 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformUser\Form\Type\User;
+namespace EzSystems\EzPlatformUser\Form\Type;
 
-use EzSystems\EzPlatformUser\Form\Data\User\UserPasswordForgotData;
+use EzSystems\EzPlatformUser\Form\Data\UserPasswordForgotData;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;

@@ -14,7 +14,7 @@ use EzSystems\EzPlatformUser\Form\DataMapper\UserRegisterMapper;
 use EzSystems\EzPlatformUser\View\UserRegisterConfirmView;
 use EzSystems\EzPlatformUser\View\UserRegisterFormView;
 use EzSystems\RepositoryForms\Form\ActionDispatcher\ActionDispatcherInterface;
-use EzSystems\RepositoryForms\Form\Type\User\UserRegisterType;
+use EzSystems\EzPlatformUser\Form\Type\UserRegisterType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;

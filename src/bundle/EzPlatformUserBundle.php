@@ -7,6 +7,7 @@
 namespace EzSystems\EzPlatformUserBundle;
 
 use EzSystems\EzPlatformUserBundle\DependencyInjection\Configuration\Parser\ChangePassword;
+use EzSystems\EzPlatformUserBundle\DependencyInjection\Configuration\Parser\UserRegistration;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use EzSystems\EzPlatformUserBundle\DependencyInjection\Configuration\Parser\Security;
@@ -21,6 +22,7 @@ class EzPlatformUserBundle extends Bundle
         $core = $container->getExtension('ezpublish');
         $core->addConfigParser(new Security());
         $core->addConfigParser(new ChangePassword());
+        $core->addConfigParser(new UserRegistration());
         $core->addDefaultSettings(__DIR__ . '/Resources/config', ['ezplatform_default_settings.yml']);
     }
 }

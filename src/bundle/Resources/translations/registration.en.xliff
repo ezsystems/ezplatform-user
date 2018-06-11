@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="not.available">
+    <header>
+      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+      <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
+    </header>
+    <body>
+      <trans-unit id="264649149b7563144f9e2c462b13477dc7441302" resname="ezplatform.registration_confirmation.header">
+        <source>Your account has been created</source>
+        <target state="new">Your account has been created</target>
+        <note>key: ezplatform.registration_confirmation.header</note>
+      </trans-unit>
+      <trans-unit id="63659642d9d91abcadbb45d00a12db2277ce53b5" resname="ezplatform.registration_confirmation.message">
+        <source><![CDATA[Thank you for registering an account. You can now <a href="%login%">login</a>]]></source>
+        <target state="new"><![CDATA[Thank you for registering an account. You can now <a href="%login%">login</a>]]></target>
+        <note>key: ezplatform.registration_confirmation.message</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

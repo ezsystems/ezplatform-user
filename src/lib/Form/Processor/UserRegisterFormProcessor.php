@@ -9,8 +9,7 @@ namespace EzSystems\EzPlatformUser\Form\Processor;
 
 use eZ\Publish\API\Repository\Repository;
 use eZ\Publish\API\Repository\UserService;
-use eZ\Publish\API\Repository\Values\User\User;
-use EzSystems\RepositoryForms\Data\User\UserRegisterData;
+use EzSystems\EzPlatformUser\Form\Data\UserRegisterData;
 use EzSystems\RepositoryForms\Event\FormActionEvent;
 use EzSystems\RepositoryForms\Event\RepositoryFormEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -66,10 +65,10 @@ class UserRegisterFormProcessor implements EventSubscriberInterface
     }
 
     /**
-     * @param UserRegisterData $data
+     * @param \EzSystems\EzPlatformUser\Form\Data\UserRegisterData $data
      * @param $languageCode
      *
-     * @return User
+     * @return \eZ\Publish\API\Repository\Values\User\User
      *
      * @throws \Exception
      */

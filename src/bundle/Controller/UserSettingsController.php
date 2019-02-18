@@ -46,7 +46,15 @@ class UserSettingsController extends Controller
     /** @var int */
     private $defaultPaginationLimit;
 
-
+    /**
+     * @param \EzSystems\EzPlatformUser\Form\Factory\FormFactory $formFactory
+     * @param \EzSystems\EzPlatformAdminUi\Form\SubmitHandler $submitHandler
+     * @param \Symfony\Component\Translation\TranslatorInterface $translator
+     * @param \EzSystems\EzPlatformUser\UserSetting\UserSettingService $userSettingService
+     * @param \EzSystems\EzPlatformUser\UserSetting\ValueDefinitionRegistry $valueDefinitionRegistry
+     * @param \EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface $notificationHandler
+     * @param int $defaultPaginationLimit
+     */
     public function __construct(
         FormFactory $formFactory,
         SubmitHandler $submitHandler,
@@ -64,7 +72,6 @@ class UserSettingsController extends Controller
         $this->notificationHandler = $notificationHandler;
         $this->defaultPaginationLimit = $defaultPaginationLimit;
     }
-
 
     /**
      * @param int $page

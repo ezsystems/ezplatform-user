@@ -16,9 +16,9 @@ use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
 use EzSystems\EzPlatformUser\View\ForgotPassword\FormView;
 use EzSystems\EzPlatformUser\View\ForgotPassword\LoginView;
 use EzSystems\EzPlatformUser\View\ForgotPassword\SuccessView;
-use EzSystems\EzPlatformUser\View\ForgotPassword\UserResetPasswordFormView;
-use EzSystems\EzPlatformUser\View\ForgotPassword\UserResetPasswordInvalidLinkView;
-use EzSystems\EzPlatformUser\View\ForgotPassword\UserResetPasswordSuccessView;
+use EzSystems\EzPlatformUser\View\ResetPassword\InvalidLinkView;
+use EzSystems\EzPlatformUser\View\ResetPassword\FormView as UserResetPasswordFormView;
+use EzSystems\EzPlatformUser\View\ResetPassword\SuccessView as UserResetPasswordSuccessView ;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use eZ\Publish\API\Repository\UserService;
@@ -162,10 +162,8 @@ class PasswordResetController extends Controller
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string $hashKey
      *
-     * @return \EzSystems\EzPlatformUser\View\ForgotPassword\UserResetPasswordFormView|\EzSystems\EzPlatformUser\View\ForgotPassword\UserResetPasswordInvalidLinkView|\EzSystems\EzPlatformUser\View\ForgotPassword\UserResetPasswordSuccessView
+     * @return \EzSystems\EzPlatformUser\View\ResetPassword\FormView|\EzSystems\EzPlatformUser\View\ResetPassword\InvalidLinkView|\EzSystems\EzPlatformUser\View\ResetPassword\SuccessView
      *
-     * @throws \InvalidArgumentException
-     * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
      * @throws \eZ\Publish\Core\Base\Exceptions\InvalidArgumentType
      */
     public function userResetPasswordAction(Request $request, string $hashKey)
@@ -176,7 +174,7 @@ class PasswordResetController extends Controller
         try {
             $this->userService->loadUserByToken($hashKey);
         } catch (NotFoundException $e) {
-            $view = new UserResetPasswordInvalidLinkView(null);
+            $view = new InvalidLinkView(null);
             $view->setResponse($response);
 
             return $view;
@@ -191,7 +189,7 @@ class PasswordResetController extends Controller
                 $currentUser = $this->permissionResolver->getCurrentUserReference();
                 $this->permissionResolver->setCurrentUserReference($user);
             } catch (NotFoundException $e) {
-                $view = new UserResetPasswordInvalidLinkView(null);
+                $view = new InvalidLinkView(null);
                 $view->setResponse($response);
 
                 return $view;

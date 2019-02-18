@@ -8,8 +8,6 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformUserBundle\Controller;
 
-use eZ\Publish\API\Repository\Exceptions\ContentFieldValidationException;
-use eZ\Publish\API\Repository\Exceptions\ContentValidationException;
 use eZ\Publish\API\Repository\UserService;
 use eZ\Publish\API\Repository\LanguageService;
 use EzSystems\EzPlatformAdminUi\Specification\SiteAccess\IsAdmin;

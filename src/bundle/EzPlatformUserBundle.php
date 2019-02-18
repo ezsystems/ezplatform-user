@@ -6,6 +6,7 @@
  */
 namespace EzSystems\EzPlatformUserBundle;
 
+use EzSystems\EzPlatformUserBundle\DependencyInjection\Compiler\UserSetting;
 use EzSystems\EzPlatformUserBundle\DependencyInjection\Configuration\Parser\ChangePassword;
 use EzSystems\EzPlatformUserBundle\DependencyInjection\Configuration\Parser\UserRegistration;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -23,6 +24,8 @@ class EzPlatformUserBundle extends Bundle
         $core->addConfigParser(new Security());
         $core->addConfigParser(new ChangePassword());
         $core->addConfigParser(new UserRegistration());
+        $container->addCompilerPass(new UserSetting\ValueDefinitionPass());
+        $container->addCompilerPass(new UserSetting\FormMapperPass());
         $core->addDefaultSettings(__DIR__ . '/Resources/config', ['ezplatform_default_settings.yml']);
     }
 }

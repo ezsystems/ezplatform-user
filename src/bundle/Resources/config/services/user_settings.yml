@@ -1,0 +1,23 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    EzSystems\EzPlatformUser\UserSetting\:
+        resource: "../../../lib/UserSetting/*"
+
+    #
+    # User Settings Implementations
+    #
+    EzSystems\EzPlatformUser\UserSetting\Setting\Timezone:
+        tags:
+            - { name: ezplatform.admin_ui.user_setting.value, identifier: timezone }
+            - { name: ezplatform.admin_ui.user_setting.form_mapper, identifier: timezone }
+
+    EzSystems\EzPlatformUser\UserSetting\Setting\SubitemsLimit:
+        arguments:
+            $subitemsLimit: '$subitems_module.limit$'
+        tags:
+            - { name: ezplatform.admin_ui.user_setting.value, identifier: subitems_limit }
+            - { name: ezplatform.admin_ui.user_setting.form_mapper, identifier: subitems_limit }

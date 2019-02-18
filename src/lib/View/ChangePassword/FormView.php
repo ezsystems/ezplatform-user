@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformUser\View;
+namespace EzSystems\EzPlatformUser\View\ForgotPassword\ChangePassword;
 
 use eZ\Publish\Core\MVC\Symfony\View\BaseView;
 
-class UserForgotPasswordLoginView extends BaseView
+class FormView extends BaseView
 {
 }

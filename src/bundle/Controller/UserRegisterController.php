@@ -11,12 +11,11 @@ namespace EzSystems\EzPlatformUserBundle\Controller;
 
 use eZ\Publish\Core\MVC\Symfony\Security\Authorization\Attribute;
 use EzSystems\EzPlatformUser\Form\DataMapper\UserRegisterMapper;
-use EzSystems\EzPlatformUser\View\UserRegisterConfirmView;
-use EzSystems\EzPlatformUser\View\UserRegisterFormView;
+use EzSystems\EzPlatformUser\View\Register\ConfirmView;
+use EzSystems\EzPlatformUser\View\Register\FormView;
 use EzSystems\RepositoryForms\Form\ActionDispatcher\ActionDispatcherInterface;
 use EzSystems\EzPlatformUser\Form\Type\UserRegisterType;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class UserRegisterController extends Controller
@@ -40,13 +39,11 @@ class UserRegisterController extends Controller
     }
 
     /**
-     * Displays and processes a user registration form.
+     * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @param Request $request
+     * @return \EzSystems\EzPlatformUser\View\Register\FormView|null|\Symfony\Component\HttpFoundation\Response
      *
-     * @return \EzSystems\EzPlatformUser\View\UserRegisterFormView|Response
-     *
-     * @throws \Exception if the current user isn't allowed to register an account
+     * @throws \eZ\Publish\Core\Base\Exceptions\InvalidArgumentType
      */
     public function registerAction(Request $request)
     {
@@ -73,16 +70,15 @@ class UserRegisterController extends Controller
             }
         }
 
-        return new UserRegisterFormView(null, ['form' => $form->createView()]);
+        return new FormView(null, ['form' => $form->createView()]);
     }
 
     /**
-     * @return \EzSystems\EzPlatformUser\View\UserRegisterConfirmView
-     *
+     * @return \EzSystems\EzPlatformUser\View\Register\ConfirmView
      * @throws \eZ\Publish\Core\Base\Exceptions\InvalidArgumentType
      */
-    public function registerConfirmAction(): UserRegisterConfirmView
+    public function registerConfirmAction(): ConfirmView
     {
-        return new UserRegisterConfirmView();
+        return new ConfirmView();
     }
 }

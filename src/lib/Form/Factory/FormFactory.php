@@ -10,12 +10,14 @@ namespace EzSystems\EzPlatformUser\Form\Factory;
 
 use EzSystems\EzPlatformUser\Form\Data\UserPasswordForgotData;
 use EzSystems\EzPlatformUser\Form\Data\UserPasswordChangeData;
+use EzSystems\EzPlatformUser\Form\Data\UserSettingUpdateData;
 use EzSystems\EzPlatformUser\Form\Type\UserPasswordChangeType;
 use EzSystems\EzPlatformUser\Form\Type\UserPasswordForgotType;
 use EzSystems\EzPlatformUser\Form\Data\UserPasswordForgotWithLoginData;
 use EzSystems\EzPlatformUser\Form\Type\UserPasswordForgotWithLoginType;
 use EzSystems\EzPlatformUser\Form\Data\UserPasswordResetData;
 use EzSystems\EzPlatformUser\Form\Type\UserPasswordResetType;
+use EzSystems\EzPlatformUser\Form\Type\UserSettingUpdateType;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Form\FormInterface;
@@ -103,5 +105,27 @@ class FormFactory
         $name = $name ?: StringUtil::fqcnToBlockPrefix(UserPasswordResetType::class);
 
         return $this->formFactory->createNamed($name, UserPasswordResetType::class, $data);
+    }
+
+    /**
+     * @param string $userSettingIdentifier
+     * @param \EzSystems\EzPlatformUser\Form\Data\UserSettingUpdateData $data
+     * @param string|null $name
+     *
+     * @return \Symfony\Component\Form\FormInterface
+     */
+    public function updateUserSetting(
+        string $userSettingIdentifier,
+        UserSettingUpdateData $data = null,
+        ?string $name = null
+    ): FormInterface {
+        $name = $name ?: StringUtil::fqcnToBlockPrefix(UserSettingUpdateType::class);
+
+        return $this->formFactory->createNamed(
+            $name,
+            UserSettingUpdateType::class,
+            $data,
+            ['user_setting_identifier' => $userSettingIdentifier]
+        );
     }
 }

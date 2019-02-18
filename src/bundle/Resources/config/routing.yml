@@ -31,3 +31,18 @@ ezplatform.user.register_confirmation:
     path: /register-confirm
     defaults:
         _controller: "EzPlatformUserBundle:UserRegister:registerConfirm"
+
+ezplatform.user_settings.list:
+    path: /user/settings/list/{page}
+    defaults:
+        _controller: 'EzPlatformUserBundle:UserSettings:list'
+        page: 1
+    requirements:
+        page: \d+
+
+ezplatform.user_settings.update:
+    path: /user/settings/update/{identifier}
+    defaults:
+        _controller: 'EzPlatformUserBundle:UserSettings:update'
+    requirements:
+        identifier: .+

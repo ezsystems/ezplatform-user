@@ -13,12 +13,12 @@ use eZ\Publish\API\Repository\PermissionResolver;
 use eZ\Publish\API\Repository\Values\User\User;
 use EzSystems\EzPlatformUser\Form\Factory\FormFactory;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
-use EzSystems\EzPlatformUser\View\UserForgotPasswordFormView;
-use EzSystems\EzPlatformUser\View\UserForgotPasswordLoginView;
-use EzSystems\EzPlatformUser\View\UserForgotPasswordSuccessView;
-use EzSystems\EzPlatformUser\View\UserResetPasswordFormView;
-use EzSystems\EzPlatformUser\View\UserResetPasswordInvalidLinkView;
-use EzSystems\EzPlatformUser\View\UserResetPasswordSuccessView;
+use EzSystems\EzPlatformUser\View\ForgotPassword\FormView;
+use EzSystems\EzPlatformUser\View\ForgotPassword\LoginView;
+use EzSystems\EzPlatformUser\View\ForgotPassword\SuccessView;
+use EzSystems\EzPlatformUser\View\ForgotPassword\UserResetPasswordFormView;
+use EzSystems\EzPlatformUser\View\ForgotPassword\UserResetPasswordInvalidLinkView;
+use EzSystems\EzPlatformUser\View\ForgotPassword\UserResetPasswordSuccessView;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use eZ\Publish\API\Repository\UserService;
@@ -88,7 +88,7 @@ class PasswordResetController extends Controller
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return \EzSystems\EzPlatformUser\View\UserForgotPasswordFormView|\EzSystems\EzPlatformUser\View\UserForgotPasswordSuccessView|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \EzSystems\EzPlatformUser\View\ForgotPassword\FormView|\EzSystems\EzPlatformUser\View\ForgotPassword\SuccessView|\Symfony\Component\HttpFoundation\RedirectResponse
      *
      * @throws \eZ\Publish\Core\Base\Exceptions\InvalidArgumentType
      */
@@ -113,10 +113,10 @@ class PasswordResetController extends Controller
                 $this->sendResetPasswordMessage($user->email, $token);
             }
 
-            return new UserForgotPasswordSuccessView(null);
+            return new SuccessView(null);
         }
 
-        return new UserForgotPasswordFormView(null, [
+        return new FormView(null, [
             'form_forgot_user_password' => $form->createView(),
         ]);
     }
@@ -124,7 +124,7 @@ class PasswordResetController extends Controller
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return \EzSystems\EzPlatformUser\View\UserForgotPasswordLoginView|\EzSystems\EzPlatformUser\View\UserForgotPasswordSuccessView
+     * @return \EzSystems\EzPlatformUser\View\ForgotPassword\LoginView|\EzSystems\EzPlatformUser\View\ForgotPassword\SuccessView
      *
      * @throws \eZ\Publish\Core\Base\Exceptions\InvalidArgumentType
      */
@@ -144,16 +144,16 @@ class PasswordResetController extends Controller
             }
 
             if (!$user || count($this->userService->loadUsersByEmail($user->email)) < 2) {
-                return new UserForgotPasswordSuccessView(null);
+                return new SuccessView(null);
             }
 
             $token = $this->updateUserToken($user);
             $this->sendResetPasswordMessage($user->email, $token);
 
-            return new UserForgotPasswordSuccessView(null);
+            return new SuccessView(null);
         }
 
-        return new UserForgotPasswordLoginView(null, [
+        return new LoginView(null, [
             'form_forgot_user_password_with_login' => $form->createView(),
         ]);
     }
@@ -162,7 +162,7 @@ class PasswordResetController extends Controller
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string $hashKey
      *
-     * @return \EzSystems\EzPlatformUser\View\UserResetPasswordFormView|\EzSystems\EzPlatformUser\View\UserResetPasswordInvalidLinkView|\EzSystems\EzPlatformUser\View\UserResetPasswordSuccessView
+     * @return \EzSystems\EzPlatformUser\View\ForgotPassword\UserResetPasswordFormView|\EzSystems\EzPlatformUser\View\ForgotPassword\UserResetPasswordInvalidLinkView|\EzSystems\EzPlatformUser\View\ForgotPassword\UserResetPasswordSuccessView
      *
      * @throws \InvalidArgumentException
      * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException

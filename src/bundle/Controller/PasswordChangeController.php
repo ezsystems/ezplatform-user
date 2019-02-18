@@ -15,12 +15,10 @@ use eZ\Publish\API\Repository\LanguageService;
 use EzSystems\EzPlatformAdminUi\Specification\SiteAccess\IsAdmin;
 use EzSystems\EzPlatformUser\Form\Factory\FormFactory;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
-use EzSystems\EzPlatformUser\View\UserChangePasswordFormView;
-use EzSystems\EzPlatformUser\View\UserChangePasswordSuccessView;
+use EzSystems\EzPlatformUser\View\ForgotPassword\ChangePassword\FormView;
+use EzSystems\EzPlatformUser\View\ForgotPassword\ChangePassword\SuccessView;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
-use Symfony\Component\Translation\Exception\InvalidArgumentException;
 use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Exception;
@@ -75,14 +73,10 @@ class PasswordChangeController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return \EzSystems\EzPlatformUser\View\UserChangePasswordFormView|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \EzSystems\EzPlatformUser\View\ForgotPassword\ChangePassword\FormView|\EzSystems\EzPlatformUser\View\ForgotPassword\ChangePassword\SuccessView|\Symfony\Component\HttpFoundation\RedirectResponse
      *
-     * @throws InvalidArgumentException
-     * @throws ContentValidationException
-     * @throws ContentFieldValidationException
-     * @throws InvalidOptionsException
      * @throws \eZ\Publish\Core\Base\Exceptions\InvalidArgumentType
      */
     public function userPasswordChangeAction(Request $request)
@@ -113,13 +107,13 @@ class PasswordChangeController extends Controller
                     return new RedirectResponse($this->generateUrl('ezplatform.dashboard'));
                 }
 
-                return new UserChangePasswordSuccessView(null);
+                return new SuccessView(null);
             } catch (Exception $e) {
                 $this->notificationHandler->error($e->getMessage());
             }
         }
 
-        return new UserChangePasswordFormView(null, [
+        return new FormView(null, [
             'form_change_user_password' => $form->createView(),
         ]);
     }

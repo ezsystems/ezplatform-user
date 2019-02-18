@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformUser\View;
+namespace EzSystems\EzPlatformUser\View\ResetPassword;
 
 use eZ\Publish\Core\MVC\Symfony\View\BaseView;
 
-class UserForgotPasswordSuccessView extends BaseView
+class InvalidLinkView extends BaseView
 {
 }

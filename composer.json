@@ -10,7 +10,10 @@
         }
     },
     "autoload-dev": {
-        "psr-4": { "EzSystems\\EzPlatformAdminUi\\Tests\\": "src/lib/Tests" }
+        "psr-4": {
+            "EzSystems\\EzPlatformUserBundle\\Tests\\": "tests/bundle/",
+            "EzSystems\\EzPlatformUser\\Tests\\": "tests/lib/"
+        }
     },
     "require": {
         "php": ">=7.1",
@@ -19,5 +22,8 @@
         "ezsystems/ezpublish-kernel": "^7.1@dev",
         "ezsystems/ezplatform-admin-ui": "^1.1",
         "symfony/swiftmailer-bundle": "^3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
     }
 }

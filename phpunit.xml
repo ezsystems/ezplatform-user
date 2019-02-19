@@ -8,18 +8,18 @@
         colors="true">
     <testsuites>
         <testsuite name="EzSystems\EzPlatformUserBundle">
-            <directory>src/bundle/Tests/</directory>
+            <directory>tests/bundle/</directory>
         </testsuite>
         <testsuite name="EzSystems\EzPlatformUser">
-            <directory>src/lib/Tests/</directory>
+            <directory>tests/lib/</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist>
             <directory>src</directory>
             <exclude>
-                <directory>src/bundle/Tests/</directory>
-                <directory>src/lib/Tests/</directory>
+                <directory>tests/bundle/</directory>
+                <directory>tests/lib/</directory>
             </exclude>
         </whitelist>
     </filter>

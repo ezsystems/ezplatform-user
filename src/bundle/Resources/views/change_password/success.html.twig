@@ -1,0 +1,8 @@
+{% extends viewbaseLayout is defined ? viewbaseLayout : pagelayout %}
+
+{% trans_default_domain 'change_password' %}
+
+{%- block content -%}
+        {{ 'ezplatform.change_password.success'|trans|raw
+        |desc('Your password has been successfully changed.') }}
+{%- endblock content -%}

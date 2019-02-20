@@ -1,0 +1,9 @@
+{% extends viewbaseLayout is defined ? viewbaseLayout : pagelayout %}
+
+{% trans_default_domain 'change_password' %}
+
+{% block content %}
+    {{ form_start(form_change_user_password) }}
+    {{ form_widget(form_change_user_password) }}
+    {{ form_end(form_change_user_password) }}
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends viewbaseLayout is defined ? viewbaseLayout : pagelayout %}
+
+{% trans_default_domain 'reset_password' %}
+
+{%- block content -%}
+    <h2 class="ez-login__header">{{ 'ezplatform.reset_password.change_password'|trans|desc('Change password') }}</h2>
+    {{ form_start(form_reset_user_password) }}
+    {{ form_widget(form_reset_user_password) }}
+    {{ form_end(form_reset_user_password) }}
+{%- endblock content -%}

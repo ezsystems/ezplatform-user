@@ -1,0 +1,11 @@
+{% extends noLayout is defined and noLayout == true ? viewbaseLayout : pagelayout %}
+
+{% trans_default_domain 'registration' %}
+
+{% block content %}
+    <h1>{{ 'ezplatform.registration_confirmation.header'|trans|desc('Your account has been created') }}</h1>
+    <p class="user-register-confirmation-message">
+        {{ 'ezplatform.registration_confirmation.message'|trans({ '%login%': path('login') })
+        |desc('Thank you for registering an account. You can now <a href="%login%">login</a>')|raw }}    </p>
+    <p>
+{% endblock %}

@@ -1,0 +1,26 @@
+<phpunit
+        backupGlobals="false"
+        backupStaticAttributes="false"
+        bootstrap="bootstrap.php"
+        convertErrorsToExceptions="true"
+        convertNoticesToExceptions="true"
+        convertWarningsToExceptions="true"
+        colors="true">
+    <testsuites>
+        <testsuite name="EzSystems\EzPlatformUserBundle">
+            <directory>tests/bundle/</directory>
+        </testsuite>
+        <testsuite name="EzSystems\EzPlatformUser">
+            <directory>tests/lib/</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist>
+            <directory>src</directory>
+            <exclude>
+                <directory>tests/bundle/</directory>
+                <directory>tests/lib/</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+</phpunit>

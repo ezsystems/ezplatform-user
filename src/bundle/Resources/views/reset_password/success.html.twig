@@ -1,0 +1,11 @@
+{% extends viewbaseLayout is defined ? viewbaseLayout : pagelayout %}
+
+{% trans_default_domain 'reset_password' %}
+
+{%- block content -%}
+    <h2>{{ 'ezplatform.reset_password.change_password'|trans|desc('Change password') }}</h2>
+    <p>
+        {{ 'ezplatform.reset_password.success'|trans({ '%login%': path('login') })
+        |desc('Congrats, your password has been changed, you can now <a href="%login%">login</a> to eZ Platform.')|raw }}
+    </p>
+{%- endblock content -%}

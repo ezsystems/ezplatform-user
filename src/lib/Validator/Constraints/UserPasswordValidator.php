@@ -16,22 +16,21 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
-use Symfony\Component\Validator\Exception\ConstraintDefinitionException as ValidatorConstraintDefinitionException;
 
 /**
  * Will check if logged user and password are match.
  */
 class UserPasswordValidator extends ConstraintValidator
 {
-    /** @var UserService */
+    /** @var \eZ\Publish\API\Repository\UserService */
     private $userService;
 
-    /** @var TokenStorageInterface */
+    /** @var \Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface */
     private $tokenStorage;
 
     /**
-     * @param UserService $userService
-     * @param TokenStorageInterface $tokenStorage
+     * @param \eZ\Publish\API\Repository\UserService $userService
+     * @param \Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface $tokenStorage
      */
     public function __construct(UserService $userService, TokenStorageInterface $tokenStorage)
     {
@@ -43,9 +42,7 @@ class UserPasswordValidator extends ConstraintValidator
      * Checks if the passed password exists for logged user.
      *
      * @param string $password The password that should be validated
-     * @param Constraint|UserPassword $constraint The constraint for the validation
-     *
-     * @throws ValidatorConstraintDefinitionException
+     * @param \Symfony\Component\Validator\Constraint|\EzSystems\EzPlatformUser\Validator\Constraints\UserPassword $constraint The constraint for the validation
      */
     public function validate($password, Constraint $constraint)
     {

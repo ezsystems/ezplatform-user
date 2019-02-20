@@ -9,7 +9,6 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformUserBundle\Controller;
 
 use eZ\Publish\API\Repository\UserService;
-use eZ\Publish\API\Repository\LanguageService;
 use EzSystems\EzPlatformAdminUi\Specification\SiteAccess\IsAdmin;
 use EzSystems\EzPlatformUser\Form\Factory\FormFactory;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
@@ -23,30 +22,30 @@ use Exception;
 
 class PasswordChangeController extends Controller
 {
-    /** @var NotificationHandlerInterface */
+    /** @var \EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface */
     private $notificationHandler;
 
-    /** @var TranslatorInterface */
+    /** @var \Symfony\Component\Translation\TranslatorInterface */
     private $translator;
 
-    /** @var LanguageService */
+    /** @var \eZ\Publish\API\Repository\UserService */
     private $userService;
 
-    /** @var FormFactory */
+    /** @var \EzSystems\EzPlatformUser\Form\Factory\FormFactory */
     private $formFactory;
 
-    /** @var TokenStorageInterface */
+    /** @var \Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface */
     private $tokenStorage;
 
     /** @var array */
     private $siteAccessGroups;
 
     /**
-     * @param NotificationHandlerInterface $notificationHandler
-     * @param TranslatorInterface $translator
-     * @param UserService $userService
-     * @param FormFactory $formFactory
-     * @param TokenStorageInterface $tokenStorage
+     * @param \EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface $notificationHandler
+     * @param \Symfony\Component\Translation\TranslatorInterface $translator
+     * @param \eZ\Publish\API\Repository\UserService $userService
+     * @param \EzSystems\EzPlatformUser\Form\Factory\FormFactory $formFactory
+     * @param \Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface $tokenStorage
      * @param array $siteAccessGroups
      */
     public function __construct(
@@ -63,11 +62,6 @@ class PasswordChangeController extends Controller
         $this->formFactory = $formFactory;
         $this->tokenStorage = $tokenStorage;
         $this->siteAccessGroups = $siteAccessGroups;
-    }
-
-    public function performAccessCheck()
-    {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
     }
 
     /**

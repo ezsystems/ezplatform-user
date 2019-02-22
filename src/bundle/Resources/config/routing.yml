@@ -22,12 +22,12 @@ ezplatform.user.reset_password:
     defaults:
         _controller: 'EzPlatformUserBundle:PasswordReset:userResetPassword'
 
-ezplatform.user.register:
+ez_user_register:
     path: /register
     defaults:
         _controller: "EzPlatformUserBundle:UserRegister:register"
 
-ezplatform.user.register_confirmation:
+ez_user_register_confirmation:
     path: /register-confirm
     defaults:
         _controller: "EzPlatformUserBundle:UserRegister:registerConfirm"

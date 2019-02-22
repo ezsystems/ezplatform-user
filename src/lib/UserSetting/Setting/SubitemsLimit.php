@@ -67,7 +67,7 @@ class SubitemsLimit implements ValueDefinitionInterface, FormMapperInterface
     /**
      * {@inheritdoc}
      */
-    public function mapFieldForm(FormBuilderInterface $formBuilder, ValueDefinitionInterface $value): FormBuilderInterface
+    public function mapFieldForm(FormBuilderInterface $formBuilder, \EzSystems\EzPlatformAdminUi\UserSetting\ValueDefinitionInterface $value): FormBuilderInterface
     {
         return $formBuilder->create(
             'value',

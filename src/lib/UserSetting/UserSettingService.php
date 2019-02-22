@@ -124,7 +124,7 @@ class UserSettingService
      */
     private function createUserSetting(
         string $identifier,
-        ValueDefinitionInterface $value,
+        \EzSystems\EzPlatformAdminUi\UserSetting\ValueDefinitionInterface $value,
         string $userPreferenceValue
     ): UserSetting {
         return new UserSetting([
@@ -143,7 +143,7 @@ class UserSettingService
      *
      * @throws \eZ\Publish\API\Repository\Exceptions\UnauthorizedException
      */
-    private function getUserSettingValue(string $identifier, ValueDefinitionInterface $value): string
+    private function getUserSettingValue(string $identifier, \EzSystems\EzPlatformAdminUi\UserSetting\ValueDefinitionInterface $value): string
     {
         try {
             $userPreference = $this->userPreferenceService->getUserPreference($identifier);

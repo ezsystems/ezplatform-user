@@ -32,7 +32,7 @@ class ValueDefinitionRegistry
      */
     public function addValueDefinition(
         string $identifier,
-        ValueDefinitionInterface $valueDefinition
+        \EzSystems\EzPlatformAdminUi\UserSetting\ValueDefinitionInterface $valueDefinition
     ): void {
         $this->valueDefinitions[$identifier] = $valueDefinition;
     }
@@ -44,7 +44,7 @@ class ValueDefinitionRegistry
      *
      * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
      */
-    public function getValueDefinition(string $identifier): ValueDefinitionInterface
+    public function getValueDefinition(string $identifier): \EzSystems\EzPlatformAdminUi\UserSetting\ValueDefinitionInterface
     {
         if (!isset($this->valueDefinitions[$identifier])) {
             throw new InvalidArgumentException(

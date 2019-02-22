@@ -32,7 +32,7 @@ class FormMapperRegistry
      */
     public function addFormMapper(
         string $identifier,
-        FormMapperInterface $formMapper
+        \EzSystems\EzPlatformAdminUi\UserSetting\FormMapperInterface $formMapper
     ): void {
         $this->formMappers[$identifier] = $formMapper;
     }
@@ -44,7 +44,7 @@ class FormMapperRegistry
      *
      * @throws \eZ\Publish\Core\Base\Exceptions\InvalidArgumentException
      */
-    public function getFormMapper(string $identifier): FormMapperInterface
+    public function getFormMapper(string $identifier): \EzSystems\EzPlatformAdminUi\UserSetting\FormMapperInterface
     {
         if (!isset($this->formMappers[$identifier])) {
             throw new InvalidArgumentException(

@@ -14,35 +14,6 @@ namespace EzSystems\EzPlatformUser\UserSetting;
  * User Preferences are not displayed by default unless
  * ValueDefinitionInterface implementation is provided.
  */
-interface ValueDefinitionInterface
+interface ValueDefinitionInterface extends \EzSystems\EzPlatformAdminUi\UserSetting\ValueDefinitionInterface
 {
-    /**
-     * Returns name of a User Preference displayed in UI.
-     *
-     * @return string
-     */
-    public function getName(): string;
-
-    /**
-     * Returns description of a User Preference displayed in UI.
-     *
-     * @return string
-     */
-    public function getDescription(): string;
-
-    /**
-     * Returns formatted value to be displayed in UI.
-     *
-     * @param string $storageValue
-     *
-     * @return string
-     */
-    public function getDisplayValue(string $storageValue): string;
-
-    /**
-     * Returns default value for User Preference if none is defined.
-     *
-     * @return string
-     */
-    public function getDefaultValue(): string;
 }

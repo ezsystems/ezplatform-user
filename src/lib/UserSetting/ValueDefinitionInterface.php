@@ -8,12 +8,14 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformUser\UserSetting;
 
+use EzSystems\EzPlatformAdminUi\UserSetting as AdminUiUserSettings;
+
 /**
  * Interface for displaying User Preferences in the Admin UI.
  *
  * User Preferences are not displayed by default unless
  * ValueDefinitionInterface implementation is provided.
  */
-interface ValueDefinitionInterface extends \EzSystems\EzPlatformAdminUi\UserSetting\ValueDefinitionInterface
+interface ValueDefinitionInterface extends AdminUiUserSettings\ValueDefinitionInterface
 {
 }

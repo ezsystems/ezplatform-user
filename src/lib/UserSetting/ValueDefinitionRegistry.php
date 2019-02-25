@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformUser\UserSetting;
 
 use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
+use EzSystems\EzPlatformAdminUi\UserSetting as AdminUiUserSettings;
 
 /**
  * @internal
@@ -32,7 +33,7 @@ class ValueDefinitionRegistry
      */
     public function addValueDefinition(
         string $identifier,
-        \EzSystems\EzPlatformAdminUi\UserSetting\ValueDefinitionInterface $valueDefinition
+        AdminUiUserSettings\ValueDefinitionInterface $valueDefinition
     ): void {
         $this->valueDefinitions[$identifier] = $valueDefinition;
     }
@@ -44,7 +45,7 @@ class ValueDefinitionRegistry
      *
      * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
      */
-    public function getValueDefinition(string $identifier): \EzSystems\EzPlatformAdminUi\UserSetting\ValueDefinitionInterface
+    public function getValueDefinition(string $identifier): AdminUiUserSettings\ValueDefinitionInterface
     {
         if (!isset($this->valueDefinitions[$identifier])) {
             throw new InvalidArgumentException(

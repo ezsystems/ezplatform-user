@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformUser\UserSetting;
 
-interface FormMapperInterface extends \EzSystems\EzPlatformAdminUi\UserSetting\FormMapperInterface
+use EzSystems\EzPlatformAdminUi\UserSetting as AdminUiUserSettings;
+
+interface FormMapperInterface extends AdminUiUserSettings\FormMapperInterface
 {
 }

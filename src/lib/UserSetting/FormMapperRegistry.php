@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformUser\UserSetting;
 
 use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
+use EzSystems\EzPlatformAdminUi\UserSetting as AdminUiUserSettings;
 
 /**
  * @internal
@@ -32,7 +33,7 @@ class FormMapperRegistry
      */
     public function addFormMapper(
         string $identifier,
-        FormMapperInterface $formMapper
+        AdminUiUserSettings\FormMapperInterface $formMapper
     ): void {
         $this->formMappers[$identifier] = $formMapper;
     }
@@ -44,7 +45,7 @@ class FormMapperRegistry
      *
      * @throws \eZ\Publish\Core\Base\Exceptions\InvalidArgumentException
      */
-    public function getFormMapper(string $identifier): FormMapperInterface
+    public function getFormMapper(string $identifier): AdminUiUserSettings\FormMapperInterface
     {
         if (!isset($this->formMappers[$identifier])) {
             throw new InvalidArgumentException(

@@ -13,6 +13,7 @@ use EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Translation\TranslatorInterface;
+use EzSystems\EzPlatformAdminUi\UserSetting as AdminUiUserSettings;
 
 class SubitemsLimit implements ValueDefinitionInterface, FormMapperInterface
 {
@@ -67,7 +68,7 @@ class SubitemsLimit implements ValueDefinitionInterface, FormMapperInterface
     /**
      * {@inheritdoc}
      */
-    public function mapFieldForm(FormBuilderInterface $formBuilder, ValueDefinitionInterface $value): FormBuilderInterface
+    public function mapFieldForm(FormBuilderInterface $formBuilder, AdminUiUserSettings\ValueDefinitionInterface $value): FormBuilderInterface
     {
         return $formBuilder->create(
             'value',

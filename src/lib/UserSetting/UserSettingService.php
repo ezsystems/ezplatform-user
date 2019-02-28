@@ -11,6 +11,7 @@ namespace EzSystems\EzPlatformUser\UserSetting;
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\UserPreferenceService;
 use eZ\Publish\API\Repository\Values\UserPreference\UserPreferenceSetStruct;
+use EzSystems\EzPlatformAdminUi\UserSetting as AdminUiUserSettings;
 
 /**
  * @internal
@@ -124,7 +125,7 @@ class UserSettingService
      */
     private function createUserSetting(
         string $identifier,
-        ValueDefinitionInterface $value,
+        AdminUiUserSettings\ValueDefinitionInterface $value,
         string $userPreferenceValue
     ): UserSetting {
         return new UserSetting([
@@ -143,7 +144,7 @@ class UserSettingService
      *
      * @throws \eZ\Publish\API\Repository\Exceptions\UnauthorizedException
      */
-    private function getUserSettingValue(string $identifier, ValueDefinitionInterface $value): string
+    private function getUserSettingValue(string $identifier, AdminUiUserSettings\ValueDefinitionInterface $value): string
     {
         try {
             $userPreference = $this->userPreferenceService->getUserPreference($identifier);

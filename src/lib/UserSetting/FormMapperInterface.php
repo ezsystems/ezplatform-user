@@ -8,20 +8,8 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformUser\UserSetting;
 
-use Symfony\Component\Form\FormBuilderInterface;
+use EzSystems\EzPlatformAdminUi\UserSetting as AdminUiUserSettings;
 
-interface FormMapperInterface
+interface FormMapperInterface extends AdminUiUserSettings\FormMapperInterface
 {
-    /**
-     * Creates 'value' form type representing editing control for setting user preference value.
-     *
-     * @param \Symfony\Component\Form\FormBuilderInterface $formBuilder
-     * @param \EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface $value
-     *
-     * @return \Symfony\Component\Form\FormBuilderInterface
-     */
-    public function mapFieldForm(
-        FormBuilderInterface $formBuilder,
-        ValueDefinitionInterface $value
-    ): FormBuilderInterface;
 }

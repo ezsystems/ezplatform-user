@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformUser\View\ForgotPassword\ChangePassword;
+namespace EzSystems\EzPlatformUser\View\ChangePassword;
 
 use eZ\Publish\Core\MVC\Symfony\View\BaseView;
 

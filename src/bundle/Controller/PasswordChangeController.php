@@ -12,8 +12,8 @@ use eZ\Publish\API\Repository\UserService;
 use EzSystems\EzPlatformAdminUi\Specification\SiteAccess\IsAdmin;
 use EzSystems\EzPlatformUser\Form\Factory\FormFactory;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
-use EzSystems\EzPlatformUser\View\ForgotPassword\ChangePassword\FormView;
-use EzSystems\EzPlatformUser\View\ForgotPassword\ChangePassword\SuccessView;
+use EzSystems\EzPlatformUser\View\ChangePassword\FormView;
+use EzSystems\EzPlatformUser\View\ChangePassword\SuccessView;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -67,7 +67,7 @@ class PasswordChangeController extends Controller
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return \EzSystems\EzPlatformUser\View\ForgotPassword\ChangePassword\FormView|\EzSystems\EzPlatformUser\View\ForgotPassword\ChangePassword\SuccessView|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \EzSystems\EzPlatformUser\View\ChangePassword\FormView|\EzSystems\EzPlatformUser\View\ChangePassword\SuccessView|\Symfony\Component\HttpFoundation\RedirectResponse
      *
      * @throws \eZ\Publish\Core\Base\Exceptions\InvalidArgumentType
      */

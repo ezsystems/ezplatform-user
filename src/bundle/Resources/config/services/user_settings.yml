@@ -21,3 +21,8 @@ services:
         tags:
             - { name: ezplatform.admin_ui.user_setting.value, identifier: subitems_limit }
             - { name: ezplatform.admin_ui.user_setting.form_mapper, identifier: subitems_limit }
+
+    EzSystems\EzPlatformUser\UserSetting\Setting\CharacterCounter:
+        tags:
+            - { name: ezplatform.admin_ui.user_setting.value, identifier: character_counter }
+            - { name: ezplatform.admin_ui.user_setting.form_mapper, identifier: character_counter }

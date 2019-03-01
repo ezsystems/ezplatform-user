@@ -18,7 +18,7 @@ use EzSystems\EzPlatformUser\View\ForgotPassword\LoginView;
 use EzSystems\EzPlatformUser\View\ForgotPassword\SuccessView;
 use EzSystems\EzPlatformUser\View\ResetPassword\InvalidLinkView;
 use EzSystems\EzPlatformUser\View\ResetPassword\FormView as UserResetPasswordFormView;
-use EzSystems\EzPlatformUser\View\ResetPassword\SuccessView as UserResetPasswordSuccessView ;
+use EzSystems\EzPlatformUser\View\ResetPassword\SuccessView as UserResetPasswordSuccessView;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use eZ\Publish\API\Repository\UserService;

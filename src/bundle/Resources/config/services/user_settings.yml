@@ -15,6 +15,11 @@ services:
             - { name: ezplatform.admin_ui.user_setting.value, identifier: timezone }
             - { name: ezplatform.admin_ui.user_setting.form_mapper, identifier: timezone }
 
+    EzSystems\EzPlatformUser\UserSetting\Setting\CollapseContentPreview:
+        tags:
+            - { name: ezplatform.admin_ui.user_setting.value, identifier: collapse_content_preview }
+            - { name: ezplatform.admin_ui.user_setting.form_mapper, identifier: collapse_content_preview }
+
     EzSystems\EzPlatformUser\UserSetting\Setting\SubitemsLimit:
         arguments:
             $subitemsLimit: '$subitems_module.limit$'

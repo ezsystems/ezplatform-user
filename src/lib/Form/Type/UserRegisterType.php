@@ -5,7 +5,7 @@
  */
 namespace EzSystems\EzPlatformUser\Form\Type;
 
-use EzSystems\RepositoryForms\Data\User\UserRegisterData;
+use EzSystems\EzPlatformUser\Form\Data\UserRegisterData;
 use EzSystems\RepositoryForms\Form\EventSubscriber\UserFieldsSubscriber;
 use EzSystems\RepositoryForms\Form\Type\Content\BaseContentType;
 use Symfony\Component\Form\AbstractType;

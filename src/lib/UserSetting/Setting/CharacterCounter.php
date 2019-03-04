@@ -10,6 +10,7 @@ namespace EzSystems\EzPlatformUser\UserSetting\Setting;
 
 use EzSystems\EzPlatformUser\UserSetting\FormMapperInterface;
 use EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface;
+use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -17,6 +18,9 @@ use EzSystems\EzPlatformAdminUi\UserSetting as AdminUiUserSettings;
 
 class CharacterCounter implements ValueDefinitionInterface, FormMapperInterface
 {
+    public const ENABLED_OPTION = 'enabled';
+    public const DISABLED_OPTION = 'disabled';
+
     /** @var \Symfony\Component\Translation\TranslatorInterface */
     private $translator;
 
@@ -49,7 +53,17 @@ class CharacterCounter implements ValueDefinitionInterface, FormMapperInterface
      */
     public function getDisplayValue(string $storageValue): string
     {
-        return $storageValue;
+        switch($storageValue) {
+            case self::ENABLED_OPTION:
+                return $this->getTranslatedOptionEnabled();
+            case self::DISABLED_OPTION:
+                return $this->getTranslatedOptionDisabled();
+            default:
+                throw new InvalidArgumentException(
+                    '$storageValue',
+                    sprintf('There is no \'%s\' option', $storageValue)
+                );
+        }
     }
 
     /**
@@ -66,8 +80,8 @@ class CharacterCounter implements ValueDefinitionInterface, FormMapperInterface
     public function mapFieldForm(FormBuilderInterface $formBuilder, AdminUiUserSettings\ValueDefinitionInterface $value): FormBuilderInterface
     {
         $choices = [
-            $this->getTranslatedOptionEnabled() => 'enabled',
-            $this->getTranslatedOptionDisabled() => 'disabled',
+            $this->getTranslatedOptionEnabled() => self::ENABLED_OPTION,
+            $this->getTranslatedOptionDisabled() => self::DISABLED_OPTION,
         ];
 
         return $formBuilder->create(

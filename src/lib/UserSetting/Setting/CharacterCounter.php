@@ -10,7 +10,7 @@ namespace EzSystems\EzPlatformUser\UserSetting\Setting;
 
 use EzSystems\EzPlatformUser\UserSetting\FormMapperInterface;
 use EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface;
-use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException
+use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Translation\TranslatorInterface;

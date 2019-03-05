@@ -53,6 +53,5 @@ services:
             - { name: kernel.event_subscriber }
 
     EzSystems\EzPlatformUser\Templating\Twig\DateTimeExtension:
-        lazy: true
         tags:
             - { name: twig.extension }

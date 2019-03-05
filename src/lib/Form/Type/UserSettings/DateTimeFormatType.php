@@ -43,7 +43,7 @@ class DateTimeFormatType extends AbstractType
         $resolver->setDefaults([
             'date_format_choices' => [],
             'time_format_choices' => [],
-            'translation_domain' => 'user_settings'
+            'translation_domain' => 'user_settings',
         ]);
     }
 }

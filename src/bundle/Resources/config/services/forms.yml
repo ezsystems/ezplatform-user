@@ -7,6 +7,10 @@ services:
     EzSystems\EzPlatformUser\Form\Type\:
         resource: "../../../lib/Form/Type/*"
 
+    EzSystems\EzPlatformUser\Form\ChoiceList\Loader\AvailableLocaleChoiceLoader:
+        arguments:
+            $availableTranslations: '%available_translations%'
+
     EzSystems\EzPlatformUser\Form\Type\UserSettings\FullDateTimeFormatType:
         arguments:
             $allowedDateFormats: '$user_preferences.allowed_full_date_formats$'

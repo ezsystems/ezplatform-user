@@ -21,6 +21,7 @@ use Symfony\Component\Config\Definition\Builder\NodeBuilder;
  *   system:
  *      default: # configuration per siteaccess or siteaccess group
  *          user_preferences:
+ *              additional_translations: ['en_US', 'en_GB']
  *              short_datetime_format:
  *                  date_format: 'dd/mm/yyy'
  *                  time_format: 'hh:mm'
@@ -52,6 +53,11 @@ class UserPreferences extends AbstractParser
             ->arrayNode('user_preferences')
                 ->info('User Preferences configuration.')
                 ->children()
+                    ->arrayNode('additional_translations')
+                        ->info('Additional translations to display on the preferred language list.')
+                        ->example(['en_US', 'en_GB'])
+                        ->prototype('scalar')->end()
+                    ->end()
                     ->arrayNode('full_datetime_format')
                         ->children()
                             ->scalarNode('date_format')
@@ -111,9 +117,11 @@ class UserPreferences extends AbstractParser
 
         $settings = $scopeSettings['user_preferences'];
         foreach ($settings as $key => $value) {
-            if (!empty($value)) {
-                $contextualizer->setContextualParameter("user_preferences.$key", $currentScope, $value);
-            }
+            $contextualizer->setContextualParameter(
+                "user_preferences.$key",
+                $currentScope,
+                $value
+            );
         }
     }
 }

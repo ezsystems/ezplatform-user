@@ -43,3 +43,10 @@ services:
         tags:
             - { name: ezplatform.admin_ui.user_setting.value, identifier: short_datetime_format }
             - { name: ezplatform.admin_ui.user_setting.form_mapper, identifier: short_datetime_format }
+
+    EzSystems\EzPlatformUser\UserSetting\Setting\Language:
+        arguments:
+            $availableLocaleChoiceLoader: '@EzSystems\EzPlatformUser\Form\ChoiceList\Loader\AvailableLocaleChoiceLoader'
+        tags:
+            - { name: ezplatform.admin_ui.user_setting.value, identifier: language }
+            - { name: ezplatform.admin_ui.user_setting.form_mapper, identifier: language }

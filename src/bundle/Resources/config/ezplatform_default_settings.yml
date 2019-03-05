@@ -46,3 +46,6 @@ parameters:
     ezsettings.default.user_preferences.allowed_full_time_formats:
         'hh:mm AM/PM': 'hh:mm a'
         'hh:mm': 'HH:mm'
+
+    # Additional translations e.g. ['en_US', 'nb_NO']
+    ezsettings.default.user_preferences.additional_translations: []

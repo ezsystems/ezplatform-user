@@ -10,6 +10,12 @@ namespace EzSystems\EzPlatformUser\UserSetting;
 
 use eZ\Publish\API\Repository\Values\ValueObject;
 
+/**
+ * @property string $identifier
+ * @property string $name
+ * @property string $description
+ * @property string $value
+ */
 class UserSetting extends ValueObject
 {
     /** @var string */

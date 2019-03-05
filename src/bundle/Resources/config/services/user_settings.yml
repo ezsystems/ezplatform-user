@@ -8,6 +8,13 @@ services:
         resource: "../../../lib/UserSetting/*"
 
     #
+    # Main Service
+    #
+    EzSystems\EzPlatformUser\UserSetting\UserSettingService: ~
+
+    EzSystems\EzPlatformUser\UserSetting\UserSettingArrayAccessor:
+
+    #
     # User Settings Implementations
     #
     EzSystems\EzPlatformUser\UserSetting\Setting\Timezone:

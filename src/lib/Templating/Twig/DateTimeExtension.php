@@ -16,8 +16,14 @@ use IntlDateFormatter;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
-final class DateTimeExtension extends AbstractExtension
+class DateTimeExtension extends AbstractExtension
 {
+    /** @var \EzSystems\EzPlatformUser\UserSetting\UserSettingService */
+    private $userSettingService;
+
+    /** @var \EzSystems\EzPlatformUser\UserSetting\Setting\DateTimeFormatSerializer */
+    private $dateTimeFormatSerializer;
+
     /** @var \IntlDateFormatter */
     private $shortDateTimeFormatter;
 
@@ -25,44 +31,15 @@ final class DateTimeExtension extends AbstractExtension
     private $fullDateTimeFormatter;
 
     /**
-     * @param UserSettingService $userSettingService
-     * @param DateTimeFormatSerializer $dateTimeFormatSerializer
-     *
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
-     * @throws \eZ\Publish\API\Repository\Exceptions\UnauthorizedException
+     * @param \EzSystems\EzPlatformUser\UserSetting\UserSettingService $userSettingService
+     * @param \EzSystems\EzPlatformUser\UserSetting\Setting\DateTimeFormatSerializer $dateTimeFormatSerializer
      */
     public function __construct(
         UserSettingService $userSettingService,
         DateTimeFormatSerializer $dateTimeFormatSerializer
     ) {
-        $langauge = $userSettingService->getUserSetting('language')->value;
-        $timezone = $userSettingService->getUserSetting('timezone')->value;
-
-        $shortDateFormat = (string)$dateTimeFormatSerializer->deserialize(
-            $userSettingService->getUserSetting('short_datetime_format')->value
-        );
-
-        $fullDateFormat = (string)$dateTimeFormatSerializer->deserialize(
-            $userSettingService->getUserSetting('full_datetime_format')->value
-        );
-
-        $this->shortDateTimeFormatter = new IntlDateFormatter(
-            $langauge,
-            IntlDateFormatter::LONG,
-            IntlDateFormatter::LONG,
-            $timezone,
-            null,
-            $shortDateFormat
-        );
-
-        $this->fullDateTimeFormatter = new IntlDateFormatter(
-            $langauge,
-            IntlDateFormatter::LONG,
-            IntlDateFormatter::LONG,
-            $timezone,
-            null,
-            $fullDateFormat
-        );
+        $this->userSettingService = $userSettingService;
+        $this->dateTimeFormatSerializer = $dateTimeFormatSerializer;
     }
 
     /**
@@ -87,7 +64,7 @@ final class DateTimeExtension extends AbstractExtension
             $date = new DateTimeImmutable();
         }
 
-        return $this->shortDateTimeFormatter->format($date);
+        return $this->getShortDateTimeFormatter()->format($date);
     }
 
     /**
@@ -101,6 +78,64 @@ final class DateTimeExtension extends AbstractExtension
             $date = new DateTimeImmutable();
         }
 
-        return $this->fullDateTimeFormatter->format($date);
+        return $this->getFullDateTimeFormatter()->format($date);
+    }
+
+    /**
+     * @return \IntlDateFormatter
+     *
+     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
+     * @throws \eZ\Publish\API\Repository\Exceptions\UnauthorizedException
+     */
+    private function getShortDateTimeFormatter(): IntlDateFormatter
+    {
+        if ($this->shortDateTimeFormatter === null) {
+            $langauge = $this->userSettingService->getUserSetting('language')->value;
+            $timezone = $this->userSettingService->getUserSetting('timezone')->value;
+
+            $shortDateFormat = (string)$this->dateTimeFormatSerializer->deserialize(
+                $this->userSettingService->getUserSetting('short_datetime_format')->value
+            );
+
+            $this->shortDateTimeFormatter = new IntlDateFormatter(
+                $langauge,
+                IntlDateFormatter::LONG,
+                IntlDateFormatter::LONG,
+                $timezone,
+                null,
+                $shortDateFormat
+            );
+        }
+
+        return $this->shortDateTimeFormatter;
+    }
+
+    /**
+     * @return \IntlDateFormatter
+     *
+     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
+     * @throws \eZ\Publish\API\Repository\Exceptions\UnauthorizedException
+     */
+    private function getFullDateTimeFormatter(): IntlDateFormatter
+    {
+        if ($this->fullDateTimeFormatter === null) {
+            $langauge = $this->userSettingService->getUserSetting('language')->value;
+            $timezone = $this->userSettingService->getUserSetting('timezone')->value;
+
+            $fullDateFormat = (string)$this->dateTimeFormatSerializer->deserialize(
+                $this->userSettingService->getUserSetting('full_datetime_format')->value
+            );
+
+            $this->fullDateTimeFormatter = new IntlDateFormatter(
+                $langauge,
+                IntlDateFormatter::LONG,
+                IntlDateFormatter::LONG,
+                $timezone,
+                null,
+                $fullDateFormat
+            );
+        }
+
+        return $this->fullDateTimeFormatter;
     }
 }

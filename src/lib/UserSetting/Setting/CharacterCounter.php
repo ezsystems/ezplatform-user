@@ -53,7 +53,7 @@ class CharacterCounter implements ValueDefinitionInterface, FormMapperInterface
      */
     public function getDisplayValue(string $storageValue): string
     {
-        switch($storageValue) {
+        switch ($storageValue) {
             case self::ENABLED_OPTION:
                 return $this->getTranslatedOptionEnabled();
             case self::DISABLED_OPTION:

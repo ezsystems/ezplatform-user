@@ -8,15 +8,17 @@ namespace EzSystems\EzPlatformUserBundle;
 
 use EzSystems\EzPlatformUserBundle\DependencyInjection\Compiler\UserSetting;
 use EzSystems\EzPlatformUserBundle\DependencyInjection\Configuration\Parser\ChangePassword;
+use EzSystems\EzPlatformUserBundle\DependencyInjection\Configuration\Parser\UserPreferences;
 use EzSystems\EzPlatformUserBundle\DependencyInjection\Configuration\Parser\UserRegistration;
+use EzSystems\EzPlatformUserBundle\DependencyInjection\Configuration\Parser\Security;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
-use EzSystems\EzPlatformUserBundle\DependencyInjection\Configuration\Parser\Security;
 
 class EzPlatformUserBundle extends Bundle
 {
-    public const ADMIN_GROUP_NAME = 'admin_group';
-
+    /**
+     * {@inheritdoc}
+     */
     public function build(ContainerBuilder $container)
     {
         /** @var \eZ\Bundle\EzPublishCoreBundle\DependencyInjection\EzPublishCoreExtension $core */
@@ -24,8 +26,11 @@ class EzPlatformUserBundle extends Bundle
         $core->addConfigParser(new Security());
         $core->addConfigParser(new ChangePassword());
         $core->addConfigParser(new UserRegistration());
+        $core->addConfigParser(new UserPreferences());
+
         $container->addCompilerPass(new UserSetting\ValueDefinitionPass());
         $container->addCompilerPass(new UserSetting\FormMapperPass());
+
         $core->addDefaultSettings(__DIR__ . '/Resources/config', ['ezplatform_default_settings.yml']);
     }
 }

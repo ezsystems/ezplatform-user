@@ -6,3 +6,13 @@ services:
 
     EzSystems\EzPlatformUser\Form\Type\:
         resource: "../../../lib/Form/Type/*"
+
+    EzSystems\EzPlatformUser\Form\Type\UserSettings\FullDateTimeFormatType:
+        arguments:
+            $allowedDateFormats: '$user_preferences.allowed_full_date_formats$'
+            $allowedTimeFormats: '$user_preferences.allowed_full_time_formats$'
+
+    EzSystems\EzPlatformUser\Form\Type\UserSettings\ShortDateTimeFormatType:
+        arguments:
+            $allowedDateFormats: '$user_preferences.allowed_short_date_formats$'
+            $allowedTimeFormats: '$user_preferences.allowed_short_time_formats$'

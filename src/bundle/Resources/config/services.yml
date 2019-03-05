@@ -51,3 +51,7 @@ services:
     EzSystems\EzPlatformUser\Form\Processor\UserRegisterFormProcessor:
         tags:
             - { name: kernel.event_subscriber }
+
+    EzSystems\EzPlatformUser\Templating\Twig\DateTimeExtension:
+        tags:
+            - { name: twig.extension }

@@ -45,8 +45,33 @@ abstract class AbstractDateTimeFormat implements ValueDefinitionInterface, FormM
      */
     public function getDisplayValue(string $storageValue): string
     {
-        return (string)$this->serializer->deserialize($storageValue);
+        $dateTimeFormat = $this->serializer->deserialize($storageValue);
+
+        $allowedDateFormats = array_flip($this->getAllowedDateFormats());
+        $allowedTimeFormats = array_flip($this->getAllowedTimeFormats());
+
+        $dateFormatLabel = $dateTimeFormat->getDateFormat();
+        if (isset($allowedDateFormats[$dateFormatLabel])) {
+            $dateFormatLabel = $allowedDateFormats[$dateFormatLabel];
+        }
+
+        $timeFormatLabel = $dateTimeFormat->getTimeFormat();
+        if (isset($allowedTimeFormats[$timeFormatLabel])) {
+            $timeFormatLabel = $allowedTimeFormats[$timeFormatLabel];
+        }
+
+        return "$dateFormatLabel $timeFormatLabel";
     }
+
+    /**
+     * @return string[]
+     */
+    abstract protected function getAllowedTimeFormats(): array;
+
+    /**
+     * @return string[]
+     */
+    abstract protected function getAllowedDateFormats(): array;
 
     /**
      * @return string

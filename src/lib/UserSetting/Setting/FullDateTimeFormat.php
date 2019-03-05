@@ -97,4 +97,20 @@ class FullDateTimeFormat extends AbstractDateTimeFormat
             'user_settings'
         );
     }
+
+    /**
+     * @return string[]
+     */
+    protected function getAllowedTimeFormats(): array
+    {
+        return $this->configResolver->getParameter('user_preferences.allowed_full_date_formats');
+    }
+
+    /**
+     * @return string[]
+     */
+    protected function getAllowedDateFormats(): array
+    {
+        return $this->configResolver->getParameter('user_preferences.allowed_full_date_formats');
+    }
 }

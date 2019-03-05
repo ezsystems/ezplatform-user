@@ -35,7 +35,6 @@ class ShortDateTimeFormat extends AbstractDateTimeFormat
         ConfigResolverInterface $configResolver
     ) {
         parent::__construct($serializer);
-
         $this->translator = $translator;
         $this->configResolver = $configResolver;
     }
@@ -96,5 +95,21 @@ class ShortDateTimeFormat extends AbstractDateTimeFormat
             [],
             'user_settings'
         );
+    }
+
+    /**
+     * @return string[]
+     */
+    protected function getAllowedTimeFormats(): array
+    {
+        return $this->configResolver->getParameter('user_preferences.allowed_short_date_formats');
+    }
+
+    /**
+     * @return string[]
+     */
+    protected function getAllowedDateFormats(): array
+    {
+        return $this->configResolver->getParameter('user_preferences.allowed_short_date_formats');
     }
 }

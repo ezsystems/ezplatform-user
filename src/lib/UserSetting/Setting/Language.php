@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformUser\UserSetting\Setting;
 
 use eZ\Publish\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface;
-use EzSystems\EzPlatformAdminUi\Form\Type\ChoiceList\Loader\AvailableLocaleChoiceLoader;
+use EzSystems\EzPlatformUser\Form\ChoiceList\Loader\AvailableLocaleChoiceLoader;
 use EzSystems\EzPlatformUser\UserSetting\FormMapperInterface;
 use EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface;
 use Symfony\Component\Form\Extension\Core\Type\LocaleType;
@@ -31,7 +31,7 @@ class Language implements ValueDefinitionInterface, FormMapperInterface
     /**
      * @param \Symfony\Component\Translation\TranslatorInterface $translator
      * @param \eZ\Publish\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface $userLanguagePreferenceProvider
-     * @param \EzSystems\EzPlatformAdminUi\Form\Type\ChoiceList\Loader\AvailableLocaleChoiceLoader $availableLocaleChoiceLoader
+     * @param \EzSystems\EzPlatformUser\Form\ChoiceList\Loader\AvailableLocaleChoiceLoader $availableLocaleChoiceLoader
      */
     public function __construct(
         TranslatorInterface $translator,

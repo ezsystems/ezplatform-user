@@ -7,7 +7,7 @@ services:
     EzSystems\EzPlatformUser\Form\Type\:
         resource: "../../../lib/Form/Type/*"
 
-    EzSystems\EzPlatformAdminUi\Form\Type\ChoiceList\Loader\AvailableLocaleChoiceLoader:
+    EzSystems\EzPlatformUser\Form\ChoiceList\Loader\AvailableLocaleChoiceLoader:
         arguments:
             $availableTranslations: '%available_translations%'
 

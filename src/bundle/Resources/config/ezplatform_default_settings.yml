@@ -25,7 +25,7 @@ parameters:
         date_format: 'dd/MM/Y'
         time_format: 'HH:mm'
     ezsettings.default.user_preferences.full_datetime_format:
-        date_format: 'LLLL dd Y'
+        date_format: 'LLLL dd, Y'
         time_format: 'HH:mm'
     ezsettings.default.user_preferences.allowed_short_date_formats:
         'mm/dd/yyyy': 'MM/dd/Y'
@@ -41,7 +41,7 @@ parameters:
         'hh:mm AM/PM': 'hh:mm a'
         'hh:mm': 'HH:mm'
     ezsettings.default.user_preferences.allowed_full_date_formats:
-        'M dd yyyy': 'LLLL dd Y'
+        'M dd, yyyy': 'LLLL dd, Y'
         'dd M yyyy': 'dd LLLL Y'
     ezsettings.default.user_preferences.allowed_full_time_formats:
         'hh:mm AM/PM': 'hh:mm a'

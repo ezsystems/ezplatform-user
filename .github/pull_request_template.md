@@ -14,5 +14,5 @@
 
 
 #### Checklist:
+- [ ] Implement tests
 - [ ] Coding standards (`$ composer fix-cs`)
-- [ ] Ready for Code Review

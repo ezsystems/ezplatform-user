@@ -96,21 +96,18 @@ class UserSettingsController extends Controller
     }
 
     /**
+     * @param \EzSystems\EzPlatformUser\View\UserSettings\UpdateView $view
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string $identifier
      *
-     * @return \EzSystems\EzPlatformUser\View\UserSettings\UpdateView|null|\Symfony\Component\HttpFoundation\Response
-     *
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
-     * @throws \eZ\Publish\API\Repository\Exceptions\UnauthorizedException
-     * @throws \eZ\Publish\Core\Base\Exceptions\InvalidArgumentType
+     * @return \EzSystems\EzPlatformUser\View\UserSettings\UpdateView|\Symfony\Component\HttpFoundation\Response
      */
-    public function updateAction(Request $request, string $identifier)
+    public function updateAction(Request $request, UpdateView $view): UpdateView
     {
-        $userSetting = $this->userSettingService->getUserSetting($identifier);
-        $data = new UserSettingUpdateData($identifier, $userSetting->value);
+        $userSetting = $view->getUserSetting();
 
-        $form = $this->formFactory->updateUserSetting($identifier, $data);
+        $data = new UserSettingUpdateData($userSetting->identifier, $userSetting->value);
+
+        $form = $this->formFactory->updateUserSetting($userSetting->identifier, $data);
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
@@ -134,9 +131,10 @@ class UserSettingsController extends Controller
             }
         }
 
-        return new UpdateView(null, [
+        $view->addParameters([
             'form' => $form->createView(),
-            'user_setting' => $userSetting,
         ]);
+
+        return $view;
     }
 }

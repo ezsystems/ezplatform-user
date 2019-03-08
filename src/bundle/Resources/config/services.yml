@@ -4,8 +4,6 @@ imports:
     - { resource: services/user_settings.yml }
     - { resource: services/forms.yml }
 
-parameters:
-
 services:
     _defaults:
         autowire: true
@@ -31,7 +29,6 @@ services:
             - [setViewTemplate, ['EzSystems\EzPlatformUser\View\ResetPassword\InvalidLinkView', "$user_reset_password.templates.invalid_link$"]]
             - [setViewTemplate, ['EzSystems\EzPlatformUser\View\ResetPassword\SuccessView', "$user_reset_password.templates.success$"]]
             - [setViewTemplate, ['EzSystems\EzPlatformUser\View\UserSettings\ListView', "$user_settings.templates.list$"]]
-            - [setViewTemplate, ['EzSystems\EzPlatformUser\View\UserSettings\UpdateView', "$user_settings.templates.update$"]]
             - [setViewTemplate, ['EzSystems\EzPlatformUser\View\Register\FormView', "$user_registration.templates.form$"]]
             - [setViewTemplate, ['EzSystems\EzPlatformUser\View\Register\ConfirmView', "$user_registration.templates.confirmation$"]]
             - [setPagelayout, ["$pagelayout$"]]

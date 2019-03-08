@@ -102,7 +102,7 @@ class ShortDateTimeFormat extends AbstractDateTimeFormat
      */
     protected function getAllowedTimeFormats(): array
     {
-        return $this->configResolver->getParameter('user_preferences.allowed_short_date_formats');
+        return $this->configResolver->getParameter('user_preferences.allowed_short_time_formats');
     }
 
     /**

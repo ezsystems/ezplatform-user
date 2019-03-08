@@ -43,7 +43,11 @@ class ValueDefinitionPass implements CompilerPassInterface
                     );
                 }
 
-                $registryDefinition->addMethodCall('addValueDefinition', [$tag['identifier'], new Reference($taggedServiceId)]);
+                $registryDefinition->addMethodCall('addValueDefinition', [
+                    $tag['identifier'],
+                    new Reference($taggedServiceId),
+                    $tag['priority'] ?? 0,
+                ]);
             }
         }
     }

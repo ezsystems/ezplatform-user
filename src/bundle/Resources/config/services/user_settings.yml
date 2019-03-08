@@ -19,34 +19,34 @@ services:
     #
     EzSystems\EzPlatformUser\UserSetting\Setting\Timezone:
         tags:
-            - { name: ezplatform.admin_ui.user_setting.value, identifier: timezone }
+            - { name: ezplatform.admin_ui.user_setting.value, identifier: timezone, priority: 50 }
             - { name: ezplatform.admin_ui.user_setting.form_mapper, identifier: timezone }
 
     EzSystems\EzPlatformUser\UserSetting\Setting\SubitemsLimit:
         arguments:
             $subitemsLimit: '$subitems_module.limit$'
         tags:
-            - { name: ezplatform.admin_ui.user_setting.value, identifier: subitems_limit }
+            - { name: ezplatform.admin_ui.user_setting.value, identifier: subitems_limit, priority: 20 }
             - { name: ezplatform.admin_ui.user_setting.form_mapper, identifier: subitems_limit }
 
     EzSystems\EzPlatformUser\UserSetting\Setting\CharacterCounter:
         tags:
-            - { name: ezplatform.admin_ui.user_setting.value, identifier: character_counter }
+            - { name: ezplatform.admin_ui.user_setting.value, identifier: character_counter, priority: 10 }
             - { name: ezplatform.admin_ui.user_setting.form_mapper, identifier: character_counter }
 
     EzSystems\EzPlatformUser\UserSetting\Setting\FullDateTimeFormat:
         tags:
-            - { name: ezplatform.admin_ui.user_setting.value, identifier: full_datetime_format }
+            - { name: ezplatform.admin_ui.user_setting.value, identifier: full_datetime_format, priority: 30 }
             - { name: ezplatform.admin_ui.user_setting.form_mapper, identifier: full_datetime_format }
 
     EzSystems\EzPlatformUser\UserSetting\Setting\ShortDateTimeFormat:
         tags:
-            - { name: ezplatform.admin_ui.user_setting.value, identifier: short_datetime_format }
+            - { name: ezplatform.admin_ui.user_setting.value, identifier: short_datetime_format, priority: 40 }
             - { name: ezplatform.admin_ui.user_setting.form_mapper, identifier: short_datetime_format }
 
     EzSystems\EzPlatformUser\UserSetting\Setting\Language:
         arguments:
             $availableLocaleChoiceLoader: '@EzSystems\EzPlatformUser\Form\ChoiceList\Loader\AvailableLocaleChoiceLoader'
         tags:
-            - { name: ezplatform.admin_ui.user_setting.value, identifier: language }
+            - { name: ezplatform.admin_ui.user_setting.value, identifier: language, priority: 60 }
             - { name: ezplatform.admin_ui.user_setting.form_mapper, identifier: language }

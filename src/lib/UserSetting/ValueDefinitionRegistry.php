@@ -16,26 +16,31 @@ use EzSystems\EzPlatformAdminUi\UserSetting as AdminUiUserSettings;
  */
 class ValueDefinitionRegistry
 {
-    /** @var \EzSystems\EzPlatformAdminUi\UserSetting\ValueDefinitionInterface[] */
+    /** @var \EzSystems\EzPlatformUser\UserSetting\ValueDefinitionRegistryEntry[] */
     protected $valueDefinitions;
 
     /**
-     * @param \EzSystems\EzPlatformAdminUi\UserSetting\ValueDefinitionInterface[] $valueDefinitions
+     * @param \EzSystems\EzPlatformUser\UserSetting\ValueDefinitionRegistryEntry[] $valueDefinitions
      */
     public function __construct(array $valueDefinitions = [])
     {
-        $this->valueDefinitions = $valueDefinitions;
+        $this->valueDefinitions = [];
+        foreach ($valueDefinitions as $identifier => $valueDefinition) {
+            $valueDefinitions[$identifier] = new ValueDefinitionRegistryEntry($valueDefinition);
+        }
     }
 
     /**
      * @param string $identifier
-     * @param \EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface $valueDefinition
+     * @param AdminUiUserSettings\ValueDefinitionInterface $valueDefinition
+     * @param int $priority
      */
     public function addValueDefinition(
         string $identifier,
-        AdminUiUserSettings\ValueDefinitionInterface $valueDefinition
+        AdminUiUserSettings\ValueDefinitionInterface $valueDefinition,
+        int $priority = 0
     ): void {
-        $this->valueDefinitions[$identifier] = $valueDefinition;
+        $this->valueDefinitions[$identifier] = new ValueDefinitionRegistryEntry($valueDefinition, $priority);
     }
 
     /**
@@ -54,7 +59,7 @@ class ValueDefinitionRegistry
             );
         }
 
-        return $this->valueDefinitions[$identifier];
+        return $this->valueDefinitions[$identifier]->getDefinition();
     }
 
     /**
@@ -72,6 +77,12 @@ class ValueDefinitionRegistry
      */
     public function getValueDefinitions(): array
     {
-        return $this->valueDefinitions;
+        uasort($this->valueDefinitions, function (ValueDefinitionRegistryEntry $a, ValueDefinitionRegistryEntry $b) {
+            return $b->getPriority() <=> $a->getPriority();
+        });
+
+        return array_map(function (ValueDefinitionRegistryEntry $entry) {
+            return $entry->getDefinition();
+        }, $this->valueDefinitions);
     }
 }

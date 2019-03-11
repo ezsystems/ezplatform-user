@@ -15,9 +15,7 @@ use Symfony\Component\HttpKernel\Controller\ControllerReference;
 
 class UpdateViewProvider implements ViewProvider
 {
-    /**
-     * @var \eZ\Publish\Core\MVC\Symfony\Matcher\MatcherFactoryInterface
-     */
+    /** @var \eZ\Publish\Core\MVC\Symfony\Matcher\MatcherFactoryInterface */
     protected $matcherFactory;
 
     /**
@@ -40,6 +38,13 @@ class UpdateViewProvider implements ViewProvider
         return $this->buildUpdateSettingView($configHash);
     }
 
+    /**
+     * @param array $viewConfig
+     *
+     * @return \EzSystems\EzPlatformUser\View\UserSettings\UpdateView
+     *
+     * @throws \eZ\Publish\Core\Base\Exceptions\InvalidArgumentType
+     */
     protected function buildUpdateSettingView(array $viewConfig): UpdateView
     {
         $view = new UpdateView();

@@ -18,14 +18,14 @@ use EzSystems\EzPlatformUser\View\UserSettings\UpdateView;
 class Identifier implements ViewMatcherInterface
 {
     /** @var string[] */
-    private $identifier = [];
+    private $identifiers = [];
 
     /**
      * {@inheritdoc}
      */
     public function setMatchingConfig($matchingConfig): void
     {
-        $this->identifier = (array)$matchingConfig;
+        $this->identifiers = (array)$matchingConfig;
     }
 
     /**
@@ -37,6 +37,6 @@ class Identifier implements ViewMatcherInterface
             return false;
         }
 
-        return in_array($view->getUserSetting()->identifier, $this->identifier);
+        return in_array($view->getUserSetting()->identifier, $this->identifiers);
     }
 }

@@ -96,8 +96,8 @@ class UserSettingsController extends Controller
     }
 
     /**
-     * @param \EzSystems\EzPlatformUser\View\UserSettings\UpdateView $view
      * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \EzSystems\EzPlatformUser\View\UserSettings\UpdateView $view
      *
      * @return \EzSystems\EzPlatformUser\View\UserSettings\UpdateView|\Symfony\Component\HttpFoundation\Response
      */

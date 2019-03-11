@@ -17,7 +17,7 @@ class UpdateView extends BaseView
     private $userSetting;
 
     /**
-     * @return \EzSystems\EzPlatformUser\UserSetting\UserSetting
+     * @return \EzSystems\EzPlatformUser\UserSetting\UserSetting|null
      */
     public function getUserSetting(): ?UserSetting
     {
@@ -25,7 +25,7 @@ class UpdateView extends BaseView
     }
 
     /**
-     * @param \EzSystems\EzPlatformUser\UserSetting\UserSetting $userSetting|null
+     * @param \EzSystems\EzPlatformUser\UserSetting\UserSetting|null $userSetting
      */
     public function setUserSetting(?UserSetting $userSetting): void
     {

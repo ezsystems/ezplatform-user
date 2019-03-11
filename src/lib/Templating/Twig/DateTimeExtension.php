@@ -75,7 +75,7 @@ class DateTimeExtension extends AbstractExtension
     public function toFullFormat(?DateTimeInterface $date = null): string
     {
         if ($date === null) {
-            $date = new DateTimeImmutable();
+            $date = new DateTimeImmutableDateTimeImmutable();
         }
 
         return $this->getFullDateTimeFormatter()->format($date);
@@ -87,7 +87,7 @@ class DateTimeExtension extends AbstractExtension
      * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
      * @throws \eZ\Publish\API\Repository\Exceptions\UnauthorizedException
      */
-    private function getShortDateTimeFormatter(): IntlDateFormatter
+    public function getShortDateTimeFormatter(): IntlDateFormatter
     {
         if ($this->shortDateTimeFormatter === null) {
             $langauge = $this->userSettingService->getUserSetting('language')->value;
@@ -116,7 +116,7 @@ class DateTimeExtension extends AbstractExtension
      * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
      * @throws \eZ\Publish\API\Repository\Exceptions\UnauthorizedException
      */
-    private function getFullDateTimeFormatter(): IntlDateFormatter
+    public function getFullDateTimeFormatter(): IntlDateFormatter
     {
         if ($this->fullDateTimeFormatter === null) {
             $langauge = $this->userSettingService->getUserSetting('language')->value;

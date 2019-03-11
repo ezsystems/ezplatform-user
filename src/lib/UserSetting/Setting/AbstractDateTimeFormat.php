@@ -9,19 +9,26 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformUser\UserSetting\Setting;
 
 use EzSystems\EzPlatformUser\UserSetting\FormMapperInterface;
+use EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\Formatter;
 use EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface;
+use DateTimeImmutable;
 
 abstract class AbstractDateTimeFormat implements ValueDefinitionInterface, FormMapperInterface
 {
     /** @var \EzSystems\EzPlatformUser\UserSetting\Setting\DateTimeFormatSerializer */
     protected $serializer;
 
+    /** @var \IntlDateFormatter  */
+    protected $formatter;
+
     /**
      * @param \EzSystems\EzPlatformUser\UserSetting\Setting\DateTimeFormatSerializer $serializer
+     * @param \EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\Formatter $formatter
      */
-    public function __construct(DateTimeFormatSerializer $serializer)
+    public function __construct(DateTimeFormatSerializer $serializer, IntlDateFormatter $formatter)
     {
         $this->serializer = $serializer;
+        $this->formatter = $formatter;
     }
 
     /**
@@ -60,7 +67,9 @@ abstract class AbstractDateTimeFormat implements ValueDefinitionInterface, FormM
             $timeFormatLabel = $allowedTimeFormats[$timeFormatLabel];
         }
 
-        return "$dateFormatLabel $timeFormatLabel";
+        $demoValue = $this->formatter->format(new DateTimeImmutable());
+
+        return "$demoValue ($dateFormatLabel $timeFormatLabel)";
     }
 
     /**

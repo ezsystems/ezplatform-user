@@ -26,6 +26,10 @@ final class DateTimeFormat
         $this->timeFormat = $timeFormat;
     }
 
+    public static function createFormJson(string $json){
+
+    }
+
     /**
      * @return string|null
      */

@@ -10,7 +10,7 @@ services:
     #
     # Main Service
     #
-    EzSystems\EzPlatformUser\UserSetting\UserSettingService: ~
+    EzSystems\EzPlatformUser\UserSetting\UserSettingService:
 
     EzSystems\EzPlatformUser\UserSetting\UserSettingArrayAccessor:
 

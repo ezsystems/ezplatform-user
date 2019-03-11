@@ -17,6 +17,7 @@ parameters:
     ezsettings.default.user_registration.templates.confirmation: "EzPlatformUserBundle:register:register_confirmation.html.twig"
 
     # User Settings
+    ezsettings.default.user_settings_update_view: {}
     ezsettings.default.user_settings.templates.list: "EzPlatformUserBundle:user_settings:list.html.twig"
     ezsettings.default.user_settings.templates.update: "EzPlatformUserBundle:user_settings:update.html.twig"
 

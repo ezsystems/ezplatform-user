@@ -25,7 +25,7 @@ class Language implements ValueDefinitionInterface, FormMapperInterface
     /** @var \eZ\Publish\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface */
     private $userLanguagePreferenceProvider;
 
-    /** @var \EzSystems\EzPlatformAdminUi\Form\Type\ChoiceList\Loader\AvailableLocaleChoiceLoader */
+    /** @var \EzSystems\EzPlatformUser\Form\ChoiceList\Loader\AvailableLocaleChoiceLoader */
     private $availableLocaleChoiceLoader;
 
     /**

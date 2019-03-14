@@ -101,7 +101,7 @@ class UserSettingsController extends Controller
      *
      * @return \EzSystems\EzPlatformUser\View\UserSettings\UpdateView|\Symfony\Component\HttpFoundation\Response
      */
-    public function updateAction(Request $request, UpdateView $view): UpdateView
+    public function updateAction(Request $request, UpdateView $view)
     {
         $userSetting = $view->getUserSetting();
 

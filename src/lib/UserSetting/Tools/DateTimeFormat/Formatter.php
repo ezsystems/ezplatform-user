@@ -13,7 +13,7 @@ use IntlDateFormatter;
 
 class Formatter implements FormatterInterface
 {
-    /** @var \IntlDateFormatter  */
+    /** @var \IntlDateFormatter */
     private $formatter;
 
     /**
@@ -40,5 +40,4 @@ class Formatter implements FormatterInterface
     {
         return $this->formatter->format($datetime);
     }
-
 }

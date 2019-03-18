@@ -38,9 +38,7 @@ class DateTimeExtension extends AbstractExtension
      */
     public function __construct(
         UserSettingService $userSettingService,
-        DateTimeFormatSerializer $dateTimeFormatSerializer,
-        FormatterInterface $shortDateTimeFormatter,
-        FormatterInterface $fullDateTimeFormatter
+        DateTimeFormatSerializer $dateTimeFormatSerializer
     ) {
         $this->userSettingService = $userSettingService;
         $this->dateTimeFormatSerializer = $dateTimeFormatSerializer;

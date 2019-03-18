@@ -8,12 +8,10 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat;
 
-use IntlDateFormatter;
-
 interface DateTimeFormatterFactoryInterface
 {
     /**
-     * @return \IntlDateFormatter
+     * @return \EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\FormatterInterface
      */
-    public function getFormatter(): Formatter;
+    public function getFormatter(): FormatterInterface;
 }

@@ -11,8 +11,8 @@ namespace EzSystems\EzPlatformUser\Templating\Twig;
 use DateTimeImmutable;
 use DateTimeInterface;
 use EzSystems\EzPlatformUser\UserSetting\Setting\DateTimeFormatSerializer;
+use EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\FormatterInterface;
 use EzSystems\EzPlatformUser\UserSetting\UserSettingService;
-use IntlDateFormatter;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
@@ -33,13 +33,19 @@ class DateTimeExtension extends AbstractExtension
     /**
      * @param \EzSystems\EzPlatformUser\UserSetting\UserSettingService $userSettingService
      * @param \EzSystems\EzPlatformUser\UserSetting\Setting\DateTimeFormatSerializer $dateTimeFormatSerializer
+     * @param \EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\FormatterInterface $shortDateTimeFormatter
+     * @param \EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\FormatterInterface $fullDateTimeFormatter
      */
     public function __construct(
         UserSettingService $userSettingService,
-        DateTimeFormatSerializer $dateTimeFormatSerializer
+        DateTimeFormatSerializer $dateTimeFormatSerializer,
+        FormatterInterface $shortDateTimeFormatter,
+        FormatterInterface $fullDateTimeFormatter
     ) {
         $this->userSettingService = $userSettingService;
         $this->dateTimeFormatSerializer = $dateTimeFormatSerializer;
+        $this->shortDateTimeFormatter = $shortDateTimeFormatter;
+        $this->fullDateTimeFormatter = $fullDateTimeFormatter;
     }
 
     /**
@@ -64,7 +70,7 @@ class DateTimeExtension extends AbstractExtension
             $date = new DateTimeImmutable();
         }
 
-        return $this->getShortDateTimeFormatter()->format($date);
+        return $this->shortDateTimeFormatter->format($date);
     }
 
     /**
@@ -78,64 +84,6 @@ class DateTimeExtension extends AbstractExtension
             $date = new DateTimeImmutableDateTimeImmutable();
         }
 
-        return $this->getFullDateTimeFormatter()->format($date);
-    }
-
-    /**
-     * @return \IntlDateFormatter
-     *
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
-     * @throws \eZ\Publish\API\Repository\Exceptions\UnauthorizedException
-     */
-    public function getShortDateTimeFormatter(): IntlDateFormatter
-    {
-        if ($this->shortDateTimeFormatter === null) {
-            $langauge = $this->userSettingService->getUserSetting('language')->value;
-            $timezone = $this->userSettingService->getUserSetting('timezone')->value;
-
-            $shortDateFormat = (string)$this->dateTimeFormatSerializer->deserialize(
-                $this->userSettingService->getUserSetting('short_datetime_format')->value
-            );
-
-            $this->shortDateTimeFormatter = new IntlDateFormatter(
-                $langauge,
-                IntlDateFormatter::LONG,
-                IntlDateFormatter::LONG,
-                $timezone,
-                null,
-                $shortDateFormat
-            );
-        }
-
-        return $this->shortDateTimeFormatter;
-    }
-
-    /**
-     * @return \IntlDateFormatter
-     *
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
-     * @throws \eZ\Publish\API\Repository\Exceptions\UnauthorizedException
-     */
-    public function getFullDateTimeFormatter(): IntlDateFormatter
-    {
-        if ($this->fullDateTimeFormatter === null) {
-            $langauge = $this->userSettingService->getUserSetting('language')->value;
-            $timezone = $this->userSettingService->getUserSetting('timezone')->value;
-
-            $fullDateFormat = (string)$this->dateTimeFormatSerializer->deserialize(
-                $this->userSettingService->getUserSetting('full_datetime_format')->value
-            );
-
-            $this->fullDateTimeFormatter = new IntlDateFormatter(
-                $langauge,
-                IntlDateFormatter::LONG,
-                IntlDateFormatter::LONG,
-                $timezone,
-                null,
-                $fullDateFormat
-            );
-        }
-
-        return $this->fullDateTimeFormatter;
+        return $this->fullDateTimeFormatter->format($date);
     }
 }

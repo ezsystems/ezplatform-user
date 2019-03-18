@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @copyright Copyright (C) eZ Systems AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
@@ -15,7 +16,7 @@ class ShortDateTimeFormatterFactory implements DateTimeFormatterFactoryInterface
     /** @var \EzSystems\EzPlatformUser\UserSetting\UserSettingService */
     private $userSettingService;
 
-    /** @var \EzSystems\EzPlatformUser\UserSetting\Setting\DateTimeFormatSerializer  */
+    /** @var \EzSystems\EzPlatformUser\UserSetting\Setting\DateTimeFormatSerializer */
     private $dateTimeFormatSerializer;
 
     /**
@@ -31,7 +32,7 @@ class ShortDateTimeFormatterFactory implements DateTimeFormatterFactoryInterface
     /**
      * {@inheritdoc}
      */
-    public function getFormatter(): Formatter
+    public function getFormatter(): FormatterInterface
     {
         $language = $this->userSettingService->getUserSetting('language')->value;
         $timezone = $this->userSettingService->getUserSetting('timezone')->value;

@@ -10,7 +10,7 @@ services:
     #
     # Main Service
     #
-    EzSystems\EzPlatformUser\UserSetting\UserSettingService:
+    EzSystems\EzPlatformUser\UserSetting\UserSettingService: ~
 
     EzSystems\EzPlatformUser\UserSetting\UserSettingArrayAccessor:
 
@@ -57,15 +57,15 @@ services:
             - { name: ezplatform.admin_ui.user_setting.form_mapper, identifier: character_counter }
 
     EzSystems\EzPlatformUser\UserSetting\Setting\FullDateTimeFormat:
-        argumments:
-            $formatter: "@=service('EzSystems\\\\EzPlatformUser\\\\UserSetting\\\\Tools\\\\DateTimeFormat\\\\FullDateTimeFormatterFactory').getFormatter()"
+        arguments:
+            $formatterFactory: '@EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\FullDateTimeFormatterFactory'
         tags:
             - { name: ezplatform.admin_ui.user_setting.value, identifier: full_datetime_format, priority: 30 }
             - { name: ezplatform.admin_ui.user_setting.form_mapper, identifier: full_datetime_format }
 
     EzSystems\EzPlatformUser\UserSetting\Setting\ShortDateTimeFormat:
-        argumments:
-            $formatter: "@=service('EzSystems\\\\EzPlatformUser\\\\UserSetting\\\\Tools\\\\DateTimeFormat\\\\ShortDateTimeFormatterFactory').getFormatter()"
+        arguments:
+            $formatterFactory: '@EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\ShortDateTimeFormatterFactory'
         tags:
             - { name: ezplatform.admin_ui.user_setting.value, identifier: short_datetime_format, priority: 40 }
             - { name: ezplatform.admin_ui.user_setting.form_mapper, identifier: short_datetime_format }

@@ -13,7 +13,7 @@ use EzSystems\EzPlatformAdminUi\UserSetting as AdminUiUserSettings;
 use EzSystems\EzPlatformUser\Form\DataTransformer\DateTimeFormatTransformer;
 use EzSystems\EzPlatformUser\Form\Type\UserSettings\FullDateTimeFormatType;
 use EzSystems\EzPlatformUser\UserSetting\Setting\Value\DateTimeFormat;
-use EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\Formatter;
+use EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\DateTimeFormatterFactoryInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
@@ -29,15 +29,15 @@ class FullDateTimeFormat extends AbstractDateTimeFormat
      * @param \EzSystems\EzPlatformUser\UserSetting\Setting\DateTimeFormatSerializer $serializer
      * @param \Symfony\Component\Translation\TranslatorInterface $translator
      * @param \eZ\Publish\Core\MVC\ConfigResolverInterface $configResolver
-     * @param \EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\Formatter $formatter
+     * @param \EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\DateTimeFormatterFactoryInterface $formatterFactory
      */
     public function __construct(
         DateTimeFormatSerializer $serializer,
         TranslatorInterface $translator,
         ConfigResolverInterface $configResolver,
-        Formatter $formatter
+        DateTimeFormatterFactoryInterface $formatterFactory
     ) {
-        parent::__construct($serializer, $formatter);
+        parent::__construct($serializer, $formatterFactory);
 
         $this->translator = $translator;
         $this->configResolver = $configResolver;

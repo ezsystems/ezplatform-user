@@ -9,7 +9,6 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformUser\UserSetting\Setting;
 
 use EzSystems\EzPlatformUser\UserSetting\FormMapperInterface;
-use EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\DateTimeFormatterFactoryInterface;
 use EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\FormatterInterface;
 use EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface;
 use DateTimeImmutable;
@@ -22,29 +21,14 @@ abstract class AbstractDateTimeFormat implements ValueDefinitionInterface, FormM
     /** @var \EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\Formatter|null */
     protected $formatter;
 
-    /** @var \EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\DateTimeFormatterFactoryInterface */
-    private $formatterFactory;
-
     /**
      * @param \EzSystems\EzPlatformUser\UserSetting\Setting\DateTimeFormatSerializer $serializer
-     * @param \EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\DateTimeFormatterFactoryInterface $formatterFactory
+     * @param \EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\FormatterInterface $formatter
      */
-    public function __construct(DateTimeFormatSerializer $serializer, DateTimeFormatterFactoryInterface $formatterFactory)
+    public function __construct(DateTimeFormatSerializer $serializer, FormatterInterface $formatter)
     {
         $this->serializer = $serializer;
-        $this->formatterFactory = $formatterFactory;
-    }
-
-    /**
-     * @return \EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\Formatter|\EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\FormatterInterface
-     */
-    protected function getFormatter(): FormatterInterface
-    {
-        if (empty($this->formatter)) {
-            $this->formatter = $this->formatterFactory->getFormatter();
-        }
-
-        return $this->formatter;
+        $this->formatter = $formatter;
     }
 
     /**
@@ -83,7 +67,7 @@ abstract class AbstractDateTimeFormat implements ValueDefinitionInterface, FormM
             $timeFormatLabel = $allowedTimeFormats[$timeFormatLabel];
         }
 
-        $demoValue = $this->getFormatter()->format(new DateTimeImmutable());
+        $demoValue = $this->formatter->format(new DateTimeImmutable());
 
         return "$demoValue ($dateFormatLabel $timeFormatLabel)";
     }

@@ -28,7 +28,7 @@ class DateTimeFormatType extends AbstractType
         ]);
 
         $builder->add('time_format', ChoiceType::class, [
-            'label' => /** @Desc("Format for displaying Date") */ 'ezplatform.date_time_format.time_format.label',
+            'label' => /** @Desc("Format for displaying Time") */ 'ezplatform.date_time_format.time_format.label',
             'choices' => $options['time_format_choices'],
             'multiple' => false,
             'required' => false,

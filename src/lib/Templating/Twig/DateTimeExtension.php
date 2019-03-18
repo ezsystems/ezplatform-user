@@ -81,7 +81,7 @@ class DateTimeExtension extends AbstractExtension
     public function toFullFormat(?DateTimeInterface $date = null): string
     {
         if ($date === null) {
-            $date = new DateTimeImmutableDateTimeImmutable();
+            $date = new DateTimeImmutable();
         }
 
         return $this->fullDateTimeFormatter->format($date);

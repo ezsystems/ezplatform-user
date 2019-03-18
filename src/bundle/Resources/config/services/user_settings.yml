@@ -63,30 +63,30 @@ services:
             - { name: ezplatform.admin_ui.user_setting.value, identifier: language, priority: 60 }
             - { name: ezplatform.admin_ui.user_setting.form_mapper, identifier: language }
 
-    EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\FullDateTimeFormatterFactory: ~
+    EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FullDateTimeFormatterFactory: ~
 
-    EzSystems\EzPlatformUser\UserSetting\Setting\FullDateTimeFormat.formatter:
+    ezplatform.user.settings.full_datetime_format.formatter:
         lazy: true
-        factory: 'EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\FullDateTimeFormatterFactory:getFormatter'
-        class: 'EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\Formatter'
+        factory: 'EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FullDateTimeFormatterFactory:getFormatter'
+        class: 'EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\Formatter'
 
     EzSystems\EzPlatformUser\UserSetting\Setting\FullDateTimeFormat:
         arguments:
-            $formatter: '@EzSystems\EzPlatformUser\UserSetting\Setting\FullDateTimeFormat.formatter'
+            $formatter: '@ezplatform.user.settings.full_datetime_format.formatter'
         tags:
             - { name: ezplatform.admin_ui.user_setting.value, identifier: full_datetime_format, priority: 30 }
             - { name: ezplatform.admin_ui.user_setting.form_mapper, identifier: full_datetime_format }
 
-    EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\ShortDateTimeFormatterFactory: ~
+    EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\ShortDateTimeFormatterFactory: ~
 
-    EzSystems\EzPlatformUser\UserSetting\Setting\ShortDateTimeFormat.formatter:
+    ezplatform.user.settings.short_datetime_format.formatter:
         lazy: true
-        factory: 'EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\ShortDateTimeFormatterFactory:getFormatter'
-        class: 'EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\Formatter'
+        factory: 'EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\ShortDateTimeFormatterFactory:getFormatter'
+        class: 'EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\Formatter'
 
     EzSystems\EzPlatformUser\UserSetting\Setting\ShortDateTimeFormat:
         arguments:
-            $formatter: '@EzSystems\EzPlatformUser\UserSetting\Setting\ShortDateTimeFormat.formatter'
+            $formatter: '@ezplatform.user.settings.short_datetime_format.formatter'
         tags:
             - { name: ezplatform.admin_ui.user_setting.value, identifier: short_datetime_format, priority: 40 }
             - { name: ezplatform.admin_ui.user_setting.form_mapper, identifier: short_datetime_format }

@@ -6,12 +6,12 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat;
+namespace EzSystems\EzPlatformUser\UserSetting\DateTimeFormat;
 
 interface DateTimeFormatterFactoryInterface
 {
     /**
-     * @return \EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\FormatterInterface
+     * @return \EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface
      */
     public function getFormatter(): FormatterInterface;
 }

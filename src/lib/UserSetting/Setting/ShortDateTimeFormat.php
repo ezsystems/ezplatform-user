@@ -13,7 +13,7 @@ use EzSystems\EzPlatformAdminUi\UserSetting as AdminUiUserSettings;
 use EzSystems\EzPlatformUser\Form\DataTransformer\DateTimeFormatTransformer;
 use EzSystems\EzPlatformUser\Form\Type\UserSettings\ShortDateTimeFormatType;
 use EzSystems\EzPlatformUser\UserSetting\Setting\Value\DateTimeFormat;
-use EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\FormatterInterface;
+use EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
@@ -29,7 +29,7 @@ class ShortDateTimeFormat extends AbstractDateTimeFormat
      * @param \EzSystems\EzPlatformUser\UserSetting\Setting\DateTimeFormatSerializer $serializer
      * @param \Symfony\Component\Translation\TranslatorInterface $translator
      * @param \eZ\Publish\Core\MVC\ConfigResolverInterface $configResolver
-     * @param \EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\FormatterInterface $formatter
+     * @param \EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface $formatter
      */
     public function __construct(
         DateTimeFormatSerializer $serializer,

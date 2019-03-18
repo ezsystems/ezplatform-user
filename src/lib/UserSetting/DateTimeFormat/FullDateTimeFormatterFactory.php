@@ -6,16 +6,13 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat;
+namespace EzSystems\EzPlatformUser\UserSetting\DateTimeFormat;
 
 use EzSystems\EzPlatformUser\UserSetting\Setting\DateTimeFormatSerializer;
 use EzSystems\EzPlatformUser\UserSetting\UserSettingService;
 
-class FullDateTimeFormatterFactory implements DateTimeFormatterFactoryInterface
+class FullDateTimeFormatterFactory extends AbstractDateTimeFormatterFactory implements DateTimeFormatterFactoryInterface
 {
-    /** @var \EzSystems\EzPlatformUser\UserSetting\UserSettingService */
-    private $userSettingService;
-
     /** @var \EzSystems\EzPlatformUser\UserSetting\Setting\DateTimeFormatSerializer */
     private $dateTimeFormatSerializer;
 
@@ -23,28 +20,21 @@ class FullDateTimeFormatterFactory implements DateTimeFormatterFactoryInterface
      * @param \EzSystems\EzPlatformUser\UserSetting\UserSettingService $userSettingService
      * @param \EzSystems\EzPlatformUser\UserSetting\Setting\DateTimeFormatSerializer $dateTimeFormatSerializer
      */
-    public function __construct(UserSettingService $userSettingService, DateTimeFormatSerializer $dateTimeFormatSerializer)
-    {
-        $this->userSettingService = $userSettingService;
+    public function __construct(
+        UserSettingService $userSettingService,
+        DateTimeFormatSerializer $dateTimeFormatSerializer
+    ) {
+        parent::__construct($userSettingService);
         $this->dateTimeFormatSerializer = $dateTimeFormatSerializer;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getFormatter(): FormatterInterface
+    protected function getFormat(): string
     {
-        $language = $this->userSettingService->getUserSetting('language')->value;
-        $timezone = $this->userSettingService->getUserSetting('timezone')->value;
-
-        $fullDateFormat = (string)$this->dateTimeFormatSerializer->deserialize(
+        return (string)$this->dateTimeFormatSerializer->deserialize(
             $this->userSettingService->getUserSetting('full_datetime_format')->value
-        );
-
-        return new Formatter(
-            $language,
-            $timezone,
-            $fullDateFormat
         );
     }
 }

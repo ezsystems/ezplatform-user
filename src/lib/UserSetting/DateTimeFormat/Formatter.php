@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat;
+namespace EzSystems\EzPlatformUser\UserSetting\DateTimeFormat;
 
 use DateTimeInterface;
 use IntlDateFormatter;

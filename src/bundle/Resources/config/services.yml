@@ -51,7 +51,7 @@ services:
 
     EzSystems\EzPlatformUser\Templating\Twig\DateTimeExtension:
         arguments:
-            $shortDateTimeFormatter: '@EzSystems\EzPlatformUser\UserSetting\Setting\ShortDateTimeFormat.formatter'
-            $fullDateTimeFormatter: '@EzSystems\EzPlatformUser\UserSetting\Setting\FullDateTimeFormat.formatter'
+            $shortDateTimeFormatter: '@ezplatform.user.settings.short_datetime_format.formatter'
+            $fullDateTimeFormatter: '@ezplatform.user.settings.full_datetime_format.formatter'
         tags:
             - { name: twig.extension }

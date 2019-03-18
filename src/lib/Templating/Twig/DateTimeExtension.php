@@ -11,7 +11,7 @@ namespace EzSystems\EzPlatformUser\Templating\Twig;
 use DateTimeImmutable;
 use DateTimeInterface;
 use EzSystems\EzPlatformUser\UserSetting\Setting\DateTimeFormatSerializer;
-use EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\FormatterInterface;
+use EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface;
 use EzSystems\EzPlatformUser\UserSetting\UserSettingService;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
@@ -33,8 +33,8 @@ class DateTimeExtension extends AbstractExtension
     /**
      * @param \EzSystems\EzPlatformUser\UserSetting\UserSettingService $userSettingService
      * @param \EzSystems\EzPlatformUser\UserSetting\Setting\DateTimeFormatSerializer $dateTimeFormatSerializer
-     * @param \EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\FormatterInterface $shortDateTimeFormatter
-     * @param \EzSystems\EzPlatformUser\UserSetting\Tools\DateTimeFormat\FormatterInterface $fullDateTimeFormatter
+     * @param \EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface $shortDateTimeFormatter
+     * @param \EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface $fullDateTimeFormatter
      */
     public function __construct(
         UserSettingService $userSettingService,

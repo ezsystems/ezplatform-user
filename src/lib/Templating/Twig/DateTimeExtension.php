@@ -12,38 +12,57 @@ use DateTimeImmutable;
 use DateTimeInterface;
 use EzSystems\EzPlatformUser\UserSetting\Setting\DateTimeFormatSerializer;
 use EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface;
-use EzSystems\EzPlatformUser\UserSetting\UserSettingService;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
 class DateTimeExtension extends AbstractExtension
 {
-    /** @var \EzSystems\EzPlatformUser\UserSetting\UserSettingService */
-    private $userSettingService;
-
     /** @var \EzSystems\EzPlatformUser\UserSetting\Setting\DateTimeFormatSerializer */
     private $dateTimeFormatSerializer;
 
-    /** @var \IntlDateFormatter */
+    /** @var \EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface */
     private $shortDateTimeFormatter;
 
-    /** @var \IntlDateFormatter */
+    /** @var \EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface */
+    private $shortDateFormatter;
+
+    /** @var \EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface */
+    private $shortTimeFormatter;
+
+    /** @var \EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface */
     private $fullDateTimeFormatter;
 
+    /** @var \EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface */
+    private $fullDateFormatter;
+
+    /** @var \EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface */
+    private $fullTimeFormatter;
+
     /**
-     * @param \EzSystems\EzPlatformUser\UserSetting\UserSettingService $userSettingService
      * @param \EzSystems\EzPlatformUser\UserSetting\Setting\DateTimeFormatSerializer $dateTimeFormatSerializer
      * @param \EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface $shortDateTimeFormatter
+     * @param \EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface $shortDateFormatter
+     * @param \EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface $shortTimeFormatter
      * @param \EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface $fullDateTimeFormatter
+     * @param \EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface $fullDateFormatter
+     * @param \EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface $fullTimeFormatter
      */
     public function __construct(
-        UserSettingService $userSettingService,
-        DateTimeFormatSerializer $dateTimeFormatSerializer
+        DateTimeFormatSerializer $dateTimeFormatSerializer,
+        FormatterInterface $shortDateTimeFormatter,
+        FormatterInterface $shortDateFormatter,
+        FormatterInterface $shortTimeFormatter,
+        FormatterInterface $fullDateTimeFormatter,
+        FormatterInterface $fullDateFormatter,
+        FormatterInterface $fullTimeFormatter
     ) {
-        $this->userSettingService = $userSettingService;
         $this->dateTimeFormatSerializer = $dateTimeFormatSerializer;
         $this->shortDateTimeFormatter = $shortDateTimeFormatter;
+        $this->shortDateFormatter = $shortDateFormatter;
+        $this->shortTimeFormatter = $shortTimeFormatter;
         $this->fullDateTimeFormatter = $fullDateTimeFormatter;
+        $this->fullDateFormatter = $fullDateFormatter;
+        $this->fullTimeFormatter = $fullTimeFormatter;
     }
 
     /**
@@ -52,36 +71,27 @@ class DateTimeExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
-            new TwigFilter('ez_short_datetime', [$this, 'toShortFormat']),
-            new TwigFilter('ez_full_datetime', [$this, 'toFullFormat']),
+            new TwigFilter('ez_short_datetime', function ($date) { return $this->format($date, $this->shortDateTimeFormatter); }),
+            new TwigFilter('ez_short_date', function ($date) { return $this->format($date, $this->shortDateFormatter); }),
+            new TwigFilter('ez_short_time', function ($date) { return $this->format($date, $this->shortTimeFormatter); }),
+            new TwigFilter('ez_full_datetime', function ($date) { return $this->format($date, $this->fullDateTimeFormatter); }),
+            new TwigFilter('ez_full_date', function ($date) { return $this->format($date, $this->fullDateFormatter); }),
+            new TwigFilter('ez_full_time', function ($date) { return $this->format($date, $this->fullTimeFormatter); }),
         ];
     }
 
     /**
-     * @param DateTimeInterface|null $date
+     * @param \DateTimeInterface|null $date
+     * @param \EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface  $formatter
      *
      * @return string
      */
-    public function toShortFormat(?DateTimeInterface $date = null): string
+    public function format(?DateTimeInterface $date = null, FormatterInterface $formatter): string
     {
         if ($date === null) {
             $date = new DateTimeImmutable();
         }
 
-        return $this->shortDateTimeFormatter->format($date);
-    }
-
-    /**
-     * @param DateTimeInterface|null $date
-     *
-     * @return string
-     */
-    public function toFullFormat(?DateTimeInterface $date = null): string
-    {
-        if ($date === null) {
-            $date = new DateTimeImmutable();
-        }
-
-        return $this->fullDateTimeFormatter->format($date);
+        return $formatter->format($date);
     }
 }

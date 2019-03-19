@@ -50,5 +50,8 @@ services:
             - { name: kernel.event_subscriber }
 
     EzSystems\EzPlatformUser\Templating\Twig\DateTimeExtension:
+        arguments:
+            $shortDateTimeFormatter: '@ezplatform.user.settings.short_datetime_format.formatter'
+            $fullDateTimeFormatter: '@ezplatform.user.settings.full_datetime_format.formatter'
         tags:
             - { name: twig.extension }

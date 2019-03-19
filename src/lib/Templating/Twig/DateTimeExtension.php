@@ -9,7 +9,6 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformUser\Templating\Twig;
 
 use DateTimeImmutable;
-use DateTimeInterface;
 use EzSystems\EzPlatformUser\UserSetting\Setting\DateTimeFormatSerializer;
 use EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface;
 use Twig\Extension\AbstractExtension;

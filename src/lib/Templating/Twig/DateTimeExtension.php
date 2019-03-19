@@ -81,15 +81,19 @@ class DateTimeExtension extends AbstractExtension
     }
 
     /**
-     * @param \DateTimeInterface|null $date
+     * @param mixed $date
      * @param \EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface  $formatter
      *
      * @return string
      */
-    public function format(?DateTimeInterface $date = null, FormatterInterface $formatter): string
+    public function format($date = null, FormatterInterface $formatter): string
     {
         if ($date === null) {
             $date = new DateTimeImmutable();
+        }
+
+        if (is_int($date)) {
+            $date = new DateTimeImmutable('@'.$date);
         }
 
         return $formatter->format($date);

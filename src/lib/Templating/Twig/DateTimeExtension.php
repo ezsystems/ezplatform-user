@@ -70,31 +70,38 @@ class DateTimeExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
-            new TwigFilter('ez_short_datetime', function ($date) { return $this->format($date, $this->shortDateTimeFormatter); }),
-            new TwigFilter('ez_short_date', function ($date) { return $this->format($date, $this->shortDateFormatter); }),
-            new TwigFilter('ez_short_time', function ($date) { return $this->format($date, $this->shortTimeFormatter); }),
-            new TwigFilter('ez_full_datetime', function ($date) { return $this->format($date, $this->fullDateTimeFormatter); }),
-            new TwigFilter('ez_full_date', function ($date) { return $this->format($date, $this->fullDateFormatter); }),
-            new TwigFilter('ez_full_time', function ($date) { return $this->format($date, $this->fullTimeFormatter); }),
+            new TwigFilter('ez_short_datetime', function ($date, $timezone = null) { return $this->format($this->shortDateTimeFormatter, $date, $timezone); }),
+            new TwigFilter('ez_short_date', function ($date, $timezone = null) { return $this->format($this->shortDateFormatter, $date, $timezone); }),
+            new TwigFilter('ez_short_time', function ($date, $timezone = null) { return $this->format($this->shortTimeFormatter, $date, $timezone); }),
+            new TwigFilter('ez_full_datetime', function ($date, $timezone = null) { return $this->format($this->fullDateTimeFormatter, $date, $timezone); }),
+            new TwigFilter('ez_full_date', function ($date, $timezone = null) { return $this->format($this->fullDateFormatter, $date, $timezone); }),
+            new TwigFilter('ez_full_time', function ($date, $timezone = null) { return $this->format($this->fullTimeFormatter, $date, $timezone); }),
         ];
     }
 
     /**
-     * @param mixed $date
-     * @param \EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface  $formatter
+     * @param \EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface $formatter
+     * @param mixed|null $date
+     * @param string|null $timezone
      *
      * @return string
+     *
+     * @throws \Exception
      */
-    public function format($date = null, FormatterInterface $formatter): string
+    public function format(FormatterInterface $formatter, $date = null, string $timezone = null): string
     {
         if ($date === null) {
             $date = new DateTimeImmutable();
         }
 
         if (is_int($date)) {
-            $date = new DateTimeImmutable('@'.$date);
+            $date = new DateTimeImmutable('@' . $date);
         }
 
-        return $formatter->format($date);
+        if (!$date instanceof \DateTimeInterface) {
+            throw new \RuntimeException('The date argument passed to format function must be int or DateTimeInterface');
+        }
+
+        return $formatter->format($date, $timezone);
     }
 }

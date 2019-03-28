@@ -90,3 +90,31 @@ services:
         tags:
             - { name: ezplatform.admin_ui.user_setting.value, identifier: short_datetime_format, priority: 40 }
             - { name: ezplatform.admin_ui.user_setting.form_mapper, identifier: short_datetime_format }
+
+    EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FullDateFormatterFactory: ~
+
+    ezplatform.user.settings.full_date_format.formatter:
+        lazy: true
+        factory: 'EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FullDateFormatterFactory:getFormatter'
+        class: 'EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\Formatter'
+
+    EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FullTimeFormatterFactory: ~
+
+    ezplatform.user.settings.full_time_format.formatter:
+        lazy: true
+        factory: 'EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FullTimeFormatterFactory:getFormatter'
+        class: 'EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\Formatter'
+
+    EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\ShortDateFormatterFactory: ~
+
+    ezplatform.user.settings.short_date_format.formatter:
+        lazy: true
+        factory: 'EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\ShortDateFormatterFactory:getFormatter'
+        class: 'EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\Formatter'
+
+    EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\ShortTimeFormatterFactory: ~
+
+    ezplatform.user.settings.short_time_format.formatter:
+        lazy: true
+        factory: 'EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\ShortDateFormatterFactory:getFormatter'
+        class: 'EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\Formatter'

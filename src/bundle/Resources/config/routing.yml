@@ -34,15 +34,23 @@ ez_user_register_confirmation:
     defaults:
         _controller: "EzPlatformUserBundle:UserRegister:registerConfirm"
 
-ezplatform.user.register:
+ezplatform.user.register: &user_register
     path: /register
     defaults:
         _controller: "EzPlatformUserBundle:UserRegister:register"
 
-ezplatform.user.register_confirmation:
+ezplatform.user.user_register:
+    <<: *user_register
+    path: /user/register
+
+ezplatform.user.register_confirmation: &user_register_confirmation
     path: /register-confirm
     defaults:
         _controller: "EzPlatformUserBundle:UserRegister:registerConfirm"
+
+ezplatform.user.user_register_confirmation:
+    <<: *user_register_confirmation
+    path: /user/register-confirm
 
 ezplatform.user_settings.list:
     path: /user/settings/list/{page}

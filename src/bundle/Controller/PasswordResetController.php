@@ -25,10 +25,10 @@ use Symfony\Component\HttpFoundation\Response;
 use eZ\Publish\API\Repository\UserService;
 use eZ\Publish\API\Repository\Values\User\UserTokenUpdateStruct;
 use Swift_Mailer;
-use Twig_Environment;
 use DateTime;
 use DateInterval;
 use Swift_Message;
+use Twig\Environment;
 
 class PasswordResetController extends Controller
 {
@@ -41,7 +41,7 @@ class PasswordResetController extends Controller
     /** @var Swift_Mailer */
     private $mailer;
 
-    /** @var Twig_Environment */
+    /** @var \Twig\Environment */
     private $twig;
 
     /** @var string */
@@ -60,7 +60,7 @@ class PasswordResetController extends Controller
      * @param \EzSystems\EzPlatformUser\Form\Factory\FormFactory $formFactory
      * @param \eZ\Publish\API\Repository\UserService $userService
      * @param Swift_Mailer $mailer
-     * @param Twig_Environment $twig
+     * @param \Twig\Environment $twig
      * @param \EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface $notificationHandler
      * @param \eZ\Publish\API\Repository\PermissionResolver $permissionResolver
      * @param string $tokenIntervalSpec
@@ -70,7 +70,7 @@ class PasswordResetController extends Controller
         FormFactory $formFactory,
         UserService $userService,
         Swift_Mailer $mailer,
-        Twig_Environment $twig,
+        Environment $twig,
         TranslatableNotificationHandlerInterface $notificationHandler,
         PermissionResolver $permissionResolver,
         string $tokenIntervalSpec,

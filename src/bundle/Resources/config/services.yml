@@ -41,6 +41,10 @@ services:
         calls:
             - [setParam, ["contentTypeIdentifier", "%ezrepoforms.user_content_type_identifier%"]]
 
+    # Default implementations
+    EzSystems\EzPlatformUser\ConfigResolver\RegistrationGroupLoader: '@EzSystems\EzPlatformUser\ConfigResolver\ConfigurableRegistrationGroupLoader'
+    EzSystems\EzPlatformUser\ConfigResolver\RegistrationContentTypeLoader: '@EzSystems\EzPlatformUser\ConfigResolver\ConfigurableRegistrationContentTypeLoader'
+
     EzSystems\EzPlatformUser\Form\DataMapper\UserRegisterMapper:
         calls:
             - [setParam, ["language", "@=service('ezpublish.config.resolver').getParameter('languages', null, null)[0]"]]

@@ -12,7 +12,7 @@ use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\PermissionResolver;
 use eZ\Publish\API\Repository\Values\User\User;
 use EzSystems\EzPlatformUser\Form\Factory\FormFactory;
-use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
+use EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface;
 use EzSystems\EzPlatformUser\View\ForgotPassword\FormView;
 use EzSystems\EzPlatformUser\View\ForgotPassword\LoginView;
 use EzSystems\EzPlatformUser\View\ForgotPassword\SuccessView;
@@ -46,7 +46,7 @@ class PasswordResetController extends Controller
     /** @var string */
     private $tokenIntervalSpec;
 
-    /** @var \EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface */
+    /** @var \EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface */
     private $notificationHandler;
 
     /** @var \eZ\Publish\API\Repository\PermissionResolver */
@@ -60,7 +60,7 @@ class PasswordResetController extends Controller
      * @param \eZ\Publish\API\Repository\UserService $userService
      * @param Swift_Mailer $mailer
      * @param Twig_Environment $twig
-     * @param \EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface $notificationHandler
+     * @param \EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface $notificationHandler
      * @param \eZ\Publish\API\Repository\PermissionResolver $permissionResolver
      * @param string $tokenIntervalSpec
      * @param string $forgotPasswordMail
@@ -70,7 +70,7 @@ class PasswordResetController extends Controller
         UserService $userService,
         Swift_Mailer $mailer,
         Twig_Environment $twig,
-        NotificationHandlerInterface $notificationHandler,
+        TranslatableNotificationHandlerInterface $notificationHandler,
         PermissionResolver $permissionResolver,
         string $tokenIntervalSpec,
         string $forgotPasswordMail
@@ -209,7 +209,7 @@ class PasswordResetController extends Controller
 
                 return $view;
             } catch (\Exception $e) {
-                $this->notificationHandler->error($e->getMessage());
+                $this->notificationHandler->error(/** @Ignore */ $e->getMessage());
             }
         }
 

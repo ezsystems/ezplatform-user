@@ -11,7 +11,7 @@ namespace EzSystems\EzPlatformUserBundle\Controller;
 use EzSystems\EzPlatformUser\Form\Data\UserSettingUpdateData;
 use EzSystems\EzPlatformUser\Form\Factory\FormFactory;
 use EzSystems\EzPlatformAdminUi\Form\SubmitHandler;
-use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
+use EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface;
 use EzSystems\EzPlatformUser\Pagination\Pagerfanta\UserSettingsAdapter;
 use EzSystems\EzPlatformUser\UserSetting\UserSettingService;
 use EzSystems\EzPlatformUser\UserSetting\ValueDefinitionRegistry;
@@ -21,7 +21,6 @@ use Pagerfanta\Pagerfanta;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Translation\TranslatorInterface;
 
 class UserSettingsController extends Controller
 {
@@ -31,16 +30,13 @@ class UserSettingsController extends Controller
     /** @var \EzSystems\EzPlatformAdminUi\Form\SubmitHandler */
     private $submitHandler;
 
-    /** @var \Symfony\Component\Translation\TranslatorInterface */
-    private $translator;
-
     /** @var \EzSystems\EzPlatformUser\UserSetting\UserSettingService */
     private $userSettingService;
 
     /** @var \EzSystems\EzPlatformUser\UserSetting\ValueDefinitionRegistry */
     private $valueDefinitionRegistry;
 
-    /** @var \EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface */
+    /** @var \EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface */
     private $notificationHandler;
 
     /** @var int */
@@ -49,24 +45,21 @@ class UserSettingsController extends Controller
     /**
      * @param \EzSystems\EzPlatformUser\Form\Factory\FormFactory $formFactory
      * @param \EzSystems\EzPlatformAdminUi\Form\SubmitHandler $submitHandler
-     * @param \Symfony\Component\Translation\TranslatorInterface $translator
      * @param \EzSystems\EzPlatformUser\UserSetting\UserSettingService $userSettingService
      * @param \EzSystems\EzPlatformUser\UserSetting\ValueDefinitionRegistry $valueDefinitionRegistry
-     * @param \EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface $notificationHandler
+     * @param \EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface $notificationHandler
      * @param int $defaultPaginationLimit
      */
     public function __construct(
         FormFactory $formFactory,
         SubmitHandler $submitHandler,
-        TranslatorInterface $translator,
         UserSettingService $userSettingService,
         ValueDefinitionRegistry $valueDefinitionRegistry,
-        NotificationHandlerInterface $notificationHandler,
+        TranslatableNotificationHandlerInterface $notificationHandler,
         int $defaultPaginationLimit
     ) {
         $this->formFactory = $formFactory;
         $this->submitHandler = $submitHandler;
-        $this->translator = $translator;
         $this->userSettingService = $userSettingService;
         $this->valueDefinitionRegistry = $valueDefinitionRegistry;
         $this->notificationHandler = $notificationHandler;
@@ -115,12 +108,10 @@ class UserSettingsController extends Controller
                 $this->userSettingService->setUserSetting($data->getIdentifier(), $data->getValue());
 
                 $this->notificationHandler->success(
-                    $this->translator->trans(
-                        /** @Desc("User setting '%identifier%' updated.") */
-                        'user_setting.update.success',
-                        ['%identifier%' => $data->getIdentifier()],
-                        'user_settings'
-                    )
+                    /** @Desc("User setting '%identifier%' updated.") */
+                    'user_setting.update.success',
+                    ['%identifier%' => $data->getIdentifier()],
+                    'user_settings'
                 );
 
                 return new RedirectResponse($this->generateUrl('ezplatform.user_settings.list'));

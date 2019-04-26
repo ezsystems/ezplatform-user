@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformUser\Form\Type;
 
 use EzSystems\EzPlatformUser\Form\Data\UserPasswordResetData;
+use EzSystems\RepositoryForms\Validator\Constraints\Password;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -27,6 +28,9 @@ class UserPasswordResetType extends AbstractType
                 'required' => true,
                 'first_options' => ['label' => /** @Desc("New password") */ 'ezplatform.reset_user_password.new_password'],
                 'second_options' => ['label' => /** @Desc("Confirm password") */ 'ezplatform.reset_user_password.confirm_new_password'],
+                'constraints' => [
+                    new Password(['contentType' => $options['content_type']]),
+                ],
             ])
             ->add(
                 'update',
@@ -40,6 +44,7 @@ class UserPasswordResetType extends AbstractType
         $resolver->setDefaults([
             'data_class' => UserPasswordResetData::class,
             'translation_domain' => 'forms',
+            'content_type' => null,
         ]);
     }
 }

@@ -19,6 +19,7 @@ class UserPasswordResetData
      * @var string
      */
     private $newPassword;
+
     /**
      * @var \eZ\Publish\API\Repository\Values\ContentType\ContentType
      */

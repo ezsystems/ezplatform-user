@@ -19,7 +19,10 @@ class UserPassword extends Constraint implements TranslationContainerInterface
 {
     public $message = 'ezplatform.change_user_password.not_match';
 
-    public static function getTranslationMessages()
+    /**
+     * @return \JMS\TranslationBundle\Model\Message[]
+     */
+    public static function getTranslationMessages(): array
     {
         return [
             Message::create('ezplatform.change_user_password.not_match', 'validators')

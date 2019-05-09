@@ -28,6 +28,13 @@ services:
         tags:
             - { name: ezpublish.view_provider, type: EzSystems\EzPlatformUser\View\UserSettings\UpdateView, priority: 10 }
 
+    ezplatform.user.view.user_setting.update.default_configured:
+        class: '%ezpublish.view_provider.configured.class%'
+        arguments:
+            $matcherFactory: '@ezplatform.user.view.user_setting.update.default_matcher_factory'
+        tags:
+            - { name: ezpublish.view_provider, type: EzSystems\EzPlatformUser\View\UserSettings\UpdateView, priority: -1 }
+
     ezplatform.user.view.user_setting.update.matcher_factory:
         class: '%ezpublish.view.matcher_factory.class%'
         arguments:
@@ -35,6 +42,14 @@ services:
         calls:
             - [setContainer, ['@service_container']]
             - [setMatchConfig, ['$user_settings_update_view$']]
+
+    ezplatform.user.view.user_setting.update.default_matcher_factory:
+        class: '%ezpublish.view.matcher_factory.class%'
+        arguments:
+            $relativeNamespace: 'EzSystems\EzPlatformUser\View\UserSettings\Matcher'
+        calls:
+            - [setContainer, ['@service_container']]
+            - [setMatchConfig, ['$user_settings_update_view_defaults$']]
 
     #
     # User Settings Implementations

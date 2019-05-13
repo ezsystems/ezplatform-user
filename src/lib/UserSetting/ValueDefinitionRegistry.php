@@ -26,7 +26,7 @@ class ValueDefinitionRegistry
     {
         $this->valueDefinitions = [];
         foreach ($valueDefinitions as $identifier => $valueDefinition) {
-            $valueDefinitions[$identifier] = new ValueDefinitionRegistryEntry($valueDefinition);
+            $this->valueDefinitions[$identifier] = new ValueDefinitionRegistryEntry($valueDefinition);
         }
     }
 

@@ -85,4 +85,12 @@ class ValueDefinitionRegistry
             return $entry->getDefinition();
         }, $this->valueDefinitions);
     }
+
+    /**
+     * @return int
+     */
+    public function countValueDefinitions(): int
+    {
+        return \count($this->valueDefinitions);
+    }
 }

@@ -56,3 +56,6 @@ parameters:
 
     # Additional translations e.g. ['en_US', 'nb_NO']
     ezsettings.default.user_preferences.additional_translations: []
+
+    # Pagination limits
+    ezsettings.default.pagination.user_settings_limit: 10

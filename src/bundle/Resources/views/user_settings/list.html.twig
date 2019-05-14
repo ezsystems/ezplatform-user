@@ -3,77 +3,49 @@
 {% trans_default_domain 'user_settings' %}
 
 {%- block content -%}
-<section class="container mt-4 px-5 tab-content">
-    <div role="tabpanel" class="tab-pane active" id="my-preferences">
-        {% for user_setting in pager %}
-            <div class="ez-table-header">
-                <div class="ez-table-header__headline">{{ user_setting.name }}</div>
-            </div>
-
-            <table class="table mb-3">
-                {% if user_setting.description is not empty %}
-                    <thead>
-                        <tr>
-                            <th colspan="2">{{ user_setting.description }}</th>
-                        </tr>
-                    </thead>
-                {% endif %}
-                <tbody>
-                    <tr>
-                        <td>
-                            {{ value_definitions[user_setting.identifier].getDisplayValue(user_setting.value)|raw }}
-                        </td>
-                        <td class="text-right">
-                            <a
-                                title="{{ 'list.action.edit'|trans|desc('Edit') }}"
-                                href="{{ path('ezplatform.user_settings.update', { 'identifier': user_setting.identifier }) }}"
-                                class="btn btn-icon mx-3">
-                                <svg class="ez-icon ez-icon-edit">
-                                    <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#edit"></use>
-                                </svg>
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        {% endfor %}
-
-        {% if pager.haveToPaginate %}
-            <div class="row justify-content-center align-items-center ez-pagination__spacing mb-2">
-            <span class="ez-pagination__text">
-                {{ 'pagination.viewing'|trans({
-                    '%viewing%': pager.currentPageResults|length,
-                    '%total%': pager.nbResults}, 'pagination')|desc('Viewing <strong>%viewing%</strong> out of <strong>%total%</strong> items')|raw }}
-            </span>
-            </div>
-            <div class="row justify-content-center align-items-center ez-pagination__btn mb-5">
-                {{ pagerfanta(pager, 'ez') }}
-            </div>
+    {% for user_setting in pager %}
+        <h2>{{ user_setting.name }}</h2>
+        {% if user_setting.description is not empty %}
+            <p>{{ user_setting.description }}</p>
         {% endif %}
-    </div>
-    <div role="tabpanel" class="tab-pane" id="my-account-settings">
-        <div class="ez-table-header">
-            <div class="ez-table-header__headline">{{ 'my_account_settings.password.title'|trans|desc('Password') }}</div>
-        </div>
-
-        <table class="table mb-3">
+        <table>
             <tbody>
+                <tr>
+                    <td>
+                        {{ value_definitions[user_setting.identifier].getDisplayValue(user_setting.value)|raw }}
+                    </td>
+                    <td>
+                        <a title="{{ 'list.action.edit'|trans|desc('Edit') }}"
+                            href="{{ path('ezplatform.user_settings.update', { 'identifier': user_setting.identifier }) }}">
+                            {{ 'list.action.edit'|trans|desc('Edit') }}
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    {% endfor %}
+
+    {% if pager.haveToPaginate %}
+        {{ 'pagination.viewing'|trans({
+            '%viewing%': pager.currentPageResults|length,
+            '%total%': pager.nbResults}, 'pagination')|desc('Viewing <strong>%viewing%</strong> out of <strong>%total%</strong> items')|raw }}
+        {{ pagerfanta(pager, 'ez') }}
+    {% endif %}
+
+    <h2>{{ 'my_account_settings.password.title'|trans|desc('Password') }}</h2>
+    <table class="table">
+        <tbody>
             <tr>
                 <td>
                     {{ 'my_account_settings.password.description'|trans|desc('Current password') }}
                 </td>
-                <td class="text-right">
+                <td>
                     <a title="{{ 'my_account_settings.password.action.edit'|trans|desc('Edit') }}"
-                       href="{{ path('ezplatform.user_profile.change_password') }}"
-                       class="btn btn-icon mx-3">
-                        <svg class="ez-icon ez-icon-edit">
-                            <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#edit"></use>
-                        </svg>
+                       href="{{ path('ezplatform.user_profile.change_password') }}">
+                        {{ 'my_account_settings.password.action.edit'|trans|desc('Edit') }}
                     </a>
                 </td>
             </tr>
-            </tbody>
-        </table>
-    </div>
-</section>
+        </tbody>
+    </table>
 {%- endblock content -%}

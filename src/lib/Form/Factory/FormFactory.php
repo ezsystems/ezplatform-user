@@ -75,7 +75,7 @@ class FormFactory
 
     /**
      * @param \EzSystems\EzPlatformUser\Form\Data\UserPasswordForgotWithLoginData $data
-     * @param null|string $name
+     * @param string|null $name
      *
      * @return \Symfony\Component\Form\FormInterface
      *
@@ -92,7 +92,7 @@ class FormFactory
 
     /**
      * @param \EzSystems\EzPlatformUser\Form\Data\UserPasswordResetData $data
-     * @param null|string $name
+     * @param string|null $name
      *
      * @return \Symfony\Component\Form\FormInterface
      *
@@ -104,7 +104,7 @@ class FormFactory
     ): FormInterface {
         $name = $name ?: StringUtil::fqcnToBlockPrefix(UserPasswordResetType::class);
 
-        return $this->formFactory->createNamed($name, UserPasswordResetType::class, $data);
+        return $this->formFactory->createNamed($name, UserPasswordResetType::class, $data, ['content_type' => $data->getContentType()]);
     }
 
     /**

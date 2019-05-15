@@ -11,6 +11,7 @@ namespace EzSystems\EzPlatformUserBundle\Controller;
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\PermissionResolver;
 use eZ\Publish\API\Repository\Values\User\User;
+use EzSystems\EzPlatformUser\Form\Data\UserPasswordResetData;
 use EzSystems\EzPlatformUser\Form\Factory\FormFactory;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
 use EzSystems\EzPlatformUser\View\ForgotPassword\FormView;
@@ -172,20 +173,19 @@ class PasswordResetController extends Controller
         $response->headers->set('X-Robots-Tag', 'noindex');
 
         try {
-            $this->userService->loadUserByToken($hashKey);
+            $user = $this->userService->loadUserByToken($hashKey);
         } catch (NotFoundException $e) {
             $view = new InvalidLinkView(null);
             $view->setResponse($response);
 
             return $view;
         }
-
-        $form = $this->formFactory->resetUserPassword();
+        $userPasswordResetData = new UserPasswordResetData(null, $user->getContentType());
+        $form = $this->formFactory->resetUserPassword($userPasswordResetData);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                $user = $this->userService->loadUserByToken($hashKey);
                 $currentUser = $this->permissionResolver->getCurrentUserReference();
                 $this->permissionResolver->setCurrentUserReference($user);
             } catch (NotFoundException $e) {

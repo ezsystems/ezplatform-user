@@ -1,8 +1,8 @@
 imports:
-    - { resource: services/controllers.yml }
-    - { resource: services/validators.yml }
-    - { resource: services/user_settings.yml }
-    - { resource: services/forms.yml }
+    - { resource: services/controllers.yaml }
+    - { resource: services/validators.yaml }
+    - { resource: services/user_settings.yaml }
+    - { resource: services/forms.yaml }
 
 services:
     _defaults:

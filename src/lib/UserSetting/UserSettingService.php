@@ -88,7 +88,7 @@ class UserSettingService
             $userPreferences[$identifier] = $this->getUserSettingValue($identifier, $userSettingDefinition);
         }
 
-        return $this->createUserSettings($values, $userPreferences);
+        return $this->createUserSettings($slice, $userPreferences);
     }
 
     /**
@@ -96,7 +96,7 @@ class UserSettingService
      */
     public function countUserSettings(): int
     {
-        return $this->userPreferenceService->getUserPreferenceCount();
+        return $this->valueRegistry->countValueDefinitions();
     }
 
     /**

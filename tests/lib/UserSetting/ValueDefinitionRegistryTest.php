@@ -19,7 +19,7 @@ class ValueDefinitionRegistryTest extends TestCase
         $definitions = [
             'foo' => $this->createMock(ValueDefinitionInterface::class),
             'bar' => $this->createMock(ValueDefinitionInterface::class),
-            'baz' => $this->createMock(ValueDefinitionInterface::class)
+            'baz' => $this->createMock(ValueDefinitionInterface::class),
         ];
 
         $registry = new ValueDefinitionRegistry($definitions);
@@ -56,5 +56,24 @@ class ValueDefinitionRegistryTest extends TestCase
         ]);
 
         $this->assertEquals($foo, $registry->getValueDefinition('foo'));
+    }
+
+    public function testCountValueDefinitions()
+    {
+        $definitions = [
+            'foo' => $this->createMock(ValueDefinitionInterface::class),
+            'bar' => $this->createMock(ValueDefinitionInterface::class),
+        ];
+
+        $registry = new ValueDefinitionRegistry($definitions);
+
+        $this->assertEquals(2, $registry->countValueDefinitions());
+    }
+
+    public function testCountValueDefinitionsWithEmptyRegistry()
+    {
+        $registry = new ValueDefinitionRegistry([]);
+
+        $this->assertEquals(0, $registry->countValueDefinitions());
     }
 }

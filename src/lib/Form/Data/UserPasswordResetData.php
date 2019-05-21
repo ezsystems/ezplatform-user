@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformUser\Form\Data;
 
 use Symfony\Component\Validator\Constraints as Assert;
+use eZ\Publish\API\Repository\Values\ContentType\ContentType;
 
 class UserPasswordResetData
 {
@@ -20,11 +21,17 @@ class UserPasswordResetData
     private $newPassword;
 
     /**
+     * @var \eZ\Publish\API\Repository\Values\ContentType\ContentType
+     */
+    private $contentType;
+
+    /**
      * @param string|null $newPassword
      */
-    public function __construct(?string $newPassword = null)
+    public function __construct(?string $newPassword = null, ?ContentType $contentType = null)
     {
         $this->newPassword = $newPassword;
+        $this->contentType = $contentType;
     }
 
     /**
@@ -41,5 +48,21 @@ class UserPasswordResetData
     public function getNewPassword(): ?string
     {
         return $this->newPassword;
+    }
+
+    /**
+     * @return \eZ\Publish\API\Repository\Values\ContentType\ContentType
+     */
+    public function getContentType(): ?ContentType
+    {
+        return $this->contentType;
+    }
+
+    /**
+     * @param \eZ\Publish\API\Repository\Values\ContentType\ContentType $contentType
+     */
+    public function setContentType(ContentType $contentType): void
+    {
+        $this->contentType = $contentType;
     }
 }

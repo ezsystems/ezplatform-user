@@ -1,7 +1,7 @@
-{% extends viewbaseLayout is defined ? viewbaseLayout : pagelayout %}
+{% extends view_base_layout is defined ? view_base_layout : page_layout %}
 
 {% trans_default_domain 'user_settings' %}
- 
+
 {% block content %}
     {{ form_start(form) }}
     {{ form_widget(form.identifier, {'attr': {'hidden': 'hidden'}}) }}

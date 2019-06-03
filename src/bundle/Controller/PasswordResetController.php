@@ -250,7 +250,7 @@ class PasswordResetController extends Controller
 
         $subject = $template->renderBlock('subject', []);
         $from = $template->renderBlock('from', []);
-        $body = $template->renderBlock('body', ['hashKey' => $hashKey]);
+        $body = $template->renderBlock('body', ['hash_key' => $hashKey]);
 
         $message = (new Swift_Message())
             ->setSubject($subject)

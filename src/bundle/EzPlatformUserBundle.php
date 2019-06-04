@@ -8,6 +8,7 @@ namespace EzSystems\EzPlatformUserBundle;
 
 use EzSystems\EzPlatformUserBundle\DependencyInjection\Compiler\UserSetting;
 use EzSystems\EzPlatformUserBundle\DependencyInjection\Configuration\Parser\ChangePassword;
+use EzSystems\EzPlatformUserBundle\DependencyInjection\Configuration\Parser\Pagination;
 use EzSystems\EzPlatformUserBundle\DependencyInjection\Configuration\Parser\UserPreferences;
 use EzSystems\EzPlatformUserBundle\DependencyInjection\Configuration\Parser\UserRegistration;
 use EzSystems\EzPlatformUserBundle\DependencyInjection\Configuration\Parser\Security;
@@ -26,6 +27,7 @@ class EzPlatformUserBundle extends Bundle
         $core = $container->getExtension('ezpublish');
         $core->addConfigParser(new Security());
         $core->addConfigParser(new ChangePassword());
+        $core->addConfigParser(new Pagination());
         $core->addConfigParser(new UserRegistration());
         $core->addConfigParser(new UserPreferences());
         $core->addConfigParser(new UserSettingsUpdateView());

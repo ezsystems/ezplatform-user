@@ -59,3 +59,5 @@ services:
             $fullTimeFormatter: '@ezplatform.user.settings.full_time_format.formatter'
         tags:
             - { name: twig.extension }
+
+    EzSystems\EzPlatformAdminUiBundle\Templating\Twig\UserPreferencesGlobalExtension: ~

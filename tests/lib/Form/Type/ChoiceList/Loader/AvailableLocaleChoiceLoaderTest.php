@@ -30,7 +30,7 @@ class AvailableLocaleChoiceLoaderTest extends TestCase
     /** @var \eZ\Publish\Core\MVC\ConfigResolverInterface|\PHPUnit\Framework\MockObject\MockObject */
     private $configResolver;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

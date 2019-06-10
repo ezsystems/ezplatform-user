@@ -6,19 +6,19 @@ services:
         parent: EzSystems\EzPlatformUserBundle\Controller\Controller
 
     EzSystems\EzPlatformUserBundle\Controller\Controller:
-        tags: [controller.service_arguments]
         calls:
             - [setContainer, ["@service_container"]]
             - [performAccessCheck, []]
+        tags: [controller.service_arguments]
 
     EzSystems\EzPlatformUserBundle\Controller\PasswordResetController:
-        tags: [controller.service_arguments]
         autowire: true
         calls:
             - [setContainer, ['@service_container']]
         arguments:
             $tokenIntervalSpec: '$security.token_interval_spec$'
             $forgotPasswordMail: '$user_forgot_password.templates.mail$'
+        tags: [controller.service_arguments]
 
     EzSystems\EzPlatformUserBundle\Controller\PasswordChangeController:
         autowire: true
@@ -27,13 +27,16 @@ services:
         calls:
             - [setContainer, ['@service_container']]
             - [performAccessCheck, []]
+        tags: [controller.service_arguments]
 
     EzSystems\EzPlatformUserBundle\Controller\UserRegisterController:
         autowire: true
         arguments:
             $userActionDispatcher: '@ezrepoforms.action_dispatcher.user'
+        tags: [controller.service_arguments]
 
     EzSystems\EzPlatformUserBundle\Controller\UserSettingsController:
         parent: EzSystems\EzPlatformAdminUiBundle\Controller\Controller
         arguments:
             $defaultPaginationLimit: '$pagination.user_settings_limit$'
+        tags: [controller.service_arguments]

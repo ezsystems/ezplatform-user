@@ -26,7 +26,7 @@ class EzPlatformUserExtension extends Extension implements PrependExtensionInter
             new FileLocator(__DIR__ . '/../Resources/config')
         );
 
-        $loader->load('services.yml');
+        $loader->load('services.yaml');
     }
 
     /**

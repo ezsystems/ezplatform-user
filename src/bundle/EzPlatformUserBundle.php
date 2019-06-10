@@ -36,6 +36,6 @@ class EzPlatformUserBundle extends Bundle
         $container->addCompilerPass(new UserSetting\FormMapperPass());
         $container->addCompilerPass(new UserSetting\ViewBuilderRegistryPass());
 
-        $core->addDefaultSettings(__DIR__ . '/Resources/config', ['ezplatform_default_settings.yml']);
+        $core->addDefaultSettings(__DIR__ . '/Resources/config', ['ezplatform_default_settings.yaml']);
     }
 }

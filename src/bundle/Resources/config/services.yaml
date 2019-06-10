@@ -1,8 +1,8 @@
 imports:
-    - { resource: services/controllers.yml }
-    - { resource: services/validators.yml }
-    - { resource: services/user_settings.yml }
-    - { resource: services/forms.yml }
+    - { resource: services/controllers.yaml }
+    - { resource: services/validators.yaml }
+    - { resource: services/user_settings.yaml }
+    - { resource: services/forms.yaml }
 
 services:
     _defaults:
@@ -40,6 +40,10 @@ services:
     EzSystems\EzPlatformUser\ConfigResolver\ConfigurableRegistrationContentTypeLoader:
         calls:
             - [setParam, ["contentTypeIdentifier", "%ezrepoforms.user_content_type_identifier%"]]
+
+    # Default implementations
+    EzSystems\EzPlatformUser\ConfigResolver\RegistrationGroupLoader: '@EzSystems\EzPlatformUser\ConfigResolver\ConfigurableRegistrationGroupLoader'
+    EzSystems\EzPlatformUser\ConfigResolver\RegistrationContentTypeLoader: '@EzSystems\EzPlatformUser\ConfigResolver\ConfigurableRegistrationContentTypeLoader'
 
     EzSystems\EzPlatformUser\Form\DataMapper\UserRegisterMapper:
         calls:

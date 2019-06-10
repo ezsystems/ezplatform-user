@@ -43,7 +43,7 @@ class UserPasswordValidatorTest extends TestCase
      */
     private $validator;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->userService = $this->createMock(UserService::class);
         $this->tokenStorage = $this->createMock(TokenStorageInterface::class);

@@ -92,7 +92,7 @@ class PasswordChangeController extends Controller
 
                 return new SuccessView(null);
             } catch (Exception $e) {
-                $this->notificationHandler->error($e->getMessage());
+                $this->notificationHandler->error($e->getMessage(), []);
             }
         }
 

@@ -9,11 +9,11 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformUser\UserSetting\Setting;
 
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use EzSystems\EzPlatformAdminUi\UserSetting as AdminUiUserSettings;
 use EzSystems\EzPlatformUser\Form\DataTransformer\DateTimeFormatTransformer;
 use EzSystems\EzPlatformUser\Form\Type\UserSettings\ShortDateTimeFormatType;
 use EzSystems\EzPlatformUser\UserSetting\Setting\Value\DateTimeFormat;
 use EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface;
+use EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
@@ -59,7 +59,7 @@ class ShortDateTimeFormat extends AbstractDateTimeFormat
      */
     public function mapFieldForm(
         FormBuilderInterface $formBuilder,
-        AdminUiUserSettings\ValueDefinitionInterface $value
+        ValueDefinitionInterface $value
     ): FormBuilderInterface {
         $valueForm = $formBuilder->create(
             'value',

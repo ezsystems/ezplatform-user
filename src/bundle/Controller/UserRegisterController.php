@@ -40,7 +40,7 @@ class UserRegisterController extends Controller
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return \EzSystems\EzPlatformUser\View\Register\FormView|null|\Symfony\Component\HttpFoundation\Response
+     * @return \EzSystems\EzPlatformUser\View\Register\FormView|\Symfony\Component\HttpFoundation\Response|null
      *
      * @throws \eZ\Publish\Core\Base\Exceptions\InvalidArgumentType
      */

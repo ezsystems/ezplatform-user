@@ -13,7 +13,7 @@ namespace EzSystems\EzPlatformUser\UserSetting;
  */
 final class ValueDefinitionRegistryEntry
 {
-    /** @var \EzSystems\EzPlatformAdminUi\UserSetting\ValueDefinitionInterface */
+    /** @var \EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface */
     private $definition;
 
     /** @var int */

@@ -37,6 +37,6 @@ class Identifier implements ViewMatcherInterface
             return false;
         }
 
-        return in_array($view->getUserSetting()->identifier, $this->identifiers);
+        return \in_array($view->getUserSetting()->identifier, $this->identifiers);
     }
 }

@@ -35,9 +35,9 @@ class DateTimeFormatTransformer implements DataTransformerInterface
             return null;
         }
 
-        if (!is_string($value)) {
+        if (!\is_string($value)) {
             throw new TransformationFailedException(
-                sprintf('Expected a %s, got %s instead', 'string', gettype($value))
+                sprintf('Expected a %s, got %s instead', 'string', \gettype($value))
             );
         }
 
@@ -58,9 +58,9 @@ class DateTimeFormatTransformer implements DataTransformerInterface
             return null;
         }
 
-        if (!is_array($value)) {
+        if (!\is_array($value)) {
             throw new TransformationFailedException(
-                sprintf('Expected a array, got %s instead', gettype($value))
+                sprintf('Expected a array, got %s instead', \gettype($value))
             );
         }
 

@@ -9,7 +9,6 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformUser\UserSetting;
 
 use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
-use EzSystems\EzPlatformAdminUi\UserSetting as AdminUiUserSettings;
 
 /**
  * @internal
@@ -32,12 +31,12 @@ class ValueDefinitionRegistry
 
     /**
      * @param string $identifier
-     * @param AdminUiUserSettings\ValueDefinitionInterface $valueDefinition
+     * @param \EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface $valueDefinition
      * @param int $priority
      */
     public function addValueDefinition(
         string $identifier,
-        AdminUiUserSettings\ValueDefinitionInterface $valueDefinition,
+        ValueDefinitionInterface $valueDefinition,
         int $priority = 0
     ): void {
         $this->valueDefinitions[$identifier] = new ValueDefinitionRegistryEntry($valueDefinition, $priority);
@@ -50,7 +49,7 @@ class ValueDefinitionRegistry
      *
      * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
      */
-    public function getValueDefinition(string $identifier): AdminUiUserSettings\ValueDefinitionInterface
+    public function getValueDefinition(string $identifier): ValueDefinitionInterface
     {
         if (!isset($this->valueDefinitions[$identifier])) {
             throw new InvalidArgumentException(
@@ -73,7 +72,7 @@ class ValueDefinitionRegistry
     }
 
     /**
-     * @return \EzSystems\EzPlatformAdminUi\UserSetting\ValueDefinitionInterface[]
+     * @return \EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface[]
      */
     public function getValueDefinitions(): array
     {

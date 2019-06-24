@@ -103,7 +103,7 @@ class PasswordResetController extends Controller
             $users = $this->userService->loadUsersByEmail($data->getEmail());
 
             /** Because is is possible to have multiple user accounts with same email address we must gain a user login. */
-            if (count($users) > 1) {
+            if (\count($users) > 1) {
                 return $this->redirectToRoute('ezplatform.user.forgot_password.login');
             }
 
@@ -144,7 +144,7 @@ class PasswordResetController extends Controller
                 $user = null;
             }
 
-            if (!$user || count($this->userService->loadUsersByEmail($user->email)) < 2) {
+            if (!$user || \count($this->userService->loadUsersByEmail($user->email)) < 2) {
                 return new SuccessView(null);
             }
 

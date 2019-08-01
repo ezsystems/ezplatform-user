@@ -14,11 +14,6 @@ interface FormMapperInterface
 {
     /**
      * Creates 'value' form type representing editing control for setting user preference value.
-     *
-     * @param \Symfony\Component\Form\FormBuilderInterface $formBuilder
-     * @param \EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface $value
-     *
-     * @return \Symfony\Component\Form\FormBuilderInterface
      */
     public function mapFieldForm(
         FormBuilderInterface $formBuilder,

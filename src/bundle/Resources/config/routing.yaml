@@ -5,39 +5,39 @@
 ezplatform.user_profile.change_password:
     path: /user/change-password
     defaults:
-        _controller: 'EzPlatformUserBundle:PasswordChange:userPasswordChange'
+        _controller: 'EzSystems\EzPlatformUserBundle\Controller\PasswordChangeController::userPasswordChangeAction'
 
 ezplatform.user.forgot_password:
     path: /user/forgot-password
     defaults:
-        _controller: 'EzPlatformUserBundle:PasswordReset:userForgotPassword'
+        _controller: 'EzSystems\EzPlatformUserBundle\Controller\PasswordResetController::userForgotPasswordAction'
 
 ezplatform.user.forgot_password.login:
     path: /user/forgot-password/login
     defaults:
-        _controller: 'EzPlatformUserBundle:PasswordReset:userForgotPasswordLogin'
+        _controller: 'EzSystems\EzPlatformUserBundle\Controller\PasswordResetController::userForgotPasswordLoginAction'
 
 ezplatform.user.reset_password:
     path: /user/reset-password/{hashKey}
     defaults:
-        _controller: 'EzPlatformUserBundle:PasswordReset:userResetPassword'
+        _controller: 'EzSystems\EzPlatformUserBundle\Controller\PasswordResetController::userResetPasswordAction'
 
 # Deprecated in v2.5 and will be removed in v3.0. Use ezplatform.user.register instead.
 ez_user_register:
     path: /register
     defaults:
-        _controller: "EzPlatformUserBundle:UserRegister:register"
+        _controller: 'EzSystems\EzPlatformUserBundle\Controller\UserRegisterController::registerAction'
 
 # Deprecated in v2.5 and will be removed in v3.0. Use ezplatform.user.register_confirmation instead.
 ez_user_register_confirmation:
     path: /register-confirm
     defaults:
-        _controller: "EzPlatformUserBundle:UserRegister:registerConfirm"
+        _controller: 'EzSystems\EzPlatformUserBundle\Controller\UserRegisterController::registerConfirmAction'
 
 ezplatform.user.register: &user_register
     path: /register
     defaults:
-        _controller: "EzPlatformUserBundle:UserRegister:register"
+        _controller: 'EzSystems\EzPlatformUserBundle\Controller\UserRegisterController::registerAction'
 
 ezplatform.user.user_register:
     <<: *user_register
@@ -46,7 +46,7 @@ ezplatform.user.user_register:
 ezplatform.user.register_confirmation: &user_register_confirmation
     path: /register-confirm
     defaults:
-        _controller: "EzPlatformUserBundle:UserRegister:registerConfirm"
+        _controller: 'EzSystems\EzPlatformUserBundle\Controller\UserRegisterController::registerConfirmAction'
 
 ezplatform.user.user_register_confirmation:
     <<: *user_register_confirmation
@@ -55,7 +55,7 @@ ezplatform.user.user_register_confirmation:
 ezplatform.user_settings.list:
     path: /user/settings/list/{page}
     defaults:
-        _controller: 'EzPlatformUserBundle:UserSettings:list'
+        _controller: 'EzSystems\EzPlatformUserBundle\Controller\UserSettingsController::listAction'
         page: 1
     requirements:
         page: \d+
@@ -63,6 +63,6 @@ ezplatform.user_settings.list:
 ezplatform.user_settings.update:
     path: /user/settings/update/{identifier}
     defaults:
-        _controller: 'EzPlatformUserBundle:UserSettings:update'
+        _controller: 'EzSystems\EzPlatformUserBundle\Controller\UserSettingsController::updateAction'
     requirements:
         identifier: .+

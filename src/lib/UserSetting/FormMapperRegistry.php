@@ -9,18 +9,17 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformUser\UserSetting;
 
 use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
-use EzSystems\EzPlatformAdminUi\UserSetting as AdminUiUserSettings;
 
 /**
  * @internal
  */
 class FormMapperRegistry
 {
-    /** @var \EzSystems\EzPlatformAdminUi\UserSetting\FormMapperInterface[] */
+    /** @var \EzSystems\EzPlatformUser\UserSetting\FormMapperInterface[] */
     protected $formMappers;
 
     /**
-     * @param \EzSystems\EzPlatformAdminUi\UserSetting\FormMapperInterface[] $formMappers
+     * @param \EzSystems\EzPlatformUser\UserSetting\FormMapperInterface[] $formMappers
      */
     public function __construct(array $formMappers = [])
     {
@@ -33,7 +32,7 @@ class FormMapperRegistry
      */
     public function addFormMapper(
         string $identifier,
-        AdminUiUserSettings\FormMapperInterface $formMapper
+        FormMapperInterface $formMapper
     ): void {
         $this->formMappers[$identifier] = $formMapper;
     }
@@ -45,7 +44,7 @@ class FormMapperRegistry
      *
      * @throws \eZ\Publish\Core\Base\Exceptions\InvalidArgumentException
      */
-    public function getFormMapper(string $identifier): AdminUiUserSettings\FormMapperInterface
+    public function getFormMapper(string $identifier): FormMapperInterface
     {
         if (!isset($this->formMappers[$identifier])) {
             throw new InvalidArgumentException(
@@ -58,7 +57,7 @@ class FormMapperRegistry
     }
 
     /**
-     * @return \EzSystems\EzPlatformAdminUi\UserSetting\FormMapperInterface[]
+     * @return \EzSystems\EzPlatformUser\UserSetting\FormMapperInterface[]
      */
     public function getFormMappers(): array
     {

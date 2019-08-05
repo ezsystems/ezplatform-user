@@ -46,7 +46,7 @@ class UserMenuListener implements EventSubscriberInterface, TranslationContainer
         $menu = $event->getMenu();
         $token = $this->tokenStorage->getToken();
 
-        if (null !== $token && is_object($token->getUser())) {
+        if (null !== $token && \is_object($token->getUser())) {
             $menu->addChild(
                 self::ITEM_CHANGE_PASSWORD,
                 [

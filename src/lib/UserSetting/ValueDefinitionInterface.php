@@ -8,14 +8,31 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformUser\UserSetting;
 
-use EzSystems\EzPlatformAdminUi\UserSetting as AdminUiUserSettings;
-
 /**
  * Interface for displaying User Preferences in the Admin UI.
  *
  * User Preferences are not displayed by default unless
  * ValueDefinitionInterface implementation is provided.
  */
-interface ValueDefinitionInterface extends AdminUiUserSettings\ValueDefinitionInterface
+interface ValueDefinitionInterface
 {
+    /**
+     * Returns name of a User Preference displayed in UI.
+     */
+    public function getName(): string;
+
+    /**
+     * Returns description of a User Preference displayed in UI.
+     */
+    public function getDescription(): string;
+
+    /**
+     * Returns formatted value to be displayed in UI.
+     */
+    public function getDisplayValue(string $storageValue): string;
+
+    /**
+     * Returns default value for User Preference if none is defined.
+     */
+    public function getDefaultValue(): string;
 }

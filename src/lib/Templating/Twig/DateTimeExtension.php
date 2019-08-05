@@ -94,7 +94,7 @@ class DateTimeExtension extends AbstractExtension
             $date = new DateTimeImmutable();
         }
 
-        if (is_int($date)) {
+        if (\is_int($date)) {
             $date = new DateTimeImmutable('@' . $date);
         }
 

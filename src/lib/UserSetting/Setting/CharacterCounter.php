@@ -14,7 +14,6 @@ use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Translation\TranslatorInterface;
-use EzSystems\EzPlatformAdminUi\UserSetting as AdminUiUserSettings;
 
 class CharacterCounter implements ValueDefinitionInterface, FormMapperInterface
 {
@@ -77,7 +76,7 @@ class CharacterCounter implements ValueDefinitionInterface, FormMapperInterface
     /**
      * {@inheritdoc}
      */
-    public function mapFieldForm(FormBuilderInterface $formBuilder, AdminUiUserSettings\ValueDefinitionInterface $value): FormBuilderInterface
+    public function mapFieldForm(FormBuilderInterface $formBuilder, ValueDefinitionInterface $value): FormBuilderInterface
     {
         $choices = [
             $this->getTranslatedOptionEnabled() => self::ENABLED_OPTION,

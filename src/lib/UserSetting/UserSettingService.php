@@ -11,7 +11,6 @@ namespace EzSystems\EzPlatformUser\UserSetting;
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\UserPreferenceService;
 use eZ\Publish\API\Repository\Values\UserPreference\UserPreferenceSetStruct;
-use EzSystems\EzPlatformAdminUi\UserSetting as AdminUiUserSettings;
 
 /**
  * @internal
@@ -80,7 +79,7 @@ class UserSettingService
     public function loadUserSettings(int $offset = 0, int $limit = 25): array
     {
         $values = $this->valueRegistry->getValueDefinitions();
-        /** @var \EzSystems\EzPlatformAdminUi\UserSetting\ValueDefinitionInterface[] $slice */
+        /** @var \EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface[] $slice */
         $slice = \array_slice($values, $offset, $limit, true);
 
         $userPreferences = [];
@@ -100,10 +99,10 @@ class UserSettingService
     }
 
     /**
-     * @param \EzSystems\EzPlatformAdminUi\UserSetting\ValueDefinitionInterface[] $values
+     * @param \EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface[] $values
      * @param array $userPreferences
      *
-     * @return \EzSystems\EzPlatformAdminUi\UserSetting\UserSetting[]
+     * @return \EzSystems\EzPlatformUser\UserSetting\UserSetting[]
      */
     private function createUserSettings(array $values, array $userPreferences): array
     {
@@ -125,7 +124,7 @@ class UserSettingService
      */
     private function createUserSetting(
         string $identifier,
-        AdminUiUserSettings\ValueDefinitionInterface $value,
+        ValueDefinitionInterface $value,
         string $userPreferenceValue
     ): UserSetting {
         return new UserSetting([
@@ -144,7 +143,7 @@ class UserSettingService
      *
      * @throws \eZ\Publish\API\Repository\Exceptions\UnauthorizedException
      */
-    private function getUserSettingValue(string $identifier, AdminUiUserSettings\ValueDefinitionInterface $value): string
+    private function getUserSettingValue(string $identifier, ValueDefinitionInterface $value): string
     {
         try {
             $userPreference = $this->userPreferenceService->getUserPreference($identifier);

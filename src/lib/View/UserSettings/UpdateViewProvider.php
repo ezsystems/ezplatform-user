@@ -57,7 +57,7 @@ class UpdateViewProvider implements ViewProvider
             $view->setControllerReference(new ControllerReference($viewConfig['controller']));
         }
 
-        if (isset($viewConfig['params']) && is_array($viewConfig['params'])) {
+        if (isset($viewConfig['params']) && \is_array($viewConfig['params'])) {
             $view->addParameters($viewConfig['params']);
         }
 

@@ -16,7 +16,7 @@ final class DateTimeFormatSerializer
     {
         $value = json_decode($value, true);
 
-        if (!is_array($value)) {
+        if (!\is_array($value)) {
             return null;
         }
 

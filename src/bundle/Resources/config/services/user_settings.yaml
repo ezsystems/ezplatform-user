@@ -38,17 +38,19 @@ services:
     ezplatform.user.view.user_setting.update.matcher_factory:
         class: '%ezpublish.view.matcher_factory.class%'
         arguments:
-            $relativeNamespace: 'EzSystems\EzPlatformUser\View\UserSettings\Matcher'
+            - '@eZ\Bundle\EzPublishCoreBundle\Matcher\ViewMatcherRegistry'
+            - '@ezpublish.api.repository'
+            - 'EzSystems\EzPlatformUser\View\UserSettings\Matcher'
         calls:
-            - [setContainer, ['@service_container']]
             - [setMatchConfig, ['$user_settings_update_view$']]
 
     ezplatform.user.view.user_setting.update.default_matcher_factory:
         class: '%ezpublish.view.matcher_factory.class%'
         arguments:
-            $relativeNamespace: 'EzSystems\EzPlatformUser\View\UserSettings\Matcher'
+            - '@eZ\Bundle\EzPublishCoreBundle\Matcher\ViewMatcherRegistry'
+            - '@ezpublish.api.repository'
+            - 'EzSystems\EzPlatformUser\View\UserSettings\Matcher'
         calls:
-            - [setContainer, ['@service_container']]
             - [setMatchConfig, ['$user_settings_update_view_defaults$']]
 
     #

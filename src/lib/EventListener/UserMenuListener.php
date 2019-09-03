@@ -51,13 +51,16 @@ class UserMenuListener implements EventSubscriberInterface, TranslationContainer
                 self::ITEM_CHANGE_PASSWORD,
                 [
                     'route' => 'ezplatform.user_profile.change_password',
-                    'extras' => ['translation_domain' => 'menu'],
+                    'extras' => [
+                        'translation_domain' => 'menu', 
+                        'icon' => 'edit',
+                    ],
                 ]
             );
         }
 
         $manipulator = new MenuManipulator();
-        $manipulator->moveToPosition($menu[self::ITEM_CHANGE_PASSWORD], 0);
+        $manipulator->moveToPosition($menu[self::ITEM_CHANGE_PASSWORD], 3);
     }
 
     /**

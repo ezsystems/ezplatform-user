@@ -53,7 +53,7 @@ class UserMenuListener implements EventSubscriberInterface, TranslationContainer
                     'extras' => [
                         'translation_domain' => 'menu',
                         'icon' => 'edit',
-                        'orderNumber' => 35,
+                        'orderNumber' => 40,
                     ],
                 ]
             );

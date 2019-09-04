@@ -54,13 +54,11 @@ class UserMenuListener implements EventSubscriberInterface, TranslationContainer
                     'extras' => [
                         'translation_domain' => 'menu', 
                         'icon' => 'edit',
+                        'orderNumber' => 35,
                     ],
                 ]
             );
         }
-
-        $manipulator = new MenuManipulator();
-        $manipulator->moveToPosition($menu[self::ITEM_CHANGE_PASSWORD], 3);
     }
 
     /**

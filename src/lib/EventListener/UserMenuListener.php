@@ -52,7 +52,7 @@ class UserMenuListener implements EventSubscriberInterface, TranslationContainer
                     'route' => 'ezplatform.user_profile.change_password',
                     'extras' => [
                         'translation_domain' => 'menu',
-                        'icon' => 'edit',
+                        'icon_url' => '/bundles/ezplatformadminui/img/ez-icons.svg#edit',
                         'orderNumber' => 40,
                     ],
                 ]

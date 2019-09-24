@@ -54,10 +54,10 @@ class UserMenuListener implements EventSubscriberInterface, TranslationContainer
                     'extras' => ['translation_domain' => 'menu'],
                 ]
             );
-        }
 
-        $manipulator = new MenuManipulator();
-        $manipulator->moveToPosition($menu[self::ITEM_CHANGE_PASSWORD], 0);
+            $manipulator = new MenuManipulator();
+            $manipulator->moveToPosition($menu[self::ITEM_CHANGE_PASSWORD], 0);
+        }
     }
 
     /**

@@ -63,3 +63,8 @@ services:
             $fullTimeFormatter: '@ezplatform.user.settings.full_time_format.formatter'
         tags:
             - { name: twig.extension }
+    
+    ezplatform.user.listener.reorder_by_order_number_listener:
+        class: EzSystems\EzPlatformAdminUi\Menu\Listener\ReorderByOrderNumberListener
+        tags:
+            - { name: kernel.event_listener, event: ezplatform_admin_ui.menu_configure.user_menu, method: reorderMenuItems, priority: -50 }

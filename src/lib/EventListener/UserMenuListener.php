@@ -9,10 +9,9 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformUser\EventListener;
 
 use EzSystems\EzPlatformAdminUi\Menu\Event\ConfigureMenuEvent;
-use JMS\TranslationBundle\Translation\TranslationContainerInterface;
-use Knp\Menu\Util\MenuManipulator;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use JMS\TranslationBundle\Model\Message;
+use JMS\TranslationBundle\Translation\TranslationContainerInterface;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class UserMenuListener implements EventSubscriberInterface, TranslationContainerInterface
@@ -51,13 +50,13 @@ class UserMenuListener implements EventSubscriberInterface, TranslationContainer
                 self::ITEM_CHANGE_PASSWORD,
                 [
                     'route' => 'ezplatform.user_profile.change_password',
-                    'extras' => ['translation_domain' => 'menu'],
+                    'extras' => [
+                        'translation_domain' => 'menu',
+                        'orderNumber' => 10,
+                    ],
                 ]
             );
         }
-
-        $manipulator = new MenuManipulator();
-        $manipulator->moveToPosition($menu[self::ITEM_CHANGE_PASSWORD], 0);
     }
 
     /**

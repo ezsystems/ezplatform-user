@@ -74,9 +74,7 @@ class UserRegisterFormProcessor implements EventSubscriberInterface
     private function createUser(UserRegisterData $data, $languageCode)
     {
         foreach ($data->fieldsData as $fieldDefIdentifier => $fieldData) {
-            if ($fieldData->getFieldTypeIdentifier() !== 'ezuser') {
-                $data->setField($fieldDefIdentifier, $fieldData->value, $languageCode);
-            }
+            $data->setField($fieldDefIdentifier, $fieldData->value, $languageCode);
         }
 
         return $this->repository->sudo(

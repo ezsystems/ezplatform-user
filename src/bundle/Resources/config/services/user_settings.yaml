@@ -84,7 +84,7 @@ services:
 
     ezplatform.user.settings.full_datetime_format.formatter:
         lazy: true
-        factory: 'EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FullDateTimeFormatterFactory:getFormatter'
+        factory: ['@EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FullDateTimeFormatterFactory', 'getFormatter']
         class: 'EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\Formatter'
 
     EzSystems\EzPlatformUser\UserSetting\Setting\FullDateTimeFormat:
@@ -98,7 +98,7 @@ services:
 
     ezplatform.user.settings.short_datetime_format.formatter:
         lazy: true
-        factory: 'EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\ShortDateTimeFormatterFactory:getFormatter'
+        factory: ['@EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\ShortDateTimeFormatterFactory', 'getFormatter']
         class: 'EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\Formatter'
 
     EzSystems\EzPlatformUser\UserSetting\Setting\ShortDateTimeFormat:
@@ -112,26 +112,26 @@ services:
 
     ezplatform.user.settings.full_date_format.formatter:
         lazy: true
-        factory: 'EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FullDateFormatterFactory:getFormatter'
+        factory: ['@EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FullDateFormatterFactory', 'getFormatter']
         class: 'EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\Formatter'
 
     EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FullTimeFormatterFactory: ~
 
     ezplatform.user.settings.full_time_format.formatter:
         lazy: true
-        factory: 'EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FullTimeFormatterFactory:getFormatter'
+        factory: ['@EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FullTimeFormatterFactory', 'getFormatter']
         class: 'EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\Formatter'
 
     EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\ShortDateFormatterFactory: ~
 
     ezplatform.user.settings.short_date_format.formatter:
         lazy: true
-        factory: 'EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\ShortDateFormatterFactory:getFormatter'
+        factory: ['@EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\ShortDateFormatterFactory', 'getFormatter']
         class: 'EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\Formatter'
 
     EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\ShortTimeFormatterFactory: ~
 
     ezplatform.user.settings.short_time_format.formatter:
         lazy: true
-        factory: 'EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\ShortDateFormatterFactory:getFormatter'
+        factory: ['@EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\ShortDateFormatterFactory', 'getFormatter']
         class: 'EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\Formatter'

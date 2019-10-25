@@ -28,7 +28,7 @@ class UserRegisterType extends AbstractType
 
     public function getBlockPrefix()
     {
-        return 'ezrepoforms_user_register';
+        return 'ezplatform_content_forms_user_register';
     }
 
     public function getParent()
@@ -48,7 +48,7 @@ class UserRegisterType extends AbstractType
         $resolver
             ->setDefaults([
                 'data_class' => UserRegisterData::class,
-                'translation_domain' => 'ezrepoforms_user_registration',
+                'translation_domain' => 'ezplatform_content_forms_user_registration',
                 'intent' => 'register',
             ])
             ->setRequired(['languageCode']);

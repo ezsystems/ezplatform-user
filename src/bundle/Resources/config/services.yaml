@@ -4,6 +4,9 @@ imports:
     - { resource: services/user_settings.yaml }
     - { resource: services/forms.yaml }
 
+parameters:
+    ezplatform.user.content_type_identifier: user
+
 services:
     _defaults:
         autowire: true
@@ -16,7 +19,7 @@ services:
         tags:
             - { name: kernel.event_subscriber }
 
-    EzSystems\RepositoryForms\EventListener\ViewTemplatesListener:
+    EzSystems\EzPlatformUser\EventListener\ViewTemplatesListener:
         tags:
             - { name: kernel.event_subscriber }
         calls:
@@ -39,7 +42,7 @@ services:
 
     EzSystems\EzPlatformUser\ConfigResolver\ConfigurableRegistrationContentTypeLoader:
         calls:
-            - [setParam, ["contentTypeIdentifier", "%ezrepoforms.user_content_type_identifier%"]]
+            - [setParam, ["contentTypeIdentifier", "%ezplatform.user.content_type_identifier%"]]
 
     # Default implementations
     EzSystems\EzPlatformUser\ConfigResolver\RegistrationGroupLoader: '@EzSystems\EzPlatformUser\ConfigResolver\ConfigurableRegistrationGroupLoader'

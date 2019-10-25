@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformUser\Form\Data;
 
-use EzSystems\RepositoryForms\Data as RepositoryFormsData;
+use EzSystems\EzPlatformContentForms\Data as RepositoryFormsData;
 
 class UserRegisterData extends RepositoryFormsData\User\UserRegisterData
 {

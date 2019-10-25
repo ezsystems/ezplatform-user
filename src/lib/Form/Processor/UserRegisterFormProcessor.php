@@ -10,7 +10,7 @@ use eZ\Publish\API\Repository\Repository;
 use eZ\Publish\API\Repository\UserService;
 use EzSystems\EzPlatformUser\Form\Data\UserRegisterData;
 use EzSystems\EzPlatformUser\Form\UserFormEvents;
-use EzSystems\RepositoryForms\Event\FormActionEvent;
+use EzSystems\EzPlatformContentForms\Event\FormActionEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\RouterInterface;
@@ -44,7 +44,7 @@ class UserRegisterFormProcessor implements EventSubscriberInterface
     }
 
     /**
-     * @param \EzSystems\RepositoryForms\Event\FormActionEvent $event
+     * @param \EzSystems\EzPlatformContentForms\Event\FormActionEvent $event
      *
      * @throws \Exception
      */

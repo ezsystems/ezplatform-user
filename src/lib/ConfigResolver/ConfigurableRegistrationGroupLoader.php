@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformUser\ConfigResolver;
 
-use EzSystems\RepositoryForms\ConfigResolver\ConfigurableSudoRepositoryLoader;
+use EzSystems\EzPlatformContentForms\ConfigResolver\ConfigurableSudoRepositoryLoader;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**

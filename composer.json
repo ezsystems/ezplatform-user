@@ -15,12 +15,18 @@
             "EzSystems\\EzPlatformUser\\Tests\\": "tests/lib/"
         }
     },
+    "repositories": [
+      {
+        "type": "vcs",
+        "url": "https://github.com/ezsystems/ezplatform-admin-ui.git"
+      }
+    ],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
         "php": "^7.3",
         "ezsystems/ezpublish-kernel": "^8.0@dev",
-        "ezsystems/ezplatform-admin-ui": "^2.0@dev",
+        "ezsystems/ezplatform-admin-ui": "dev-content_forms as 2.0.x-dev",
         "jms/translation-bundle": "^1.4",
         "symfony/dependency-injection": "^4.3",
         "symfony/http-kernel": "^4.3",
@@ -48,5 +54,8 @@
         "branch-alias": {
             "dev-master": "2.0.x-dev"
         }
+    },
+    "config": {
+        "github-protocols": ["https"]
     }
 }

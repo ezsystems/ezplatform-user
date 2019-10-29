@@ -13,7 +13,7 @@ parameters:
 
     # Registration
     ezsettings.default.user_registration.group_id: 11
-    ezsettings.default.user_registration.templates.form: "@@EzSystemsRepositoryForms/Content/content_edit.html.twig"
+    ezsettings.default.user_registration.templates.form: "@@EzPlatformContentForms/Content/content_edit.html.twig"
     ezsettings.default.user_registration.templates.confirmation: "@@EzPlatformUser/register/register_confirmation.html.twig"
 
     # User Settings

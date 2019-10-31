@@ -16,10 +16,26 @@
         }
     },
     "repositories": [
-      {
-        "type": "vcs",
-        "url": "https://github.com/ezsystems/ezplatform-admin-ui.git"
-      }
+        {
+            "type": "vcs",
+            "url": "https://github.com/ezsystems/ezplatform-admin-ui.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/ezsystems/ezplatform-content-forms.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/ezsystems/ezplatform-user.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/ezsystems/ezplatform-richtext.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/ezsystems/ez-support-tools.git"
+        }
     ],
     "minimum-stability": "dev",
     "prefer-stable": true,

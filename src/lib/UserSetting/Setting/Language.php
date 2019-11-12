@@ -111,7 +111,7 @@ class Language implements ValueDefinitionInterface, FormMapperInterface
     private function getTranslatedDescription(): string
     {
         return $this->translator->trans(
-            /** @Desc("The language of the Back Office") */
+            /** @Desc("Back Office language") */
             'settings.language.value.description',
             [],
             'user_settings'

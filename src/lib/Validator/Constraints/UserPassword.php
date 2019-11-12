@@ -26,7 +26,7 @@ class UserPassword extends Constraint implements TranslationContainerInterface
     {
         return [
             Message::create('ezplatform.change_user_password.not_match', 'validators')
-                ->setDesc('Incorrect current password.'),
+                ->setDesc('Current password is incorrect.'),
         ];
     }
 }

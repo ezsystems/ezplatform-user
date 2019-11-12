@@ -21,14 +21,14 @@ class DateTimeFormatType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('date_format', ChoiceType::class, [
-            'label' => /** @Desc("Format for displaying date") */ 'ezplatform.date_time_format.date_format.label',
+            'label' => /** @Desc("Date format") */ 'ezplatform.date_time_format.date_format.label',
             'choices' => $options['date_format_choices'],
             'multiple' => false,
             'required' => true,
         ]);
 
         $builder->add('time_format', ChoiceType::class, [
-            'label' => /** @Desc("Format for displaying time") */ 'ezplatform.date_time_format.time_format.label',
+            'label' => /** @Desc("Time format") */ 'ezplatform.date_time_format.time_format.label',
             'choices' => $options['time_format_choices'],
             'multiple' => false,
             'required' => false,

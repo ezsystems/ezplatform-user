@@ -39,7 +39,7 @@ class ValueDefinitionPass implements CompilerPassInterface
                 if (!isset($tag['identifier'])) {
                     throw new InvalidArgumentException(
                         $taggedServiceId,
-                        sprintf("Tag '%s' must contain 'identifier' argument.", self::TAG_NAME)
+                        sprintf("Tag '%s' must contain an 'identifier' argument.", self::TAG_NAME)
                     );
                 }
 

@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformUser\Form\Type;
 
 use EzSystems\EzPlatformUser\Form\Data\UserPasswordResetData;
-use EzSystems\RepositoryForms\Validator\Constraints\Password;
+use EzSystems\EzPlatformContentForms\Validator\Constraints\Password;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;

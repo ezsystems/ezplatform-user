@@ -12,7 +12,7 @@ use eZ\Publish\Core\MVC\Symfony\Security\Authorization\Attribute;
 use EzSystems\EzPlatformUser\Form\DataMapper\UserRegisterMapper;
 use EzSystems\EzPlatformUser\View\Register\ConfirmView;
 use EzSystems\EzPlatformUser\View\Register\FormView;
-use EzSystems\RepositoryForms\Form\ActionDispatcher\ActionDispatcherInterface;
+use EzSystems\EzPlatformContentForms\Form\ActionDispatcher\ActionDispatcherInterface;
 use EzSystems\EzPlatformUser\Form\Type\UserRegisterType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
@@ -22,12 +22,12 @@ class UserRegisterController extends Controller
     /** @var \EzSystems\EzPlatformUser\Form\DataMapper\UserRegisterMapper */
     private $userRegisterMapper;
 
-    /** @var \EzSystems\RepositoryForms\Form\ActionDispatcher\ActionDispatcherInterface */
+    /** @var \EzSystems\EzPlatformContentForms\Form\ActionDispatcher\ActionDispatcherInterface */
     private $userActionDispatcher;
 
     /**
      * @param \EzSystems\EzPlatformUser\Form\DataMapper\UserRegisterMapper $userRegisterMapper
-     * @param \EzSystems\RepositoryForms\Form\ActionDispatcher\ActionDispatcherInterface $userActionDispatcher
+     * @param \EzSystems\EzPlatformContentForms\Form\ActionDispatcher\ActionDispatcherInterface $userActionDispatcher
      */
     public function __construct(
         UserRegisterMapper $userRegisterMapper,

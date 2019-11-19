@@ -32,7 +32,7 @@ services:
     EzSystems\EzPlatformUserBundle\Controller\UserRegisterController:
         autowire: true
         arguments:
-            $userActionDispatcher: '@ezrepoforms.action_dispatcher.user'
+            $userActionDispatcher: '@ezplatform.content_forms.action_dispatcher.user'
         tags: [controller.service_arguments]
 
     EzSystems\EzPlatformUserBundle\Controller\UserSettingsController:

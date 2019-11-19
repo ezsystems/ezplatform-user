@@ -6,10 +6,12 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformUser\Form\Data;
+namespace EzSystems\EzPlatformUser\Form;
 
-use EzSystems\EzPlatformContentForms\Data as RepositoryFormsData;
-
-class UserRegisterData extends RepositoryFormsData\User\UserRegisterData
+final class UserFormEvents
 {
+    /**
+     * Triggered when registering an user.
+     */
+    const USER_REGISTER = 'user.edit.register';
 }

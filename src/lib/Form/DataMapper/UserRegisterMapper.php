@@ -9,7 +9,7 @@ namespace EzSystems\EzPlatformUser\Form\DataMapper;
 use eZ\Publish\API\Repository\Values\Content\Field;
 use EzSystems\EzPlatformUser\ConfigResolver\RegistrationContentTypeLoader;
 use EzSystems\EzPlatformUser\ConfigResolver\RegistrationGroupLoader;
-use EzSystems\RepositoryForms\Data\Content\FieldData;
+use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
 use EzSystems\EzPlatformUser\Form\Data\UserRegisterData;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 

@@ -8,7 +8,7 @@
     <body>
       <trans-unit id="745ed48e9eaf1a1a896e411a17317ccbda571d35" resname="user.register_button">
         <source>Register</source>
-        <target state="new">Register</target>
+        <target>Register</target>
         <note>key: user.register_button</note>
       </trans-unit>
     </body>

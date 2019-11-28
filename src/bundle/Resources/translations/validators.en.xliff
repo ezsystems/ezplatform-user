@@ -7,18 +7,18 @@
     </header>
     <body>
       <trans-unit id="0727f822c8bebb99cd8a75ec16d4008c74d30b24" resname="ezplatform.change_user_password.not_match">
-        <source>Old password does not match.</source>
-        <target>Old password does not match.</target>
+        <source>Current password is incorrect.</source>
+        <target state="new">Current password is incorrect.</target>
         <note>key: ezplatform.change_user_password.not_match</note>
       </trans-unit>
       <trans-unit id="54d912b0089483cfd533714e50262851b6d1421a" resname="ezplatform.change_user_password.passwords_must_match">
-        <source>The password fields must match.</source>
-        <target>The password fields must match.</target>
+        <source>Passwords do not match.</source>
+        <target state="new">Passwords do not match.</target>
         <note>key: ezplatform.change_user_password.passwords_must_match</note>
       </trans-unit>
       <trans-unit id="58f9ad2e8a8df010fb8abb25e39b46f2ccf92294" resname="ezplatform.reset_user_password.passwords_must_match">
-        <source>The password fields must match.</source>
-        <target>The password fields must match.</target>
+        <source>Passwords do not match.</source>
+        <target state="new">Passwords do not match.</target>
         <note>key: ezplatform.reset_user_password.passwords_must_match</note>
       </trans-unit>
     </body>

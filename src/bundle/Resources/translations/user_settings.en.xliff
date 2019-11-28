@@ -7,108 +7,108 @@
     </header>
     <body>
       <trans-unit id="e5cd6324f4b82e528579bc3e520925523d2c1302" resname="ezplatform.date_time_format.date_format.label">
-        <source>Format for displaying Date</source>
-        <target>Format for displaying Date</target>
+        <source>Date format</source>
+        <target state="new">Date format</target>
         <note>key: ezplatform.date_time_format.date_format.label</note>
       </trans-unit>
       <trans-unit id="5de657d6ce5bc796abc83abde3a6e79503953b17" resname="ezplatform.date_time_format.time_format.label">
-        <source>Format for displaying Time</source>
-        <target>Format for displaying Time</target>
+        <source>Time format</source>
+        <target state="new">Time format</target>
         <note>key: ezplatform.date_time_format.time_format.label</note>
       </trans-unit>
       <trans-unit id="fb1d64fdeabb5f2fe1671d4f3fb72ccca7722ed3" resname="list.action.edit">
         <source>Edit</source>
-        <target>Edit</target>
+        <target state="new">Edit</target>
         <note>key: list.action.edit</note>
       </trans-unit>
       <trans-unit id="0b3e3c43abe2511b50431eb05045a7e5dbd7a36c" resname="my_account_settings.password.action.edit">
         <source>Edit</source>
-        <target>Edit</target>
+        <target state="new">Edit</target>
         <note>key: my_account_settings.password.action.edit</note>
       </trans-unit>
       <trans-unit id="49c8574da3abcfb5465e079bec34d32654da7535" resname="my_account_settings.password.description">
         <source>Current password</source>
-        <target>Current password</target>
+        <target state="new">Current password</target>
         <note>key: my_account_settings.password.description</note>
       </trans-unit>
       <trans-unit id="2273b0c5061ff374bd0d5a75e9301721f7312b65" resname="my_account_settings.password.title">
         <source>Password</source>
-        <target>Password</target>
+        <target state="new">Password</target>
         <note>key: my_account_settings.password.title</note>
       </trans-unit>
       <trans-unit id="98400a7e546231a994f6fea03dce3ebd52c1c33d" resname="settings.character_counter.value.description">
-        <source>Displays count of characters typed in Online Editor</source>
-        <target>Displays count of characters typed in Online Editor</target>
+        <source>Enable character count in Online Editor</source>
+        <target state="new">Enable character count in Online Editor</target>
         <note>key: settings.character_counter.value.description</note>
       </trans-unit>
       <trans-unit id="3d03b64f879f2c57cb9395f31c7691ecb7cc2807" resname="settings.character_counter.value.disabled">
         <source>disabled</source>
-        <target>disabled</target>
+        <target state="new">disabled</target>
         <note>key: settings.character_counter.value.disabled</note>
       </trans-unit>
       <trans-unit id="fd6ba122727aeacdb3e8c1c02d3e9ae023ca2174" resname="settings.character_counter.value.enabled">
         <source>enabled</source>
-        <target>enabled</target>
+        <target state="new">enabled</target>
         <note>key: settings.character_counter.value.enabled</note>
       </trans-unit>
       <trans-unit id="ca8c3eac8ffed6fed1ee9e028be185741f33bfec" resname="settings.character_counter.value.title">
         <source>Character counter</source>
-        <target>Character counter</target>
+        <target state="new">Character counter</target>
         <note>key: settings.character_counter.value.title</note>
       </trans-unit>
       <trans-unit id="bb01c22de6038102d6fa6646f4ecebaf0c54e720" resname="settings.full_datetime_format.value.description">
-        <source><![CDATA[Format for displaying Date & Time]]></source>
-        <target><![CDATA[Format for displaying Date & Time]]></target>
+        <source>Date and time format</source>
+        <target state="new">Date and time format</target>
         <note>key: settings.full_datetime_format.value.description</note>
       </trans-unit>
       <trans-unit id="9b6504d133b0a02fd337aa91d724723c927e4e96" resname="settings.full_datetime_format.value.title">
-        <source><![CDATA[Long Date & Time format]]></source>
-        <target><![CDATA[Long Date & Time format]]></target>
+        <source>Long date and time format</source>
+        <target state="new">Long date and time format</target>
         <note>key: settings.full_datetime_format.value.title</note>
       </trans-unit>
       <trans-unit id="3a4946ea2a7aaa360112cf1e657617e7ce7c7d9b" resname="settings.language.value.description">
-        <source>The language of the administration panel</source>
-        <target>The language of the administration panel</target>
+        <source>Back Office language</source>
+        <target state="new">Back Office language</target>
         <note>key: settings.language.value.description</note>
       </trans-unit>
       <trans-unit id="593fb98cf76c44e48e00ce4ee027a6e54b6625fd" resname="settings.language.value.title">
         <source>Language</source>
-        <target>Language</target>
+        <target state="new">Language</target>
         <note>key: settings.language.value.title</note>
       </trans-unit>
       <trans-unit id="f99a9bb9741db45f57f2436c535d89609ebc6b0d" resname="settings.short_datetime_format.value.description">
-        <source><![CDATA[Format for displaying Date & Time]]></source>
-        <target><![CDATA[Format for displaying Date & Time]]></target>
+        <source>Date and time format</source>
+        <target state="new">Date and time format</target>
         <note>key: settings.short_datetime_format.value.description</note>
       </trans-unit>
       <trans-unit id="f87e581648ae7baaa1e96941f1c8b45c11f73553" resname="settings.short_datetime_format.value.title">
-        <source><![CDATA[Short Date & Time format]]></source>
-        <target><![CDATA[Short Date & Time format]]></target>
+        <source>Short date and time format</source>
+        <target state="new">Short date and time format</target>
         <note>key: settings.short_datetime_format.value.title</note>
       </trans-unit>
       <trans-unit id="18f788ade37f54e5d52f0e3ddacb39a5558190b5" resname="settings.subitems_limit.value.description">
         <source>Number of items displayed in the table</source>
-        <target>Number of items displayed in the table</target>
+        <target state="new">Number of items displayed in the table</target>
         <note>key: settings.subitems_limit.value.description</note>
       </trans-unit>
       <trans-unit id="67329191003095f24d2ca7d2182ecb00d5a85e36" resname="settings.subitems_limit.value.title">
         <source>Sub-items</source>
-        <target>Sub-items</target>
+        <target state="new">Sub-items</target>
         <note>key: settings.subitems_limit.value.title</note>
       </trans-unit>
       <trans-unit id="dac7ffb84bac8bc5a682388098bded0f8f49d841" resname="settings.timezone.value.description">
-        <source><![CDATA[Time Zone in use for displaying Date & Time]]></source>
-        <target><![CDATA[Time Zone in use for displaying Date & Time]]></target>
+        <source>User Time Zone</source>
+        <target state="new">User Time Zone</target>
         <note>key: settings.timezone.value.description</note>
       </trans-unit>
       <trans-unit id="eb891d0f4283045b518a04aa757810f1ba0b90c9" resname="settings.timezone.value.title">
         <source>Time Zone</source>
-        <target>Time Zone</target>
+        <target state="new">Time Zone</target>
         <note>key: settings.timezone.value.title</note>
       </trans-unit>
       <trans-unit id="7f90e23e086f56c5f7b4a82c6e4b8f40732e6e6a" resname="user_setting.update.success">
         <source>User setting '%identifier%' updated.</source>
-        <target>User setting '%identifier%' updated.</target>
+        <target state="new">User setting '%identifier%' updated.</target>
         <note>key: user_setting.update.success</note>
       </trans-unit>
     </body>

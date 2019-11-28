@@ -37,7 +37,7 @@ class DateTimeFormatTransformer implements DataTransformerInterface
 
         if (!\is_string($value)) {
             throw new TransformationFailedException(
-                sprintf('Expected a %s, got %s instead', 'string', \gettype($value))
+                sprintf('Received %s instead of %s', \gettype($value), 'string')
             );
         }
 
@@ -60,7 +60,7 @@ class DateTimeFormatTransformer implements DataTransformerInterface
 
         if (!\is_array($value)) {
             throw new TransformationFailedException(
-                sprintf('Expected a array, got %s instead', \gettype($value))
+                sprintf('Received %s instead of an array', \gettype($value))
             );
         }
 

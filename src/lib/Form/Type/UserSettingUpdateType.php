@@ -55,7 +55,7 @@ class UserSettingUpdateType extends AbstractType
         ;
 
         if (!$builder->has('value')) {
-            throw new RuntimeException("FormMapper should create 'value' field");
+            throw new RuntimeException("FormMapper should create a 'value' field");
         }
     }
 

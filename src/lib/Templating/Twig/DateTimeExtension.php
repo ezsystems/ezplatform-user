@@ -99,7 +99,7 @@ class DateTimeExtension extends AbstractExtension
         }
 
         if (!$date instanceof \DateTimeInterface) {
-            throw new \RuntimeException('The date argument passed to format function must be int or DateTimeInterface');
+            throw new \RuntimeException('The date argument passed to the format function must be an int or a DateTimeInterface');
         }
 
         return $formatter->format($date, $timezone);

@@ -8,12 +8,12 @@
     <body>
       <trans-unit id="264649149b7563144f9e2c462b13477dc7441302" resname="ezplatform.registration_confirmation.header">
         <source>Your account has been created</source>
-        <target>Your account has been created</target>
+        <target state="new">Your account has been created</target>
         <note>key: ezplatform.registration_confirmation.header</note>
       </trans-unit>
       <trans-unit id="63659642d9d91abcadbb45d00a12db2277ce53b5" resname="ezplatform.registration_confirmation.message">
-        <source><![CDATA[Thank you for registering an account. You can now <a href="%login%">login</a>]]></source>
-        <target><![CDATA[Thank you for registering an account. You can now <a href="%login%">login</a>]]></target>
+        <source><![CDATA[Thank you for creating an account. You can now <a href="%login%">log in</a>]]></source>
+        <target state="new"><![CDATA[Thank you for creating an account. You can now <a href="%login%">log in</a>]]></target>
         <note>key: ezplatform.registration_confirmation.message</note>
       </trans-unit>
     </body>

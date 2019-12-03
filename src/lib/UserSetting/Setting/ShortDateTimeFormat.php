@@ -80,7 +80,7 @@ class ShortDateTimeFormat extends AbstractDateTimeFormat
     protected function getTranslatedName(): string
     {
         return $this->translator->trans(
-            /** @Desc("Short Date & Time format") */
+            /** @Desc("Short date and time format") */
             'settings.short_datetime_format.value.title',
             [],
             'user_settings'
@@ -93,7 +93,7 @@ class ShortDateTimeFormat extends AbstractDateTimeFormat
     protected function getTranslatedDescription(): string
     {
         return $this->translator->trans(
-            /** @Desc("Format for displaying Date & Time") */
+            /** @Desc("Date and time format") */
             'settings.short_datetime_format.value.description',
             [],
             'user_settings'

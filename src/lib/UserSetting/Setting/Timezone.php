@@ -94,7 +94,7 @@ class Timezone implements ValueDefinitionInterface, FormMapperInterface
     private function getTranslatedDescription(): string
     {
         return $this->translator->trans(
-            /** @Desc("Time Zone in use for displaying Date & Time") */
+            /** @Desc("User Time Zone") */
             'settings.timezone.value.description',
             [],
             'user_settings'

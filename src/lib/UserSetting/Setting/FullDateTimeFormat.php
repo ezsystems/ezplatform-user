@@ -81,7 +81,7 @@ class FullDateTimeFormat extends AbstractDateTimeFormat
     protected function getTranslatedName(): string
     {
         return $this->translator->trans(
-            /** @Desc("Long Date & Time format") */
+            /** @Desc("Long date and time format") */
             'settings.full_datetime_format.value.title',
             [],
             'user_settings'
@@ -94,7 +94,7 @@ class FullDateTimeFormat extends AbstractDateTimeFormat
     protected function getTranslatedDescription(): string
     {
         return $this->translator->trans(
-            /** @Desc("Format for displaying Date & Time") */
+            /** @Desc("Date and time format") */
             'settings.full_datetime_format.value.description',
             [],
             'user_settings'

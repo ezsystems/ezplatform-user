@@ -114,7 +114,7 @@ class CharacterCounter implements ValueDefinitionInterface, FormMapperInterface
     private function getTranslatedDescription(): string
     {
         return $this->translator->trans(
-            /** @Desc("Displays count of characters typed in Online Editor") */
+            /** @Desc("Enable character count in Online Editor") */
             'settings.character_counter.value.description',
             [],
             'user_settings'

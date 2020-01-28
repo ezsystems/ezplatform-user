@@ -23,7 +23,8 @@ class UserPasswordChangeRightSidebarListener implements EventSubscriberInterface
     /** @var \Symfony\Contracts\Translation\TranslatorInterface */
     private $translator;
 
-    public function __construct(TranslatorInterface $translator) {
+    public function __construct(TranslatorInterface $translator)
+    {
         $this->translator = $translator;
     }
 
@@ -51,7 +52,7 @@ class UserPasswordChangeRightSidebarListener implements EventSubscriberInterface
                     'data-extra-classes' => 'ez-tooltip--medium',
                     'data-placement' => 'left',
                     'title' => $this->translator->trans(
-                        /** @Ignore */ self::ITEM__UPDATE,
+/** @Ignore */ self::ITEM__UPDATE,
                         [],
                         'menu'
                     ),
@@ -66,7 +67,7 @@ class UserPasswordChangeRightSidebarListener implements EventSubscriberInterface
                     'data-extra-classes' => 'ez-tooltip--medium',
                     'data-placement' => 'left',
                     'title' => $this->translator->trans(
-                        /** @Ignore */ self::ITEM__CANCEL,
+/** @Ignore */ self::ITEM__CANCEL,
                         [],
                         'menu'
                     ),

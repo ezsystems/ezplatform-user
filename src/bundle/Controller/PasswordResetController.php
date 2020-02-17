@@ -79,7 +79,7 @@ class PasswordResetController extends Controller
         PermissionResolver $permissionResolver,
         string $tokenIntervalSpec,
         string $forgotPasswordMail,
-        string $senderAddress
+        string $senderAddress = ''
     ) {
         $this->formFactory = $formFactory;
         $this->userService = $userService;

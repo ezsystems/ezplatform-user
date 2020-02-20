@@ -255,18 +255,17 @@ class PasswordResetController extends Controller
         $template = $this->twig->loadTemplate($this->forgotPasswordMail);
 
         $subject = $template->renderBlock('subject', []);
-        $from = $template->renderBlock('from', []);
+        $from = $template->renderBlock('from', []) ?: $this->senderAddress;
         $body = $template->renderBlock('body', ['hashKey' => $hashKey]);
-
-        if (empty($from)) {
-            $from = $this->senderAddress;
-        }
 
         $message = (new Swift_Message())
             ->setSubject($subject)
-            ->setFrom($from)
             ->setTo($to)
             ->setBody($body, 'text/html');
+
+        if (empty($from) === false) {
+            $message->setFrom($from);
+        }
 
         $this->mailer->send($message);
     }

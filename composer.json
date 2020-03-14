@@ -19,6 +19,7 @@
     "prefer-stable": true,
     "repositories": [
         {"type": "vcs", "url": "https://github.com/webhdx/ezplatform-admin-ui.git"},
+        {"type": "vcs", "url": "https://github.com/webhdx/ezplatform-user.git"},
         {"type": "vcs", "url": "https://github.com/webhdx/ezplatform-richtext.git"},
         {"type": "vcs", "url": "https://github.com/webhdx/ezplatform-admin-ui-modules.git"},
         {"type": "vcs", "url": "https://github.com/webhdx/ezplatform-content-forms.git"},

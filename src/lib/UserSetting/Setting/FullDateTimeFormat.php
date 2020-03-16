@@ -15,11 +15,11 @@ use EzSystems\EzPlatformUser\UserSetting\Setting\Value\DateTimeFormat;
 use EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface;
 use EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class FullDateTimeFormat extends AbstractDateTimeFormat
 {
-    /** @var \Symfony\Component\Translation\TranslatorInterface */
+    /** @var \Symfony\Contracts\Translation\TranslatorInterface */
     private $translator;
 
     /** @var \eZ\Publish\Core\MVC\ConfigResolverInterface */
@@ -27,7 +27,7 @@ class FullDateTimeFormat extends AbstractDateTimeFormat
 
     /**
      * @param \EzSystems\EzPlatformUser\UserSetting\Setting\DateTimeFormatSerializer $serializer
-     * @param \Symfony\Component\Translation\TranslatorInterface $translator
+     * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
      * @param \eZ\Publish\Core\MVC\ConfigResolverInterface $configResolver
      * @param \EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface $formatter
      */

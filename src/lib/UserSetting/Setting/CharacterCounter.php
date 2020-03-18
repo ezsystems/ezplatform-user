@@ -13,18 +13,18 @@ use EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface;
 use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class CharacterCounter implements ValueDefinitionInterface, FormMapperInterface
 {
     public const ENABLED_OPTION = 'enabled';
     public const DISABLED_OPTION = 'disabled';
 
-    /** @var \Symfony\Component\Translation\TranslatorInterface */
+    /** @var \Symfony\Contracts\Translation\TranslatorInterface */
     private $translator;
 
     /**
-     * @param \Symfony\Component\Translation\TranslatorInterface $translator
+     * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
      */
     public function __construct(TranslatorInterface $translator)
     {

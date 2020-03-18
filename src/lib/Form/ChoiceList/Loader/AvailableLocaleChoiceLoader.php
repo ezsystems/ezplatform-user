@@ -10,9 +10,9 @@ namespace EzSystems\EzPlatformUser\Form\ChoiceList\Loader;
 
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use EzSystems\EzPlatformAdminUi\Form\Type\ChoiceList\Loader\BaseChoiceLoader;
+use Symfony\Component\Intl\Locales;
 use Symfony\Component\Validator\Constraints\Locale;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Symfony\Component\Intl\Intl;
 
 class AvailableLocaleChoiceLoader extends BaseChoiceLoader
 {
@@ -52,7 +52,7 @@ class AvailableLocaleChoiceLoader extends BaseChoiceLoader
 
         foreach ($availableLocales as $locale) {
             if (0 === $this->validator->validate($locale, new Locale())->count()) {
-                $choices[Intl::getLocaleBundle()->getLocaleName($locale)] = $locale;
+                $choices[Locales::getName($locale)] = $locale;
             }
         }
 

@@ -12,15 +12,15 @@ use EzSystems\EzPlatformUser\UserSetting\FormMapperInterface;
 use EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface;
 use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class Timezone implements ValueDefinitionInterface, FormMapperInterface
 {
-    /** @var \Symfony\Component\Translation\TranslatorInterface */
+    /** @var \Symfony\Contracts\Translation\TranslatorInterface */
     private $translator;
 
     /**
-     * @param \Symfony\Component\Translation\TranslatorInterface $translator
+     * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
      */
     public function __construct(TranslatorInterface $translator)
     {

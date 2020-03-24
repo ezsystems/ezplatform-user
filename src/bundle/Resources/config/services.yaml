@@ -19,6 +19,15 @@ services:
         tags:
             - { name: kernel.event_subscriber }
 
+    EzSystems\EzPlatformUserBundle\Command\:
+        resource: "../../Command/*"
+        tags:
+            - { name: console.command }
+
+    EzSystems\EzPlatformUserBundle\Command\AuditUserDatabaseCommand:
+        arguments:
+            $connection: '@ezpublish.persistence.connection'
+
     EzSystems\EzPlatformUser\EventListener\ViewTemplatesListener:
         tags:
             - { name: kernel.event_subscriber }

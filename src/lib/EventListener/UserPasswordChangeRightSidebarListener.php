@@ -49,13 +49,6 @@ class UserPasswordChangeRightSidebarListener implements EventSubscriberInterface
                 'attributes' => [
                     'class' => 'btn--trigger',
                     'data-click' => '#user_password_change_change',
-                    'data-extra-classes' => 'ez-tooltip--medium',
-                    'data-placement' => 'left',
-                    'title' => $this->translator->trans(
-/** @Ignore */ self::ITEM__UPDATE,
-                        [],
-                        'menu'
-                    ),
                 ],
                 'extras' => ['icon' => 'publish', 'translation_domain' => 'menu'],
             ]
@@ -63,15 +56,6 @@ class UserPasswordChangeRightSidebarListener implements EventSubscriberInterface
         $menu->addChild(
             self::ITEM__CANCEL,
             [
-                'attributes' => [
-                    'data-extra-classes' => 'ez-tooltip--medium',
-                    'data-placement' => 'left',
-                    'title' => $this->translator->trans(
-/** @Ignore */ self::ITEM__CANCEL,
-                        [],
-                        'menu'
-                    ),
-                ],
                 'extras' => ['icon' => 'circle-close', 'translation_domain' => 'menu'],
                 'route' => 'ezplatform.dashboard',
             ]

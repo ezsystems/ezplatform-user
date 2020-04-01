@@ -32,9 +32,7 @@ services:
         tags:
             - { name: kernel.event_subscriber }
 
-    EzSystems\EzPlatformUser\ConfigResolver\ConfigurableRegistrationGroupLoader:
-        calls:
-            - [setParam, ["groupId", "$user_registration.group_id$"]]
+    EzSystems\EzPlatformUser\ConfigResolver\ConfigurableRegistrationGroupLoader: ~
 
     EzSystems\EzPlatformUser\ConfigResolver\ConfigurableRegistrationContentTypeLoader:
         calls:

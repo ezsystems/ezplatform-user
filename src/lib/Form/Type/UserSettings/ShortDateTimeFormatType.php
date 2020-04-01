@@ -8,25 +8,18 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformUser\Form\Type\UserSettings;
 
+use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ShortDateTimeFormatType extends AbstractType
 {
-    /** @var string[] */
-    private $allowedDateFormats;
+    /** @var \eZ\Publish\Core\MVC\ConfigResolverInterface */
+    private $configResolver;
 
-    /** @var string[] */
-    private $allowedTimeFormats;
-
-    /**
-     * @param string[] $allowedDateFormats
-     * @param string[] $allowedTimeFormats
-     */
-    public function __construct(array $allowedDateFormats, array $allowedTimeFormats)
+    public function __construct(ConfigResolverInterface $configResolver)
     {
-        $this->allowedDateFormats = $allowedDateFormats;
-        $this->allowedTimeFormats = $allowedTimeFormats;
+        $this->configResolver = $configResolver;
     }
 
     /**
@@ -35,8 +28,8 @@ class ShortDateTimeFormatType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'date_format_choices' => $this->allowedDateFormats,
-            'time_format_choices' => $this->allowedTimeFormats,
+            'date_format_choices' => $this->configResolver->getParameter('user_preferences.allowed_short_date_formats'),
+            'time_format_choices' => $this->configResolver->getParameter('user_preferences.allowed_short_time_formats'),
         ]);
     }
 

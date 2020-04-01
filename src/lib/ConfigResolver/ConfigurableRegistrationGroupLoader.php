@@ -10,7 +10,6 @@ namespace EzSystems\EzPlatformUser\ConfigResolver;
 
 use eZ\Publish\API\Repository\Repository;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Loads the registration user group from a configured, injected group ID.

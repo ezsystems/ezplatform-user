@@ -240,13 +240,9 @@ class PasswordResetController extends Controller
         return $struct->hashKey;
     }
 
-    /**
-     * @param string $to
-     * @param string $hashKey
-     */
     private function sendResetPasswordMessage(string $to, string $hashKey): void
     {
-        $template = $this->twig->loadTemplate($this->forgotPasswordMail);
+        $template = $this->twig->load($this->forgotPasswordMail);
 
         $subject = $template->renderBlock('subject', []);
         $from = $template->renderBlock('from', []);

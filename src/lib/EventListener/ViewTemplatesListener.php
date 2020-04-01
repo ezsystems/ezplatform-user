@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformUser\EventListener;
 
+use eZ\Publish\Core\MVC\ConfigResolverInterface;
+use eZ\Publish\Core\MVC\Symfony\Event\PreContentViewEvent;
+use eZ\Publish\Core\MVC\Symfony\MVCEvents;
 use EzSystems\EzPlatformUser\View;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 

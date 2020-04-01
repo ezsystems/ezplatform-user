@@ -41,8 +41,14 @@ services:
             - '@eZ\Bundle\EzPublishCoreBundle\Matcher\ViewMatcherRegistry'
             - '@ezpublish.api.repository'
             - 'EzSystems\EzPlatformUser\View\UserSettings\Matcher'
-        calls:
-            - [setMatchConfig, ['$user_settings_update_view$']]
+
+    ezplatform.user.view.user_setting.update.matcher_factory.dynamically_configured:
+        class: eZ\Publish\Core\MVC\Symfony\Matcher\DynamicallyConfiguredMatcherFactoryDecorator
+        decorates: ezplatform.user.view.user_setting.update.matcher_factory
+        arguments:
+            $innerConfigurableMatcherFactory: '@ezplatform.user.view.user_setting.update.matcher_factory.dynamically_configured.inner'
+            $configResolver: '@ezpublish.config.resolver'
+            $parameterName: user_settings_update_view
 
     ezplatform.user.view.user_setting.update.default_matcher_factory:
         class: '%ezpublish.view.matcher_factory.class%'
@@ -50,8 +56,14 @@ services:
             - '@eZ\Bundle\EzPublishCoreBundle\Matcher\ViewMatcherRegistry'
             - '@ezpublish.api.repository'
             - 'EzSystems\EzPlatformUser\View\UserSettings\Matcher'
-        calls:
-            - [setMatchConfig, ['$user_settings_update_view_defaults$']]
+
+    ezplatform.user.view.user_setting.update.default_matcher_factory.dynamically_configured:
+        class: eZ\Publish\Core\MVC\Symfony\Matcher\DynamicallyConfiguredMatcherFactoryDecorator
+        decorates: ezplatform.user.view.user_setting.update.default_matcher_factory
+        arguments:
+            $innerConfigurableMatcherFactory: '@ezplatform.user.view.user_setting.update.default_matcher_factory.dynamically_configured.inner'
+            $configResolver: '@ezpublish.config.resolver'
+            $parameterName: user_settings_update_view_defaults
 
     #
     # User Settings Implementations
@@ -62,8 +74,6 @@ services:
             - { name: ezplatform.admin_ui.user_setting.form_mapper, identifier: timezone }
 
     EzSystems\EzPlatformUser\UserSetting\Setting\SubitemsLimit:
-        arguments:
-            $subitemsLimit: '$subitems_module.limit$'
         tags:
             - { name: ezplatform.admin_ui.user_setting.value, identifier: subitems_limit, priority: 20 }
             - { name: ezplatform.admin_ui.user_setting.form_mapper, identifier: subitems_limit }

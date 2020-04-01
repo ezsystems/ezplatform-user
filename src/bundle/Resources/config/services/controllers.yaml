@@ -15,9 +15,6 @@ services:
         autowire: true
         calls:
             - [setContainer, ['@service_container']]
-        arguments:
-            $tokenIntervalSpec: '$security.token_interval_spec$'
-            $forgotPasswordMail: '$user_forgot_password.templates.mail$'
         tags: [controller.service_arguments]
 
     EzSystems\EzPlatformUserBundle\Controller\PasswordChangeController:
@@ -37,6 +34,4 @@ services:
 
     EzSystems\EzPlatformUserBundle\Controller\UserSettingsController:
         parent: EzSystems\EzPlatformAdminUiBundle\Controller\Controller
-        arguments:
-            $defaultPaginationLimit: '$pagination.user_settings_limit$'
         tags: [controller.service_arguments]

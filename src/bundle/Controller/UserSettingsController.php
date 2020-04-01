@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformUserBundle\Controller;
 
+use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use EzSystems\EzPlatformUser\Form\Data\UserSettingUpdateData;
 use EzSystems\EzPlatformUser\Form\Factory\FormFactory;
 use EzSystems\EzPlatformAdminUi\Form\SubmitHandler;
@@ -39,31 +40,23 @@ class UserSettingsController extends Controller
     /** @var \EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface */
     private $notificationHandler;
 
-    /** @var int */
-    private $defaultPaginationLimit;
+    /** @var \eZ\Publish\Core\MVC\ConfigResolverInterface */
+    private $configResolver;
 
-    /**
-     * @param \EzSystems\EzPlatformUser\Form\Factory\FormFactory $formFactory
-     * @param \EzSystems\EzPlatformAdminUi\Form\SubmitHandler $submitHandler
-     * @param \EzSystems\EzPlatformUser\UserSetting\UserSettingService $userSettingService
-     * @param \EzSystems\EzPlatformUser\UserSetting\ValueDefinitionRegistry $valueDefinitionRegistry
-     * @param \EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface $notificationHandler
-     * @param int $defaultPaginationLimit
-     */
     public function __construct(
         FormFactory $formFactory,
         SubmitHandler $submitHandler,
         UserSettingService $userSettingService,
         ValueDefinitionRegistry $valueDefinitionRegistry,
         TranslatableNotificationHandlerInterface $notificationHandler,
-        int $defaultPaginationLimit
+        ConfigResolverInterface $configResolver
     ) {
         $this->formFactory = $formFactory;
         $this->submitHandler = $submitHandler;
         $this->userSettingService = $userSettingService;
         $this->valueDefinitionRegistry = $valueDefinitionRegistry;
         $this->notificationHandler = $notificationHandler;
-        $this->defaultPaginationLimit = $defaultPaginationLimit;
+        $this->configResolver = $configResolver;
     }
 
     /**
@@ -79,7 +72,7 @@ class UserSettingsController extends Controller
             new UserSettingsAdapter($this->userSettingService)
         );
 
-        $pagerfanta->setMaxPerPage($this->defaultPaginationLimit);
+        $pagerfanta->setMaxPerPage($this->configResolver->getParameter('pagination.user_settings_limit'));
         $pagerfanta->setCurrentPage(min($page, $pagerfanta->getNbPages()));
 
         return new ListView(null, [

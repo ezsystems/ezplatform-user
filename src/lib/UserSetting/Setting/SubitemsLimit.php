@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformUser\UserSetting\Setting;
 
+use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use EzSystems\EzPlatformUser\UserSetting\FormMapperInterface;
 use EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -19,17 +20,13 @@ class SubitemsLimit implements ValueDefinitionInterface, FormMapperInterface
     /** @var \Symfony\Contracts\Translation\TranslatorInterface */
     private $translator;
 
-    /** @var int */
-    private $subitemsLimit;
+    /** @var \eZ\Publish\Core\MVC\ConfigResolverInterface */
+    private $configResolver;
 
-    /**
-     * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
-     * @param int $subitemsLimit
-     */
-    public function __construct(TranslatorInterface $translator, int $subitemsLimit)
+    public function __construct(TranslatorInterface $translator, ConfigResolverInterface $configResolver)
     {
         $this->translator = $translator;
-        $this->subitemsLimit = $subitemsLimit;
+        $this->configResolver = $configResolver;
     }
 
     /**
@@ -61,7 +58,7 @@ class SubitemsLimit implements ValueDefinitionInterface, FormMapperInterface
      */
     public function getDefaultValue(): string
     {
-        return (string)$this->subitemsLimit;
+        return (string)$this->configResolver->getParameter('subitems_module.limit');
     }
 
     /**

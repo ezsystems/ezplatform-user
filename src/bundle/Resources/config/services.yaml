@@ -31,23 +31,8 @@ services:
     EzSystems\EzPlatformUser\EventListener\ViewTemplatesListener:
         tags:
             - { name: kernel.event_subscriber }
-        calls:
-            - [setViewTemplate, ['EzSystems\EzPlatformUser\View\ChangePassword\FormView', "$user_change_password.templates.form$"]]
-            - [setViewTemplate, ['EzSystems\EzPlatformUser\View\ChangePassword\SuccessView', "$user_change_password.templates.success$"]]
-            - [setViewTemplate, ['EzSystems\EzPlatformUser\View\ForgotPassword\FormView', "$user_forgot_password.templates.form$"]]
-            - [setViewTemplate, ['EzSystems\EzPlatformUser\View\ForgotPassword\SuccessView', "$user_forgot_password_success.templates.form$"]]
-            - [setViewTemplate, ['EzSystems\EzPlatformUser\View\ForgotPassword\LoginView', "$user_forgot_password_login.templates.form$"]]
-            - [setViewTemplate, ['EzSystems\EzPlatformUser\View\ResetPassword\FormView', "$user_reset_password.templates.form$"]]
-            - [setViewTemplate, ['EzSystems\EzPlatformUser\View\ResetPassword\InvalidLinkView', "$user_reset_password.templates.invalid_link$"]]
-            - [setViewTemplate, ['EzSystems\EzPlatformUser\View\ResetPassword\SuccessView', "$user_reset_password.templates.success$"]]
-            - [setViewTemplate, ['EzSystems\EzPlatformUser\View\UserSettings\ListView', "$user_settings.templates.list$"]]
-            - [setViewTemplate, ['EzSystems\EzPlatformUser\View\Register\FormView', "$user_registration.templates.form$"]]
-            - [setViewTemplate, ['EzSystems\EzPlatformUser\View\Register\ConfirmView', "$user_registration.templates.confirmation$"]]
-            - [setPagelayout, ["$pagelayout$"]]
 
-    EzSystems\EzPlatformUser\ConfigResolver\ConfigurableRegistrationGroupLoader:
-        calls:
-            - [setParam, ["groupId", "$user_registration.group_id$"]]
+    EzSystems\EzPlatformUser\ConfigResolver\ConfigurableRegistrationGroupLoader: ~
 
     EzSystems\EzPlatformUser\ConfigResolver\ConfigurableRegistrationContentTypeLoader:
         calls:

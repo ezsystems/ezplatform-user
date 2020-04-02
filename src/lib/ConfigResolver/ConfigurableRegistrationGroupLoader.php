@@ -8,28 +8,34 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformUser\ConfigResolver;
 
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use eZ\Publish\API\Repository\Repository;
+use eZ\Publish\Core\MVC\ConfigResolverInterface;
 
 /**
  * Loads the registration user group from a configured, injected group ID.
  */
-class ConfigurableRegistrationGroupLoader extends ConfigurableSudoRepositoryLoader implements RegistrationGroupLoader
+class ConfigurableRegistrationGroupLoader implements RegistrationGroupLoader
 {
-    public function loadGroup()
+    /** @var \eZ\Publish\Core\MVC\ConfigResolverInterface */
+    private $configResolver;
+
+    /** @var \eZ\Publish\API\Repository\Repository */
+    private $repository;
+
+    public function __construct(ConfigResolverInterface $configResolver, Repository $repository)
     {
-        return $this->sudo(
-            function () {
-                return $this->getRepository()
-                    ->getUserService()
-                    ->loadUserGroup(
-                        $this->getParam('groupId')
-                    );
-            }
-        );
+        $this->configResolver = $configResolver;
+        $this->repository = $repository;
     }
 
-    protected function configureOptions(OptionsResolver $optionsResolver)
+    public function loadGroup()
     {
-        $optionsResolver->setRequired('groupId');
+        return $this->repository->sudo(function (Repository $repository) {
+            return $repository
+                 ->getUserService()
+                 ->loadUserGroup(
+                     $this->configResolver->getParameter('user_registration.group_id')
+                 );
+        });
     }
 }

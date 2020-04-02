@@ -11,6 +11,7 @@ namespace EzSystems\EzPlatformUserBundle\Controller;
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\PermissionResolver;
 use eZ\Publish\API\Repository\Values\User\User;
+use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use EzSystems\EzPlatformUser\Form\Data\UserPasswordResetData;
 use EzSystems\EzPlatformUser\Form\Factory\FormFactory;
 use EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface;
@@ -44,28 +45,15 @@ class PasswordResetController extends Controller
     /** @var \Twig\Environment */
     private $twig;
 
-    /** @var string */
-    private $tokenIntervalSpec;
-
     /** @var \EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface */
     private $notificationHandler;
 
     /** @var \eZ\Publish\API\Repository\PermissionResolver */
     private $permissionResolver;
 
-    /** @var string */
-    private $forgotPasswordMail;
+    /** @var \eZ\Publish\Core\MVC\ConfigResolverInterface */
+    private $configResolver;
 
-    /**
-     * @param \EzSystems\EzPlatformUser\Form\Factory\FormFactory $formFactory
-     * @param \eZ\Publish\API\Repository\UserService $userService
-     * @param Swift_Mailer $mailer
-     * @param \Twig\Environment $twig
-     * @param \EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface $notificationHandler
-     * @param \eZ\Publish\API\Repository\PermissionResolver $permissionResolver
-     * @param string $tokenIntervalSpec
-     * @param string $forgotPasswordMail
-     */
     public function __construct(
         FormFactory $formFactory,
         UserService $userService,
@@ -73,8 +61,7 @@ class PasswordResetController extends Controller
         Environment $twig,
         TranslatableNotificationHandlerInterface $notificationHandler,
         PermissionResolver $permissionResolver,
-        string $tokenIntervalSpec,
-        string $forgotPasswordMail
+        ConfigResolverInterface $configResolver
     ) {
         $this->formFactory = $formFactory;
         $this->userService = $userService;
@@ -82,8 +69,7 @@ class PasswordResetController extends Controller
         $this->twig = $twig;
         $this->notificationHandler = $notificationHandler;
         $this->permissionResolver = $permissionResolver;
-        $this->tokenIntervalSpec = $tokenIntervalSpec;
-        $this->forgotPasswordMail = $forgotPasswordMail;
+        $this->configResolver = $configResolver;
     }
 
     /**
@@ -233,7 +219,7 @@ class PasswordResetController extends Controller
         $struct = new UserTokenUpdateStruct();
         $struct->hashKey = bin2hex(random_bytes(16));
         $date = new DateTime();
-        $date->add(new DateInterval($this->tokenIntervalSpec));
+        $date->add(new DateInterval($this->configResolver->getParameter('security.token_interval_spec')));
         $struct->time = $date;
         $this->userService->updateUserToken($user, $struct);
 
@@ -242,7 +228,7 @@ class PasswordResetController extends Controller
 
     private function sendResetPasswordMessage(string $to, string $hashKey): void
     {
-        $template = $this->twig->load($this->forgotPasswordMail);
+        $template = $this->twig->load($this->configResolver->getParameter('user_forgot_password.templates.mail'));
 
         $subject = $template->renderBlock('subject', []);
         $from = $template->renderBlock('from', []);

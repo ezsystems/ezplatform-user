@@ -19,6 +19,7 @@ services:
         arguments:
             $tokenIntervalSpec: '$security.token_interval_spec$'
             $forgotPasswordMail: '$user_forgot_password.templates.mail$'
+            $senderAddress: "@=container.hasParameter('swiftmailer.sender_address') ? parameter('swiftmailer.sender_address') : ''"
 
     EzSystems\EzPlatformUserBundle\Controller\PasswordChangeController:
         autowire: true

@@ -56,6 +56,9 @@ class PasswordResetController extends Controller
     /** @var string */
     private $forgotPasswordMail;
 
+    /** @var string */
+    private $senderAddress;
+
     /**
      * @param \EzSystems\EzPlatformUser\Form\Factory\FormFactory $formFactory
      * @param \eZ\Publish\API\Repository\UserService $userService
@@ -65,6 +68,7 @@ class PasswordResetController extends Controller
      * @param \eZ\Publish\API\Repository\PermissionResolver $permissionResolver
      * @param string $tokenIntervalSpec
      * @param string $forgotPasswordMail
+     * @param string $senderAddress
      */
     public function __construct(
         FormFactory $formFactory,
@@ -74,7 +78,8 @@ class PasswordResetController extends Controller
         NotificationHandlerInterface $notificationHandler,
         PermissionResolver $permissionResolver,
         string $tokenIntervalSpec,
-        string $forgotPasswordMail
+        string $forgotPasswordMail,
+        string $senderAddress = ''
     ) {
         $this->formFactory = $formFactory;
         $this->userService = $userService;
@@ -84,6 +89,7 @@ class PasswordResetController extends Controller
         $this->permissionResolver = $permissionResolver;
         $this->tokenIntervalSpec = $tokenIntervalSpec;
         $this->forgotPasswordMail = $forgotPasswordMail;
+        $this->senderAddress = $senderAddress;
     }
 
     /**
@@ -249,14 +255,17 @@ class PasswordResetController extends Controller
         $template = $this->twig->loadTemplate($this->forgotPasswordMail);
 
         $subject = $template->renderBlock('subject', []);
-        $from = $template->renderBlock('from', []);
+        $from = $template->renderBlock('from', []) ?: $this->senderAddress;
         $body = $template->renderBlock('body', ['hashKey' => $hashKey]);
 
         $message = (new Swift_Message())
             ->setSubject($subject)
-            ->setFrom($from)
             ->setTo($to)
             ->setBody($body, 'text/html');
+
+        if (empty($from) === false) {
+            $message->setFrom($from);
+        }
 
         $this->mailer->send($message);
     }

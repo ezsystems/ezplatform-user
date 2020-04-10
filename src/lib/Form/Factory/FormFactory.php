@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformUser\Form\Factory;
 
+use eZ\Publish\API\Repository\Values\ContentType\ContentType;
 use EzSystems\EzPlatformUser\Form\Data\UserPasswordForgotData;
 use EzSystems\EzPlatformUser\Form\Data\UserPasswordChangeData;
 use EzSystems\EzPlatformUser\Form\Data\UserSettingUpdateData;
@@ -41,19 +42,19 @@ class FormFactory
         $this->urlGenerator = $urlGenerator;
     }
 
-    /**
-     * @param \EzSystems\EzPlatformUser\Form\Data\UserPasswordChangeData|null $data
-     * @param string|null $name
-     *
-     * @return \Symfony\Component\Form\FormInterface
-     */
     public function changeUserPassword(
+        ContentType $contentType,
         UserPasswordChangeData $data = null,
         ?string $name = null
     ): FormInterface {
         $name = $name ?: StringUtil::fqcnToBlockPrefix(UserPasswordChangeType::class);
 
-        return $this->formFactory->createNamed($name, UserPasswordChangeType::class, $data);
+        return $this->formFactory->createNamed(
+            $name,
+            UserPasswordChangeType::class,
+            $data,
+            ['userContentType' => $contentType]
+        );
     }
 
     /**

@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformUser\Form\Type;
 
+use eZ\Publish\API\Repository\Values\ContentType\ContentType;
+use EzSystems\EzPlatformAdminUi\Validator\Constraints\Password;
 use EzSystems\EzPlatformUser\Form\Data\UserPasswordChangeData;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -31,6 +33,11 @@ class UserPasswordChangeType extends AbstractType
                 'required' => true,
                 'first_options' => ['label' => /** @Desc("New password") */ 'ezplatform.change_user_password.new_password'],
                 'second_options' => ['label' => /** @Desc("Confirm password") */ 'ezplatform.change_user_password.confirm_new_password'],
+                'constraints' => [
+                    new Password([
+                        'contentType' => $options['userContentType'],
+                    ]),
+                ],
             ])
             ->add(
                 'change',
@@ -41,6 +48,10 @@ class UserPasswordChangeType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
+        $resolver->setRequired(
+            'userContentType'
+        );
+        $resolver->setAllowedTypes('userContentType', ContentType::class);
         $resolver->setDefaults([
             'data_class' => UserPasswordChangeData::class,
             'translation_domain' => 'forms',

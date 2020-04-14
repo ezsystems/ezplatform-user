@@ -107,6 +107,7 @@ class FormFactory
         $name = $name ?: StringUtil::fqcnToBlockPrefix(UserPasswordResetType::class);
 
         $userContentType = $contentType ?? $data->getContentType();
+
         return $this->formFactory->createNamed($name, UserPasswordResetType::class, $data, ['content_type' => $userContentType]);
     }
 

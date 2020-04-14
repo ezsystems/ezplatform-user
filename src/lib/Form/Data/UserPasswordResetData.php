@@ -21,6 +21,7 @@ class UserPasswordResetData
     private $newPassword;
 
     /**
+     * @deprecated ContentType should be passed as option to FormType
      * @var \eZ\Publish\API\Repository\Values\ContentType\ContentType
      */
     private $contentType;

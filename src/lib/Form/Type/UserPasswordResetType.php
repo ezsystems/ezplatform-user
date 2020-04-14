@@ -8,8 +8,9 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformUser\Form\Type;
 
+use eZ\Publish\API\Repository\Values\ContentType\ContentType;
 use EzSystems\EzPlatformUser\Form\Data\UserPasswordResetData;
-use EzSystems\EzPlatformContentForms\Validator\Constraints\Password;
+use EzSystems\EzPlatformUser\Validator\Constraints\Password;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -41,10 +42,11 @@ class UserPasswordResetType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
+        $resolver->setRequired('content_type');
+        $resolver->setAllowedTypes('content_type', ContentType::class);
         $resolver->setDefaults([
             'data_class' => UserPasswordResetData::class,
             'translation_domain' => 'forms',
-            'content_type' => null,
         ]);
     }
 }

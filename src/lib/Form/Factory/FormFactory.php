@@ -53,7 +53,7 @@ class FormFactory
             $name,
             UserPasswordChangeType::class,
             $data,
-            ['userContentType' => $contentType]
+            ['content_type' => $contentType]
         );
     }
 
@@ -101,11 +101,13 @@ class FormFactory
      */
     public function resetUserPassword(
         UserPasswordResetData $data = null,
-        ?string $name = null
+        ?string $name = null,
+        ContentType $contentType = null
     ): FormInterface {
         $name = $name ?: StringUtil::fqcnToBlockPrefix(UserPasswordResetType::class);
 
-        return $this->formFactory->createNamed($name, UserPasswordResetType::class, $data, ['content_type' => $data->getContentType()]);
+        $userContentType = $contentType ?? $data->getContentType();
+        return $this->formFactory->createNamed($name, UserPasswordResetType::class, $data, ['content_type' => $userContentType]);
     }
 
     /**

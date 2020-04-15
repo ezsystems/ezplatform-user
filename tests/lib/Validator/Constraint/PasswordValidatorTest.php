@@ -40,7 +40,7 @@ class PasswordValidatorTest extends TestCase
     /**
      * @dataProvider dataProviderForValidateNotSupportedValueType
      */
-    public function testValidateShouldBeSkipped($value)
+    public function testValidateShouldBeSkipped($value): void
     {
         $this->userService
             ->expects($this->never())
@@ -53,7 +53,7 @@ class PasswordValidatorTest extends TestCase
         $this->validator->validate($value, new Password());
     }
 
-    public function testValid()
+    public function testValid(): void
     {
         $password = 'pass';
         $contentType = $this->createMock(ContentType::class);
@@ -61,7 +61,10 @@ class PasswordValidatorTest extends TestCase
         $this->userService
             ->expects($this->once())
             ->method('validatePassword')
-            ->willReturnCallback(function ($actualPassword, $actualContext) use ($password, $contentType) {
+            ->willReturnCallback(function (string $actualPassword, PasswordValidationContext $actualContext) use (
+                $password,
+                $contentType
+            ): array {
                 $this->assertEquals($password, $actualPassword);
                 $this->assertInstanceOf(PasswordValidationContext::class, $actualContext);
                 $this->assertSame($contentType, $actualContext->contentType);
@@ -78,7 +81,7 @@ class PasswordValidatorTest extends TestCase
         ]));
     }
 
-    public function testInvalid()
+    public function testInvalid(): void
     {
         $contentType = $this->createMock(ContentType::class);
         $password = 'pass';
@@ -88,7 +91,12 @@ class PasswordValidatorTest extends TestCase
         $this->userService
             ->expects($this->once())
             ->method('validatePassword')
-            ->willReturnCallback(function ($actualPassword, $actualContext) use ($password, $contentType, $errorMessage, $errorParameter) {
+            ->willReturnCallback(function (string $actualPassword, PasswordValidationContext $actualContext) use (
+                $password,
+                $contentType,
+                $errorMessage,
+                $errorParameter
+            ): array {
                 $this->assertEquals($password, $actualPassword);
                 $this->assertInstanceOf(PasswordValidationContext::class, $actualContext);
                 $this->assertSame($contentType, $actualContext->contentType);

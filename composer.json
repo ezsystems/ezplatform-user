@@ -17,8 +17,8 @@
     },
     "require": {
         "php": "^7.3",
-        "ezsystems/ezplatform-kernel": "^1.0@dev",
-        "ezsystems/ezplatform-admin-ui": "^2.0@dev",
+        "ezsystems/ezplatform-kernel": "~1.0.0@dev",
+        "ezsystems/ezplatform-admin-ui": "~2.0.0@dev",
         "jms/translation-bundle": "^1.5",
         "symfony/dependency-injection": "^5.0",
         "symfony/http-kernel": "^5.0",
@@ -36,12 +36,12 @@
         "twig/twig": "^3.0"
     },
     "require-dev": {
-        "ezsystems/doctrine-dbal-schema": "^1.0@dev",
-        "ezsystems/ez-support-tools": "^2.0@dev",
-        "ezsystems/ezplatform-content-forms": "^1.0@dev",
-        "ezsystems/ezplatform-design-engine": "^3.0@dev",
-        "ezsystems/ezplatform-richtext": "^2.0@dev",
-        "ezsystems/ezplatform-rest": "^1.0@dev",
+        "ezsystems/doctrine-dbal-schema": "~1.0.0@dev",
+        "ezsystems/ez-support-tools": "~2.0.0@dev",
+        "ezsystems/ezplatform-content-forms": "~1.0.0@dev",
+        "ezsystems/ezplatform-design-engine": "~3.0.0@dev",
+        "ezsystems/ezplatform-richtext": "~2.0.0@dev",
+        "ezsystems/ezplatform-rest": "~1.0.0@dev",
         "friendsofphp/php-cs-fixer": "^2.16.0",
         "ezsystems/ezplatform-code-style": "^0.1.0",
         "phpunit/phpunit": "^8.2"

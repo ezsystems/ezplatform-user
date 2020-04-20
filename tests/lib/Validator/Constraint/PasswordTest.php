@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformUser\Tests\Validator\Constraint;
 
-
 use EzSystems\EzPlatformUser\Validator\Constraints\Password;
 use EzSystems\EzPlatformUser\Validator\Constraints\PasswordValidator;
 use PHPUnit\Framework\TestCase;

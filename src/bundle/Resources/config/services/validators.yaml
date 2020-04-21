@@ -10,3 +10,9 @@ services:
     EzSystems\EzPlatformUser\Validator\Constraints\UserPasswordValidator:
         tags:
             - { name: validator.constraint_validator }
+
+    EzSystems\EzPlatformUser\Validator\Constraints\PasswordValidator:
+        arguments:
+            $userService: '@ezpublish.api.service.user'
+        tags:
+            - { name: validator.constraint_validator }

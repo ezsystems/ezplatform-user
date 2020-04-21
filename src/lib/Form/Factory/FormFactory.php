@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformUser\Form\Factory;
 
+use eZ\Publish\API\Repository\Values\ContentType\ContentType;
 use EzSystems\EzPlatformUser\Form\Data\UserPasswordForgotData;
 use EzSystems\EzPlatformUser\Form\Data\UserPasswordChangeData;
 use EzSystems\EzPlatformUser\Form\Data\UserSettingUpdateData;
@@ -41,19 +42,19 @@ class FormFactory
         $this->urlGenerator = $urlGenerator;
     }
 
-    /**
-     * @param \EzSystems\EzPlatformUser\Form\Data\UserPasswordChangeData|null $data
-     * @param string|null $name
-     *
-     * @return \Symfony\Component\Form\FormInterface
-     */
     public function changeUserPassword(
+        ContentType $contentType,
         UserPasswordChangeData $data = null,
         ?string $name = null
     ): FormInterface {
         $name = $name ?: StringUtil::fqcnToBlockPrefix(UserPasswordChangeType::class);
 
-        return $this->formFactory->createNamed($name, UserPasswordChangeType::class, $data);
+        return $this->formFactory->createNamed(
+            $name,
+            UserPasswordChangeType::class,
+            $data,
+            ['content_type' => $contentType]
+        );
     }
 
     /**
@@ -100,11 +101,14 @@ class FormFactory
      */
     public function resetUserPassword(
         UserPasswordResetData $data = null,
-        ?string $name = null
+        ?string $name = null,
+        ContentType $contentType = null
     ): FormInterface {
         $name = $name ?: StringUtil::fqcnToBlockPrefix(UserPasswordResetType::class);
 
-        return $this->formFactory->createNamed($name, UserPasswordResetType::class, $data, ['content_type' => $data->getContentType()]);
+        $userContentType = $contentType ?? $data->getContentType();
+
+        return $this->formFactory->createNamed($name, UserPasswordResetType::class, $data, ['content_type' => $userContentType]);
     }
 
     /**

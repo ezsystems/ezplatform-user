@@ -22,18 +22,6 @@ ezplatform.user.reset_password:
     defaults:
         _controller: 'EzSystems\EzPlatformUserBundle\Controller\PasswordResetController::userResetPasswordAction'
 
-# Deprecated in v2.5 and will be removed in v3.0. Use ezplatform.user.register instead.
-ez_user_register:
-    path: /register
-    defaults:
-        _controller: 'EzSystems\EzPlatformUserBundle\Controller\UserRegisterController::registerAction'
-
-# Deprecated in v2.5 and will be removed in v3.0. Use ezplatform.user.register_confirmation instead.
-ez_user_register_confirmation:
-    path: /register-confirm
-    defaults:
-        _controller: 'EzSystems\EzPlatformUserBundle\Controller\UserRegisterController::registerConfirmAction'
-
 ezplatform.user.register: &user_register
     path: /register
     defaults:

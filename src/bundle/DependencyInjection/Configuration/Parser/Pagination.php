@@ -20,7 +20,7 @@ use Symfony\Component\Config\Definition\Builder\NodeBuilder;
  * ezpublish:
  *   system:
  *      default: # configuration per siteaccess or siteaccess group
- *          pagination:
+ *          pagination_user:
  *              user_settings_limit: 10
  * ```
  */

@@ -10,7 +10,9 @@ namespace EzSystems\EzPlatformUserBundle\DependencyInjection\Configuration\Parse
 
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\AbstractParser;
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\ContextualizerInterface;
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\NodeBuilder;
+use Symfony\Component\Config\Definition\Builder\ScalarNodeDefinition;
 
 /**
  * Configuration parser for pagination limits declaration.
@@ -26,6 +28,8 @@ use Symfony\Component\Config\Definition\Builder\NodeBuilder;
  */
 class Pagination extends AbstractParser
 {
+    private const PAGINATION_NODE_KEY = 'pagination';
+
     /**
      * Adds semantic configuration definition.
      *
@@ -33,13 +37,10 @@ class Pagination extends AbstractParser
      */
     public function addSemanticConfig(NodeBuilder $nodeBuilder)
     {
-        $nodeBuilder
-            ->arrayNode('pagination')
-                ->info('System pagination configuration')
-                ->children()
-                    ->scalarNode('user_settings_limit')->isRequired()->end()
-                ->end()
-            ->end();
+        $userSettingsLimitNode = new ScalarNodeDefinition('user_settings_limit');
+
+        $paginationNode = $this->getPaginationNode($nodeBuilder);
+        $paginationNode->append($userSettingsLimitNode);
     }
 
     /**
@@ -67,5 +68,16 @@ class Pagination extends AbstractParser
                 $settings[$key]
             );
         }
+    }
+
+    private function getPaginationNode(NodeBuilder $nodeBuilder): ArrayNodeDefinition
+    {
+        foreach ($nodeBuilder->end()->getChildNodeDefinitions() as $name => $child) {
+            if ($name === self::PAGINATION_NODE_KEY) {
+                return $child;
+            }
+        }
+
+        return $nodeBuilder->arrayNode(self::PAGINATION_NODE_KEY);
     }
 }

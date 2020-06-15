@@ -20,22 +20,17 @@ use Symfony\Component\Config\Definition\Builder\NodeBuilder;
  * ezpublish:
  *   system:
  *      default: # configuration per siteaccess or siteaccess group
- *          pagination:
+ *          pagination_user:
  *              user_settings_limit: 10
  * ```
  */
 class Pagination extends AbstractParser
 {
-    /**
-     * Adds semantic configuration definition.
-     *
-     * @param \Symfony\Component\Config\Definition\Builder\NodeBuilder $nodeBuilder Node just under ezpublish.system.<siteaccess>
-     */
     public function addSemanticConfig(NodeBuilder $nodeBuilder)
     {
         $nodeBuilder
-            ->arrayNode('pagination')
-                ->info('System pagination configuration')
+            ->arrayNode('pagination_user')
+                ->info('user related pagination configuration')
                 ->children()
                     ->scalarNode('user_settings_limit')->isRequired()->end()
                 ->end()
@@ -47,11 +42,11 @@ class Pagination extends AbstractParser
      */
     public function mapConfig(array &$scopeSettings, $currentScope, ContextualizerInterface $contextualizer): void
     {
-        if (empty($scopeSettings['pagination'])) {
+        if (empty($scopeSettings['pagination_user'])) {
             return;
         }
 
-        $settings = $scopeSettings['pagination'];
+        $settings = $scopeSettings['pagination_user'];
         $keys = [
             'user_settings_limit',
         ];
@@ -62,7 +57,7 @@ class Pagination extends AbstractParser
             }
 
             $contextualizer->setContextualParameter(
-                sprintf('pagination.%s', $key),
+                sprintf('pagination_user.%s', $key),
                 $currentScope,
                 $settings[$key]
             );

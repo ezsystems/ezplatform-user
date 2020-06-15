@@ -37,4 +37,4 @@ services:
     EzSystems\EzPlatformUserBundle\Controller\UserSettingsController:
         parent: EzSystems\EzPlatformAdminUiBundle\Controller\Controller
         arguments:
-            $defaultPaginationLimit: '$pagination.user_settings_limit$'
+            $defaultPaginationLimit: '$pagination_user.user_settings_limit$'

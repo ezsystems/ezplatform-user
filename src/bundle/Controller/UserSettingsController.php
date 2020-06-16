@@ -72,7 +72,7 @@ class UserSettingsController extends Controller
             new UserSettingsAdapter($this->userSettingService)
         );
 
-        $pagerfanta->setMaxPerPage($this->configResolver->getParameter('pagination.user_settings_limit'));
+        $pagerfanta->setMaxPerPage($this->configResolver->getParameter('pagination_user.user_settings_limit'));
         $pagerfanta->setCurrentPage(min($page, $pagerfanta->getNbPages()));
 
         return new ListView(null, [

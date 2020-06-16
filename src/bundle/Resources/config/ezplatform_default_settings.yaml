@@ -58,4 +58,4 @@ parameters:
     ezsettings.default.user_preferences.additional_translations: []
 
     # Pagination limits
-    ezsettings.default.pagination.user_settings_limit: 10
+    ezsettings.default.pagination_user.user_settings_limit: 10

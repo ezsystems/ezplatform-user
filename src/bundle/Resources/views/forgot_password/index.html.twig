@@ -4,6 +4,9 @@
 
 {% block content %}
     <h2>{{ 'ezplatform.forgot_password.reset_your_password'|trans|desc('Reset your password') }}</h2>
+    {% if reason is defined and reason == constant('\\EzSystems\\EzPlatformUserBundle\\Type\\UserForgotPasswordReason::MIGRATION') %}
+        <h3>{{ 'ezplatform.forgot_password.reset_your_password.reason.migration'|trans|desc('Your password has expired, change it!') }}</h3>
+    {% endif %}
     {{ form_start(form_forgot_user_password) }}
     {{ form_widget(form_forgot_user_password) }}
     {{ form_end(form_forgot_user_password) }}

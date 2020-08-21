@@ -12,6 +12,12 @@ ezplatform.user.forgot_password:
     defaults:
         _controller: 'EzSystems\EzPlatformUserBundle\Controller\PasswordResetController::userForgotPasswordAction'
 
+ezplatform.user.forgot_password.migration:
+    path: /user/forgot-password/migration
+    defaults:
+        _controller: 'EzSystems\EzPlatformUserBundle\Controller\PasswordResetController::userForgotPasswordAction'
+        reason: 'migration'
+
 ezplatform.user.forgot_password.login:
     path: /user/forgot-password/login
     defaults:

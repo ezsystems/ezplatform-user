@@ -1,0 +1,12 @@
+user:
+    suites:
+        browser:
+            paths:
+              - '%paths.base%/vendor/ezsystems/ezplatform-user/features/browser'
+            contexts:
+              - EzSystems\Behat\API\Context\TestContext
+              - EzSystems\Behat\API\Context\UserContext
+              - EzSystems\EzPlatformUser\Tests\Behat\Context\UserSetupContext
+              - EzSystems\Behat\Browser\Context\BrowserContext
+              - EzSystems\Behat\Browser\Context\FrontendContext
+              - EzSystems\Behat\Browser\Context\Hooks

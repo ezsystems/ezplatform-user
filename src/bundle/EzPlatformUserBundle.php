@@ -6,6 +6,7 @@
  */
 namespace EzSystems\EzPlatformUserBundle;
 
+use EzSystems\EzPlatformUserBundle\DependencyInjection\Compiler\SecurityPass;
 use EzSystems\EzPlatformUserBundle\DependencyInjection\Compiler\UserSetting;
 use EzSystems\EzPlatformUserBundle\DependencyInjection\Configuration\Parser\ChangePassword;
 use EzSystems\EzPlatformUserBundle\DependencyInjection\Configuration\Parser\Pagination;
@@ -35,6 +36,7 @@ class EzPlatformUserBundle extends Bundle
         $container->addCompilerPass(new UserSetting\ValueDefinitionPass());
         $container->addCompilerPass(new UserSetting\FormMapperPass());
         $container->addCompilerPass(new UserSetting\ViewBuilderRegistryPass());
+        $container->addCompilerPass(new SecurityPass());
 
         $core->addDefaultSettings(__DIR__ . '/Resources/config', ['ezplatform_default_settings.yaml']);
     }

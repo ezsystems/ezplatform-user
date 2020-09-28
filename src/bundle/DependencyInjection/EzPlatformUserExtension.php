@@ -26,6 +26,11 @@ class EzPlatformUserExtension extends Extension implements PrependExtensionInter
             new FileLocator(__DIR__ . '/../Resources/config')
         );
 
+        $environment = $container->getParameter('kernel.environment');
+        if ($environment === 'behat') {
+            $loader->load('services/feature_contexts.yaml');
+        }
+
         $loader->load('services.yaml');
     }
 

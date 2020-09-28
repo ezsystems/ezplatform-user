@@ -5,6 +5,7 @@
     "license": "GPL-2.0-only",
     "autoload": {
         "psr-4": {
+            "EzSystems\\EzPlatformUser\\Tests\\Behat\\": "tests/Behat/",
             "EzSystems\\EzPlatformUserBundle\\": "src/bundle/",
             "EzSystems\\EzPlatformUser\\": "src/lib/"
         }
@@ -33,7 +34,8 @@
         "symfony/form": "^5.0",
         "symfony/routing": "^5.0",
         "symfony/swiftmailer-bundle": "^3.4",
-        "twig/twig": "^3.0"
+        "twig/twig": "^3.0",
+        "symfony/security-http": "^5.0"
     },
     "require-dev": {
         "ezsystems/doctrine-dbal-schema": "^1.0@dev",
@@ -50,8 +52,10 @@
         "fix-cs": "@php ./vendor/bin/php-cs-fixer fix -v --show-progress=estimating"
     },
     "extra": {
+        "_ezplatform_branch_for_behat_tests": "fix/EZP-31462-handle-users-with-unsupported-password-hash-types",
         "branch-alias": {
-            "dev-master": "2.1.x-dev"
+            "dev-master": "2.1.x-dev",
+            "dev-tmp_ci_branch": "2.1.x-dev"
         }
     }
 }

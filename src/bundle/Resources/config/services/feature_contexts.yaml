@@ -1,0 +1,9 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    EzSystems\EzPlatformUser\Tests\Behat\Context\UserSetupContext:
+        arguments:
+            - '@ezpublish.persistence.connection'

@@ -11,6 +11,7 @@ namespace EzSystems\EzPlatformUser\EventListener;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use eZ\Publish\Core\MVC\Symfony\Event\PreContentViewEvent;
 use eZ\Publish\Core\MVC\Symfony\MVCEvents;
+use EzSystems\EzPlatformContentForms\User\View\UserUpdateView;
 use EzSystems\EzPlatformUser\View;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -26,7 +27,26 @@ class ViewTemplatesListener implements EventSubscriberInterface
 
     public static function getSubscribedEvents(): array
     {
-        return [MVCEvents::PRE_CONTENT_VIEW => 'setViewTemplates'];
+        return [MVCEvents::PRE_CONTENT_VIEW => [
+            ['setViewTemplates', 0],
+            ['setUserEditViewTemplateParameters', 0],
+        ]];
+    }
+
+    public function setUserEditViewTemplateParameters(PreContentViewEvent $event): void
+    {
+        $contentView = $event->getContentView();
+
+        if (!$contentView instanceof UserUpdateView) {
+            return;
+        }
+
+        $user = $contentView->getParameter('user');
+        $isPublished = null !== $user->contentInfo->mainLocationId && $user->contentInfo->published;
+
+        $contentView->addParameters([
+            'is_published' => $isPublished,
+        ]);
     }
 
     /**

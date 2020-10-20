@@ -185,9 +185,7 @@ class PasswordResetController extends Controller
             $data = $form->getData();
 
             try {
-                $userUpdateStruct = $this->userService->newUserUpdateStruct();
-                $userUpdateStruct->password = $data->getNewPassword();
-                $this->userService->updateUser($user, $userUpdateStruct);
+                $this->userService->updateUserPassword($user, $data->getNewPassword());
                 $this->userService->expireUserToken($hashKey);
                 $this->permissionResolver->setCurrentUserReference($currentUser);
 

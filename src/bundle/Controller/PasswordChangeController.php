@@ -75,21 +75,7 @@ class PasswordChangeController extends Controller
             $data = $form->getData();
 
             try {
-                $newPassword = $data->getNewPassword();
-                $userUpdateStruct = $this->userService->newUserUpdateStruct();
-                $userUpdateStruct->password = $newPassword;
-                if (method_exists($this->userService, 'updateUserPassword')) {
-                    $this->userService->updateUserPassword($user, $userUpdateStruct);
-                } else {
-                    @trigger_error(
-                        sprintf(
-                            '%1$s::updateUser method used for changing user password is deprecated. Use "%1$s::updateUserPassword" instead, introduced in newer ezplatform-kernel.',
-                            get_class($this->userService)
-                        ),
-                        E_USER_DEPRECATED
-                    );
-                    $this->userService->updateUser($user, $userUpdateStruct);
-                }
+                $this->userService->updateUserPassword($user, $data->getNewPassword());
 
                 if ((new IsAdmin($this->siteAccessGroups))->isSatisfiedBy($request->attributes->get('siteaccess'))) {
                     $this->notificationHandler->success(

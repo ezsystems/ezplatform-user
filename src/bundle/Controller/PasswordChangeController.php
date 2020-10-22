@@ -75,10 +75,7 @@ class PasswordChangeController extends Controller
             $data = $form->getData();
 
             try {
-                $newPassword = $data->getNewPassword();
-                $userUpdateStruct = $this->userService->newUserUpdateStruct();
-                $userUpdateStruct->password = $newPassword;
-                $this->userService->updateUser($user, $userUpdateStruct);
+                $this->userService->updateUserPassword($user, $data->getNewPassword());
 
                 if ((new IsAdmin($this->siteAccessGroups))->isSatisfiedBy($request->attributes->get('siteaccess'))) {
                     $this->notificationHandler->success(

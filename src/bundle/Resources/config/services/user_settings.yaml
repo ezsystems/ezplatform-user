@@ -21,6 +21,8 @@ services:
         arguments:
             $viewConfigurator: '@ezpublish.view.configurator'
             $viewParametersInjector: '@ezpublish.view.view_parameters.injector.dispatcher'
+        tags:
+            - { name: ibexa.view_builder }
 
     EzSystems\EzPlatformUser\View\UserSettings\UpdateViewProvider:
         arguments:

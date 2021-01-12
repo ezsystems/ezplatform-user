@@ -35,7 +35,7 @@ final class AuditUserDatabaseCommand extends Command implements BackwardCompatib
         UserService $userService,
         Connection $connection
     ) {
-        parent::__construct('ibexa:user:audit_database');
+        parent::__construct('ibexa:user:audit-database');
 
         $this->contentTypeService = $contentTypeService;
         $this->userService = $userService;
@@ -44,7 +44,7 @@ final class AuditUserDatabaseCommand extends Command implements BackwardCompatib
 
     protected function configure(): void
     {
-        $this->setAliases(['ezplatform:user:audit_database']);
+        $this->setAliases($this->getDeprecatedAliases());
     }
 
     /**

@@ -10,6 +10,7 @@ namespace EzSystems\EzPlatformUserBundle\Command;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\FetchMode;
+use eZ\Bundle\EzPublishCoreBundle\Command\BackwardCompatibleCommand;
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\UserService;
 use eZ\Publish\Core\FieldType\User\Type;
@@ -18,7 +19,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-final class AuditUserDatabaseCommand extends Command
+final class AuditUserDatabaseCommand extends Command implements BackwardCompatibleCommand
 {
     /** @var \eZ\Publish\API\Repository\ContentTypeService */
     private $contentTypeService;
@@ -34,11 +35,16 @@ final class AuditUserDatabaseCommand extends Command
         UserService $userService,
         Connection $connection
     ) {
-        parent::__construct('ezplatform:user:audit_database');
+        parent::__construct('ibexa:user:audit-database');
 
         $this->contentTypeService = $contentTypeService;
         $this->userService = $userService;
         $this->connection = $connection;
+    }
+
+    protected function configure(): void
+    {
+        $this->setAliases($this->getDeprecatedAliases());
     }
 
     /**
@@ -143,5 +149,13 @@ final class AuditUserDatabaseCommand extends Command
         }
 
         return false;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getDeprecatedAliases(): array
+    {
+        return ['ezplatform:user:audit_database'];
     }
 }

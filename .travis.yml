@@ -9,10 +9,10 @@ cache:
 
 env:
   global:
-    - EZPLATFORM_REPO="https://github.com/ezsystems/ezplatform.git"
     - COMPOSE_FILE="doc/docker/base-dev.yml:doc/docker/selenium.yml"
     - APP_ENV=behat
     - APP_DEBUG=1
+    - PROJECT_VERSION=^3.3.x-dev
 
 matrix:
   fast_finish: true
@@ -24,8 +24,9 @@ matrix:
     php: 7.3
     env: CHECK_CS=1
   - name: "User Integration tests"
+    php: 7.3
     env:
-      - BEHAT_OPTS="--profile=user --suite=browser"
+      - BEHAT_OPTS="--profile=user --suite=browser -c=behat_ibexa_oss.yaml"
 
 branches:
   only:
@@ -38,20 +39,19 @@ before_install:
 - TEST_TIMEZONE=${TEST_TIMEZONES["`shuf -i 0-2 -n 1`"]}
 
 install:
-  - if [ "${CHECK_CS}" == "1" -o "${TEST_CONFIG}" != "" ]; then travis_retry composer install --prefer-dist --no-interaction --no-suggest ; fi
-  - if [ "${BEHAT_OPTS}" != "" ]; then ./.travis/prepare_ezplatform.sh ${INSTALL_EZ_INSTALL_TYPE}; fi
+  - travis_retry composer install --prefer-dist --no-interaction --no-suggest
+  - if [ "${BEHAT_OPTS}" != "" ]; then ./vendor/bin/prepare_project_edition.sh oss ${PROJECT_VERSION} ${COMPOSE_FILE} ; fi
 
 before_script:
-  - if [ "${SETUP_BEHAT_OPTS}" != "" ] ; then cd "$HOME/build/ezplatform"; docker-compose exec --user www-data app sh -c "bin/ezbehat $SETUP_BEHAT_OPTS" ; fi
+  - if [ "${SETUP_BEHAT_OPTS}" != "" ] ; then cd "$HOME/build/project"; docker-compose exec --user www-data app sh -c "vendor/bin/ezbehat $SETUP_BEHAT_OPTS" ; fi
 
 script:
-  - if [ "$TEST_CONFIG" != "" ] ; then php -d date.timezone=$TEST_TIMEZONE -d memory_limit=-1
-    vendor/bin/phpunit -c $TEST_CONFIG ; fi
-  - if [ "$CHECK_CS" == "1" ] ; then ./vendor/bin/php-cs-fixer fix -v --dry-run --show-progress=estimating; fi
-  - if [ "${BEHAT_OPTS}" != "" ]; then cd "$HOME/build/ezplatform"; docker-compose exec --user www-data app sh -c "bin/ezbehat ${BEHAT_OPTS}" ; fi
+  - if [ "$TEST_CONFIG" != "" ] ; then php -d date.timezone=$TEST_TIMEZONE -d memory_limit=-1 vendor/bin/phpunit -c $TEST_CONFIG ; fi
+  - if [ "$CHECK_CS" == "1" ] ; then vendor/bin/check_cs.sh; fi
+  - if [ "${BEHAT_OPTS}" != "" ]; then cd "$HOME/build/project"; docker-compose exec --user www-data app sh -c "vendor/bin/ezbehat ${BEHAT_OPTS}" ; fi
 
 after_script:
-  - if [ "${BEHAT_OPTS}" != "" ] ; then bin/ezreport ; fi
+  - if [ "${BEHAT_OPTS}" != "" ] ; then vendor/bin/ezreport ; fi
 
 notifications:
   slack:

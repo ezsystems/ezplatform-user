@@ -9,12 +9,13 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformUser\Form\ChoiceList\Loader;
 
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use EzSystems\EzPlatformAdminUi\Form\Type\ChoiceList\Loader\BaseChoiceLoader;
+use Symfony\Component\Form\ChoiceList\ArrayChoiceList;
+use Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface;
 use Symfony\Component\Intl\Locales;
 use Symfony\Component\Validator\Constraints\Locale;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-class AvailableLocaleChoiceLoader extends BaseChoiceLoader
+class AvailableLocaleChoiceLoader implements ChoiceLoaderInterface
 {
     /** @var \Symfony\Component\Validator\Validator\ValidatorInterface */
     private $validator;
@@ -40,9 +41,6 @@ class AvailableLocaleChoiceLoader extends BaseChoiceLoader
         $this->configResolver = $configResolver;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getChoiceList(): array
     {
         $choices = [];
@@ -57,5 +55,37 @@ class AvailableLocaleChoiceLoader extends BaseChoiceLoader
         }
 
         return $choices;
+    }
+
+    public function loadChoiceList($value = null)
+    {
+        return new ArrayChoiceList($this->getChoiceList(), $value);
+    }
+
+    public function loadChoicesForValues(array $values, $value = null)
+    {
+        // Optimize
+        $values = array_filter($values);
+        if (empty($values)) {
+            return [];
+        }
+
+        return $this->loadChoiceList($value)->getChoicesForValues($values);
+    }
+
+    public function loadValuesForChoices(array $choices, $value = null)
+    {
+        // Optimize
+        $choices = array_filter($choices);
+        if (empty($choices)) {
+            return [];
+        }
+
+        // If no callable is set, choices are the same as values
+        if (null === $value) {
+            return $choices;
+        }
+
+        return $this->loadChoiceList($value)->getValuesForChoices($choices);
     }
 }

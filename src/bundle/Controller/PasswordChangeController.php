@@ -70,8 +70,8 @@ class PasswordChangeController extends Controller
             try {
                 $this->userService->updateUserPassword($user, $data->getNewPassword());
 
-                if ((new IsAdmin($this->siteAccessGroups))->isSatisfiedBy($request->attributes->get('siteaccess'))) {
-                    $this->notificationHandler->success(
+                if ($this->isInAdminGroup($request->attributes->get('siteaccess'))) {
+                    $this->actionResultHandler->success(
                         /** @Desc("Your password has been successfully changed.") */
                         'ezplatform.change_password.success',
                         [],
@@ -90,5 +90,10 @@ class PasswordChangeController extends Controller
         return new FormView(null, [
             'form_change_user_password' => $form->createView(),
         ]);
+    }
+
+    private function isInAdminGroup(SiteAccess $siteAccess): bool
+    {
+        return in_array($siteAccess->name, $this->siteAccessGroups['admin_group'], true);
     }
 }

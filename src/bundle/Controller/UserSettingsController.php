@@ -28,7 +28,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserSettingsController extends Controller
 {
-    /** @var \EzSystems\EzPlatformAdminUi\Form\Factory\FormFactory */
+    /** @var \Symfony\Component\Form\FormFactory */
     private $formFactory;
 
     /** @var \EzSystems\EzPlatformUser\Form\SubmitHandler */
@@ -96,7 +96,7 @@ class UserSettingsController extends Controller
 
         $data = new UserSettingUpdateData($userSetting->identifier, $userSetting->value);
 
-        $form = $this->formFactory->updateUserSetting($userSetting->identifier, $data);
+        $form = $this->getUpdateUserSettingForm($userSetting->identifier, $data);
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {

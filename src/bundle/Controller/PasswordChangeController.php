@@ -9,8 +9,8 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformUserBundle\Controller;
 
 use eZ\Publish\API\Repository\UserService;
-use EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface;
-use EzSystems\EzPlatformAdminUi\Specification\SiteAccess\IsAdmin;
+use eZ\Publish\Core\MVC\Symfony\SiteAccess;
+use EzSystems\EzPlatformUser\ExceptionHandler\ActionResultHandler;
 use EzSystems\EzPlatformUser\Form\Factory\FormFactory;
 use EzSystems\EzPlatformUser\View\ChangePassword\FormView;
 use EzSystems\EzPlatformUser\View\ChangePassword\SuccessView;
@@ -21,8 +21,8 @@ use Exception;
 
 class PasswordChangeController extends Controller
 {
-    /** @var \EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface */
-    private $notificationHandler;
+    /** @var \EzSystems\EzPlatformUser\ExceptionHandler\ActionResultHandler */
+    private $actionResultHandler;
 
     /** @var \eZ\Publish\API\Repository\UserService */
     private $userService;
@@ -36,21 +36,14 @@ class PasswordChangeController extends Controller
     /** @var array */
     private $siteAccessGroups;
 
-    /**
-     * @param \EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface $notificationHandler
-     * @param \eZ\Publish\API\Repository\UserService $userService
-     * @param \EzSystems\EzPlatformUser\Form\Factory\FormFactory $formFactory
-     * @param \Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface $tokenStorage
-     * @param array $siteAccessGroups
-     */
     public function __construct(
-        TranslatableNotificationHandlerInterface $notificationHandler,
+        ActionResultHandler $actionResultHandler,
         UserService $userService,
         FormFactory $formFactory,
         TokenStorageInterface $tokenStorage,
         array $siteAccessGroups
     ) {
-        $this->notificationHandler = $notificationHandler;
+        $this->actionResultHandler = $actionResultHandler;
         $this->userService = $userService;
         $this->formFactory = $formFactory;
         $this->tokenStorage = $tokenStorage;
@@ -90,7 +83,7 @@ class PasswordChangeController extends Controller
 
                 return new SuccessView(null);
             } catch (Exception $e) {
-                $this->notificationHandler->error($e->getMessage());
+                $this->actionResultHandler->error($e->getMessage());
             }
         }
 

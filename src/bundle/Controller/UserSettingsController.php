@@ -11,24 +11,21 @@ namespace EzSystems\EzPlatformUserBundle\Controller;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use EzSystems\EzPlatformUser\ExceptionHandler\ActionResultHandler;
 use EzSystems\EzPlatformUser\Form\Data\UserSettingUpdateData;
+use EzSystems\EzPlatformUser\Form\Factory\FormFactory;
 use EzSystems\EzPlatformUser\Form\SubmitHandler;
-use EzSystems\EzPlatformUser\Form\Type\UserSettingUpdateType;
 use EzSystems\EzPlatformUser\Pagination\Pagerfanta\UserSettingsAdapter;
 use EzSystems\EzPlatformUser\UserSetting\UserSettingService;
 use EzSystems\EzPlatformUser\UserSetting\ValueDefinitionRegistry;
 use EzSystems\EzPlatformUser\View\UserSettings\ListView;
 use EzSystems\EzPlatformUser\View\UserSettings\UpdateView;
 use Pagerfanta\Pagerfanta;
-use Symfony\Component\Form\FormFactory;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\Util\StringUtil;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserSettingsController extends Controller
 {
-    /** @var \Symfony\Component\Form\FormFactory */
+    /** @var \EzSystems\EzPlatformUser\Form\Factory\FormFactory */
     private $formFactory;
 
     /** @var \EzSystems\EzPlatformUser\Form\SubmitHandler */
@@ -96,7 +93,7 @@ class UserSettingsController extends Controller
 
         $data = new UserSettingUpdateData($userSetting->identifier, $userSetting->value);
 
-        $form = $this->getUpdateUserSettingForm($userSetting->identifier, $data);
+        $form = $this->formFactory->updateUserSetting($userSetting->identifier, $data);
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
@@ -123,20 +120,5 @@ class UserSettingsController extends Controller
         ]);
 
         return $view;
-    }
-
-    private function getUpdateUserSettingForm(
-        string $userSettingIdentifier,
-        UserSettingUpdateData $data = null,
-        ?string $name = null
-    ): FormInterface {
-        $name = $name ?: StringUtil::fqcnToBlockPrefix(UserSettingUpdateType::class);
-
-        return $this->formFactory->createNamed(
-            $name,
-            UserSettingUpdateType::class,
-            $data,
-            ['user_setting_identifier' => $userSettingIdentifier]
-        );
     }
 }

@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformUser\Tests\UserSetting;
 
 use EzSystems\EzPlatformUser\UserSetting\ValueDefinitionRegistry;
-use EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface;
+use Ibexa\Contracts\User\UserSetting\ValueDefinitionInterface;
 use PHPUnit\Framework\TestCase;
 
 class ValueDefinitionRegistryTest extends TestCase

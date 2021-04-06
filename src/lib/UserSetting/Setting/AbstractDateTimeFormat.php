@@ -8,9 +8,9 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformUser\UserSetting\Setting;
 
-use EzSystems\EzPlatformUser\UserSetting\FormMapperInterface;
+use Ibexa\Contracts\User\UserSetting\FormMapperInterface;
 use EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface;
-use EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface;
+use Ibexa\Contracts\User\UserSetting\ValueDefinitionInterface;
 use DateTimeImmutable;
 
 abstract class AbstractDateTimeFormat implements ValueDefinitionInterface, FormMapperInterface

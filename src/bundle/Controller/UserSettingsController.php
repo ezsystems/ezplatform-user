@@ -31,7 +31,7 @@ class UserSettingsController extends Controller
     /** @var \EzSystems\EzPlatformAdminUi\Form\Factory\FormFactory */
     private $formFactory;
 
-    /** @var \EzSystems\EzPlatformAdminUi\Form\SubmitHandler */
+    /** @var \EzSystems\EzPlatformUser\Form\SubmitHandler */
     private $submitHandler;
 
     /** @var \EzSystems\EzPlatformUser\UserSetting\UserSettingService */

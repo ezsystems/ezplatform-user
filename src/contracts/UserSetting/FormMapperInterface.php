@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Ibexa\Contracts\User\UserSetting;
 
-use Ibexa\Contracts\User\UserSetting\ValueDefinitionInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 
 interface FormMapperInterface

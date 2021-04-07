@@ -62,4 +62,7 @@ services:
             - { name: twig.extension }
 
     EzSystems\EzPlatformUser\ExceptionHandler\NullActionResultHandler: ~
-    EzSystems\EzPlatformUser\ExceptionHandler\ActionResultHandler: '@EzSystems\EzPlatformUser\ExceptionHandler\ActionResultHandler'
+    EzSystems\EzPlatformUser\ExceptionHandler\ActionResultHandler: '@EzSystems\EzPlatformUser\ExceptionHandler\NullActionResultHandler'
+
+    EzSystems\EzPlatformUser\Form\BaseSubmitHandler: ~
+    EzSystems\EzPlatformUser\Form\SubmitHandler: '@EzSystems\EzPlatformUser\Form\BaseSubmitHandler'

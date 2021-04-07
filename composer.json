@@ -7,7 +7,8 @@
         "psr-4": {
             "EzSystems\\EzPlatformUser\\Tests\\Behat\\": "tests/Behat/",
             "EzSystems\\EzPlatformUserBundle\\": "src/bundle/",
-            "EzSystems\\EzPlatformUser\\": "src/lib/"
+            "EzSystems\\EzPlatformUser\\": "src/lib/",
+            "Ibexa\\Contracts\\User\\": "src/contracts/"
         }
     },
     "autoload-dev": {

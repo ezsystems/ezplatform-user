@@ -18,7 +18,7 @@ class BaseSubmitHandler implements SubmitHandler
         $data = $form->getData();
 
         if ($form->isValid()) {
-            $handler($data);
+            return $handler($data);
         }
 
         return null;

@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformUser\ExceptionHandler;
 
 /**
- * @Internal
+ * @internal
  */
 interface ActionResultHandler
 {

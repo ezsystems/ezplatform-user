@@ -12,7 +12,7 @@ use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\AbstractPars
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\ContextualizerInterface;
 use Symfony\Component\Config\Definition\Builder\NodeBuilder;
 
-class ResetPassword extends AbstractParser
+final class ResetPassword extends AbstractParser
 {
     public function addSemanticConfig(NodeBuilder $nodeBuilder)
     {

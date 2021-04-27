@@ -13,8 +13,6 @@ services:
 
     EzSystems\EzPlatformUserBundle\Controller\PasswordResetController:
         autowire: true
-        arguments:
-            $actionResultHandler: '@EzSystems\EzPlatformUser\ExceptionHandler\NullActionResultHandler'
         calls:
             - [setContainer, ['@service_container']]
         tags: [controller.service_arguments]

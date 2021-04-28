@@ -40,9 +40,10 @@
     "require-dev": {
         "ibexa/ci-scripts": "^0.2@dev",
         "ezsystems/doctrine-dbal-schema": "^2.0@dev",
-        "ezsystems/ez-support-tools": "^3.0@dev",
+        "ezsystems/ezplatform-search": "^2.0@dev",
         "ezsystems/ezplatform-content-forms": "^2.0@dev",
         "ezsystems/ezplatform-design-engine": "^4.0@dev",
+        "ezsystems/ezplatform-http-cache": "^3.0@dev",
         "ezsystems/ezplatform-richtext": "^3.0@dev",
         "ezsystems/ezplatform-rest": "^2.0@dev",
         "friendsofphp/php-cs-fixer": "^2.16.0",

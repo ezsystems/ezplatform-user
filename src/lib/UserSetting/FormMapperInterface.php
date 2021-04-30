@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Contracts\User\UserSetting;
+namespace EzSystems\EzPlatformUser\UserSetting;
 
 use Symfony\Component\Form\FormBuilderInterface;
 

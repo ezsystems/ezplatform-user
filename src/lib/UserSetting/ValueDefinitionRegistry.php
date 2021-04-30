@@ -9,7 +9,6 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformUser\UserSetting;
 
 use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
-use Ibexa\Contracts\User\UserSetting\ValueDefinitionInterface;
 
 /**
  * @internal
@@ -32,7 +31,7 @@ class ValueDefinitionRegistry
 
     /**
      * @param string $identifier
-     * @param \Ibexa\Contracts\User\UserSetting\ValueDefinitionInterface $valueDefinition
+     * @param \EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface $valueDefinition
      * @param int $priority
      */
     public function addValueDefinition(
@@ -46,7 +45,7 @@ class ValueDefinitionRegistry
     /**
      * @param string $identifier
      *
-     * @return \Ibexa\Contracts\User\UserSetting\ValueDefinitionInterface
+     * @return \EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface
      *
      * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
      */
@@ -73,7 +72,7 @@ class ValueDefinitionRegistry
     }
 
     /**
-     * @return \Ibexa\Contracts\User\UserSetting\ValueDefinitionInterface[]
+     * @return \EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface[]
      */
     public function getValueDefinitions(): array
     {

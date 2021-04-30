@@ -11,7 +11,6 @@ namespace EzSystems\EzPlatformUser\UserSetting;
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\UserPreferenceService;
 use eZ\Publish\API\Repository\Values\UserPreference\UserPreferenceSetStruct;
-use Ibexa\Contracts\User\UserSetting\ValueDefinitionInterface;
 
 /**
  * @internal
@@ -80,7 +79,7 @@ class UserSettingService
     public function loadUserSettings(int $offset = 0, int $limit = 25): array
     {
         $values = $this->valueRegistry->getValueDefinitions();
-        /** @var \Ibexa\Contracts\User\UserSetting\ValueDefinitionInterface[] $slice */
+        /** @var \EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface[] $slice */
         $slice = \array_slice($values, $offset, $limit, true);
 
         $userPreferences = [];
@@ -100,7 +99,7 @@ class UserSettingService
     }
 
     /**
-     * @param \Ibexa\Contracts\User\UserSetting\ValueDefinitionInterface[] $values
+     * @param \EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface[] $values
      * @param array $userPreferences
      *
      * @return \EzSystems\EzPlatformUser\UserSetting\UserSetting[]
@@ -118,7 +117,7 @@ class UserSettingService
 
     /**
      * @param string $identifier
-     * @param \Ibexa\Contracts\User\UserSetting\ValueDefinitionInterface $value
+     * @param \EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface $value
      * @param string $userPreferenceValue
      *
      * @return \EzSystems\EzPlatformUser\UserSetting\UserSetting
@@ -138,7 +137,7 @@ class UserSettingService
 
     /**
      * @param string $identifier
-     * @param \Ibexa\Contracts\User\UserSetting\ValueDefinitionInterface $value
+     * @param \EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface $value
      *
      * @return string
      *

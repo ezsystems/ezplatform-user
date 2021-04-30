@@ -10,8 +10,8 @@ namespace EzSystems\EzPlatformUser\UserSetting\Setting;
 
 use eZ\Publish\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface;
 use EzSystems\EzPlatformUser\Form\ChoiceList\Loader\AvailableLocaleChoiceLoader;
-use Ibexa\Contracts\User\UserSetting\FormMapperInterface;
-use Ibexa\Contracts\User\UserSetting\ValueDefinitionInterface;
+use EzSystems\EzPlatformUser\UserSetting\FormMapperInterface;
+use EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface;
 use Symfony\Component\Form\Extension\Core\Type\LocaleType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;

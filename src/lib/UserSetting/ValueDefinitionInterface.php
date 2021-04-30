@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Contracts\User\UserSetting;
+namespace EzSystems\EzPlatformUser\UserSetting;
 
 /**
  * Interface for displaying User Preferences in the Admin UI.

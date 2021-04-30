@@ -8,21 +8,19 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformUser\UserSetting;
 
-use Ibexa\Contracts\User\UserSetting\ValueDefinitionInterface;
-
 /**
  * @internal
  */
 final class ValueDefinitionRegistryEntry
 {
-    /** @var \Ibexa\Contracts\User\UserSetting\ValueDefinitionInterface */
+    /** @var \EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface */
     private $definition;
 
     /** @var int */
     private $priority;
 
     /**
-     * @param \Ibexa\Contracts\User\UserSetting\ValueDefinitionInterface $definition
+     * @param \EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface $definition
      * @param int $priority
      */
     public function __construct(ValueDefinitionInterface $definition, int $priority = 0)
@@ -32,7 +30,7 @@ final class ValueDefinitionRegistryEntry
     }
 
     /**
-     * @return \Ibexa\Contracts\User\UserSetting\ValueDefinitionInterface
+     * @return \EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface
      */
     public function getDefinition(): ValueDefinitionInterface
     {

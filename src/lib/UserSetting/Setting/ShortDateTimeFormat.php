@@ -13,7 +13,7 @@ use EzSystems\EzPlatformUser\Form\DataTransformer\DateTimeFormatTransformer;
 use EzSystems\EzPlatformUser\Form\Type\UserSettings\ShortDateTimeFormatType;
 use EzSystems\EzPlatformUser\UserSetting\Setting\Value\DateTimeFormat;
 use EzSystems\EzPlatformUser\UserSetting\DateTimeFormat\FormatterInterface;
-use Ibexa\Contracts\User\UserSetting\ValueDefinitionInterface;
+use EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 

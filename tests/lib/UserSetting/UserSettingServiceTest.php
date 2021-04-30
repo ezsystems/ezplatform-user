@@ -12,7 +12,7 @@ use eZ\Publish\API\Repository\UserPreferenceService;
 use eZ\Publish\API\Repository\Values\UserPreference\UserPreference;
 use EzSystems\EzPlatformUser\UserSetting\UserSetting;
 use EzSystems\EzPlatformUser\UserSetting\UserSettingService;
-use Ibexa\Contracts\User\UserSetting\ValueDefinitionInterface;
+use EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface;
 use EzSystems\EzPlatformUser\UserSetting\ValueDefinitionRegistry;
 use PHPUnit\Framework\TestCase;
 
@@ -71,7 +71,7 @@ class UserSettingServiceTest extends TestCase
      * @param string $name
      * @param string $description
      *
-     * @return \Ibexa\Contracts\User\UserSetting\ValueDefinitionInterface
+     * @return \EzSystems\EzPlatformUser\UserSetting\ValueDefinitionInterface
      */
     private function getValueDefinition(string $name = 'name', string $description = 'description'): ValueDefinitionInterface
     {

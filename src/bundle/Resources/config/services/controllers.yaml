@@ -33,5 +33,7 @@ services:
         tags: [controller.service_arguments]
 
     EzSystems\EzPlatformUserBundle\Controller\UserSettingsController:
-        parent: EzSystems\EzPlatformAdminUiBundle\Controller\Controller
+        autowire: true
+        calls:
+            - [ setContainer, [ '@service_container' ] ]
         tags: [controller.service_arguments]

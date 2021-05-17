@@ -12,9 +12,9 @@ use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\PermissionResolver;
 use eZ\Publish\API\Repository\Values\User\User;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
+use EzSystems\EzPlatformUser\ExceptionHandler\ActionResultHandler;
 use EzSystems\EzPlatformUser\Form\Data\UserPasswordResetData;
 use EzSystems\EzPlatformUser\Form\Factory\FormFactory;
-use EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface;
 use EzSystems\EzPlatformUser\View\ForgotPassword\FormView;
 use EzSystems\EzPlatformUser\View\ForgotPassword\LoginView;
 use EzSystems\EzPlatformUser\View\ForgotPassword\SuccessView;
@@ -46,8 +46,8 @@ class PasswordResetController extends Controller
     /** @var \Twig\Environment */
     private $twig;
 
-    /** @var \EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface */
-    private $notificationHandler;
+    /** @var \EzSystems\EzPlatformUser\ExceptionHandler\ActionResultHandler */
+    private $actionResultHandler;
 
     /** @var \eZ\Publish\API\Repository\PermissionResolver */
     private $permissionResolver;
@@ -60,7 +60,7 @@ class PasswordResetController extends Controller
         UserService $userService,
         Swift_Mailer $mailer,
         Environment $twig,
-        TranslatableNotificationHandlerInterface $notificationHandler,
+        ActionResultHandler $actionResultHandler,
         PermissionResolver $permissionResolver,
         ConfigResolverInterface $configResolver
     ) {
@@ -68,7 +68,7 @@ class PasswordResetController extends Controller
         $this->userService = $userService;
         $this->mailer = $mailer;
         $this->twig = $twig;
-        $this->notificationHandler = $notificationHandler;
+        $this->actionResultHandler = $actionResultHandler;
         $this->permissionResolver = $permissionResolver;
         $this->configResolver = $configResolver;
     }
@@ -194,7 +194,7 @@ class PasswordResetController extends Controller
 
                 return $view;
             } catch (\Exception $e) {
-                $this->notificationHandler->error(/** @Ignore */ $e->getMessage());
+                $this->actionResultHandler->error($e->getMessage());
             }
         }
 

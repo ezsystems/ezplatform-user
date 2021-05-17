@@ -9,10 +9,10 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformUserBundle\Controller;
 
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
+use EzSystems\EzPlatformUser\ExceptionHandler\ActionResultHandler;
 use EzSystems\EzPlatformUser\Form\Data\UserSettingUpdateData;
 use EzSystems\EzPlatformUser\Form\Factory\FormFactory;
-use EzSystems\EzPlatformAdminUi\Form\SubmitHandler;
-use EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface;
+use EzSystems\EzPlatformUser\Form\SubmitHandler;
 use EzSystems\EzPlatformUser\Pagination\Pagerfanta\UserSettingsAdapter;
 use EzSystems\EzPlatformUser\UserSetting\UserSettingService;
 use EzSystems\EzPlatformUser\UserSetting\ValueDefinitionRegistry;
@@ -25,10 +25,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserSettingsController extends Controller
 {
-    /** @var \EzSystems\EzPlatformAdminUi\Form\Factory\FormFactory */
+    /** @var \EzSystems\EzPlatformUser\Form\Factory\FormFactory */
     private $formFactory;
 
-    /** @var \EzSystems\EzPlatformAdminUi\Form\SubmitHandler */
+    /** @var \EzSystems\EzPlatformUser\Form\SubmitHandler */
     private $submitHandler;
 
     /** @var \EzSystems\EzPlatformUser\UserSetting\UserSettingService */
@@ -37,8 +37,8 @@ class UserSettingsController extends Controller
     /** @var \EzSystems\EzPlatformUser\UserSetting\ValueDefinitionRegistry */
     private $valueDefinitionRegistry;
 
-    /** @var \EzSystems\EzPlatformAdminUi\Notification\TranslatableNotificationHandlerInterface */
-    private $notificationHandler;
+    /** @var \EzSystems\EzPlatformUser\ExceptionHandler\ActionResultHandler */
+    private $actionResultHandler;
 
     /** @var \eZ\Publish\Core\MVC\ConfigResolverInterface */
     private $configResolver;
@@ -48,14 +48,14 @@ class UserSettingsController extends Controller
         SubmitHandler $submitHandler,
         UserSettingService $userSettingService,
         ValueDefinitionRegistry $valueDefinitionRegistry,
-        TranslatableNotificationHandlerInterface $notificationHandler,
+        ActionResultHandler $actionResultHandler,
         ConfigResolverInterface $configResolver
     ) {
         $this->formFactory = $formFactory;
         $this->submitHandler = $submitHandler;
         $this->userSettingService = $userSettingService;
         $this->valueDefinitionRegistry = $valueDefinitionRegistry;
-        $this->notificationHandler = $notificationHandler;
+        $this->actionResultHandler = $actionResultHandler;
         $this->configResolver = $configResolver;
     }
 
@@ -100,7 +100,7 @@ class UserSettingsController extends Controller
             $result = $this->submitHandler->handle($form, function (UserSettingUpdateData $data) {
                 $this->userSettingService->setUserSetting($data->getIdentifier(), $data->getValue());
 
-                $this->notificationHandler->success(
+                $this->actionResultHandler->success(
                     /** @Desc("User setting '%identifier%' updated.") */
                     'user_setting.update.success',
                     ['%identifier%' => $data->getIdentifier()],

@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformUser\EventListener;
 
+use eZ\Publish\API\Repository\Exceptions\NotFoundException;
+use eZ\Publish\API\Repository\PermissionResolver;
+use eZ\Publish\API\Repository\UserService;
 use EzSystems\EzPlatformAdminUi\Menu\Event\ConfigureMenuEvent;
 use JMS\TranslationBundle\Model\Message;
 use JMS\TranslationBundle\Translation\TranslationContainerInterface;
@@ -21,12 +24,25 @@ class UserMenuListener implements EventSubscriberInterface, TranslationContainer
     /** @var \Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface */
     private $tokenStorage;
 
+    /** @var \eZ\Publish\API\Repository\PermissionResolver */
+    private $permissionResolver;
+
+    /** @var \eZ\Publish\API\Repository\UserService */
+    private $userService;
+
     /**
      * @param \Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface $tokenStorage
+     * @param \eZ\Publish\API\Repository\PermissionResolver $permissionResolver
+     * @param \eZ\Publish\API\Repository\UserService $userService
      */
-    public function __construct(TokenStorageInterface $tokenStorage)
-    {
+    public function __construct(
+        TokenStorageInterface $tokenStorage,
+        PermissionResolver $permissionResolver,
+        UserService $userService
+    ) {
         $this->tokenStorage = $tokenStorage;
+        $this->permissionResolver = $permissionResolver;
+        $this->userService = $userService;
     }
 
     /**
@@ -45,7 +61,17 @@ class UserMenuListener implements EventSubscriberInterface, TranslationContainer
         $menu = $event->getMenu();
         $token = $this->tokenStorage->getToken();
 
-        if (null !== $token && is_object($token->getUser())) {
+        $currentUserId = $this->permissionResolver->getCurrentUserReference()->getUserId();
+        try {
+            $currentUser = $this->userService->loadUser($currentUserId);
+        } catch (NotFoundException $e) {
+            return;
+        }
+
+        if (null !== $token &&
+            is_object($token->getUser()) &&
+            $this->permissionResolver->canUser('user', 'password', $currentUser, [$currentUser])
+        ) {
             $menu->addChild(
                 self::ITEM_CHANGE_PASSWORD,
                 [

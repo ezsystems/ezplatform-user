@@ -14,14 +14,10 @@ use EzSystems\EzPlatformAdminUi\Menu\Event\ConfigureMenuEvent;
 use JMS\TranslationBundle\Model\Message;
 use JMS\TranslationBundle\Translation\TranslationContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class UserMenuListener implements EventSubscriberInterface, TranslationContainerInterface
 {
     public const ITEM_CHANGE_PASSWORD = 'user__change_password';
-
-    /** @var \Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface */
-    private $tokenStorage;
 
     /** @var \eZ\Publish\API\Repository\PermissionResolver */
     private $permissionResolver;
@@ -30,16 +26,13 @@ class UserMenuListener implements EventSubscriberInterface, TranslationContainer
     private $userService;
 
     /**
-     * @param \Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface $tokenStorage
      * @param \eZ\Publish\API\Repository\PermissionResolver $permissionResolver
      * @param \eZ\Publish\API\Repository\UserService $userService
      */
     public function __construct(
-        TokenStorageInterface $tokenStorage,
         PermissionResolver $permissionResolver,
         UserService $userService
     ) {
-        $this->tokenStorage = $tokenStorage;
         $this->permissionResolver = $permissionResolver;
         $this->userService = $userService;
     }
@@ -58,15 +51,11 @@ class UserMenuListener implements EventSubscriberInterface, TranslationContainer
     public function onUserMenuConfigure(ConfigureMenuEvent $event): void
     {
         $menu = $event->getMenu();
-        $token = $this->tokenStorage->getToken();
 
         $currentUserId = $this->permissionResolver->getCurrentUserReference()->getUserId();
         $currentUser = $this->userService->loadUser($currentUserId);
 
-        if (null !== $token &&
-            is_object($token->getUser()) &&
-            $this->permissionResolver->canUser('user', 'password', $currentUser, [$currentUser])
-        ) {
+        if ($this->permissionResolver->canUser('user', 'password', $currentUser, [$currentUser])) {
             $menu->addChild(
                 self::ITEM_CHANGE_PASSWORD,
                 [

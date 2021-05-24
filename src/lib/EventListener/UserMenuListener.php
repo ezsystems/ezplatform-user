@@ -62,11 +62,7 @@ class UserMenuListener implements EventSubscriberInterface, TranslationContainer
         $token = $this->tokenStorage->getToken();
 
         $currentUserId = $this->permissionResolver->getCurrentUserReference()->getUserId();
-        try {
-            $currentUser = $this->userService->loadUser($currentUserId);
-        } catch (NotFoundException $e) {
-            return;
-        }
+        $currentUser = $this->userService->loadUser($currentUserId);
 
         if (null !== $token &&
             is_object($token->getUser()) &&

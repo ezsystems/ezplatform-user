@@ -25,10 +25,6 @@ class UserMenuListener implements EventSubscriberInterface, TranslationContainer
     /** @var \eZ\Publish\API\Repository\UserService */
     private $userService;
 
-    /**
-     * @param \eZ\Publish\API\Repository\PermissionResolver $permissionResolver
-     * @param \eZ\Publish\API\Repository\UserService $userService
-     */
     public function __construct(
         PermissionResolver $permissionResolver,
         UserService $userService

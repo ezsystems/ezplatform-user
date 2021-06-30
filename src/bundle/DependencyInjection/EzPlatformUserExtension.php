@@ -26,12 +26,12 @@ class EzPlatformUserExtension extends Extension implements PrependExtensionInter
             new FileLocator(__DIR__ . '/../Resources/config')
         );
 
-        $environment = $container->getParameter('kernel.environment');
-        if ($environment === 'behat') {
-            $loader->load('services/feature_contexts.yaml');
-        }
-
         $loader->load('services.yaml');
+
+        $shouldLoadTestServices = $this->shouldLoadTestServices($container);
+        if ($shouldLoadTestServices) {
+            $loader->load('services/test/feature_contexts.yaml');
+        }
     }
 
     /**
@@ -60,5 +60,11 @@ class EzPlatformUserExtension extends Extension implements PrependExtensionInter
                 ],
             ],
         ]);
+    }
+
+    private function shouldLoadTestServices(ContainerBuilder $container): bool
+    {
+        return $container->hasParameter('ibexa.testing.browser.enabled')
+            && true === $container->getParameter('ibexa.testing.browser.enabled');
     }
 }

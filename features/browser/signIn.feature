@@ -1,6 +1,7 @@
+@IbexaOSS @IbexaContent @IbexaExperience @IbexaCommerce
   Feature: As an user I can sign in using form
 
-  @admin
+  @APIUser:admin
   Scenario: User is asked for setting a new password when his password is in an unsupported format
     Given I create a user "UnsupportedPasswordUser" with last name "User" in group "Anonymous Users"
     And a user "UnsupportedPasswordUser" has password in unsupported format

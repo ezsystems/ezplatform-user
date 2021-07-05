@@ -32,7 +32,7 @@ class UserSetupContext implements Context
         $queryBuilder = $this->connection->createQueryBuilder();
         $update = $queryBuilder
             ->update('ezuser', 'u')
-            ->set('u.password_hash_type', self::UNSUPPORTED_USER_HASH)
+            ->set('password_hash_type', self::UNSUPPORTED_USER_HASH)
             ->andWhere(
                 $queryBuilder->expr()->eq('u.login', ':login')
             )

@@ -4,6 +4,6 @@ services:
         autoconfigure: true
         public: false
 
-    EzSystems\EzPlatformUser\Tests\Behat\Context\UserSetupContext:
+    Ibexa\User\Tests\Behat\Context\UserSetupContext:
         arguments:
             - '@ezpublish.persistence.connection'

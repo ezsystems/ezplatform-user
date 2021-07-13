@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformUser\Tests\Behat\Context;
+namespace Ibexa\User\Tests\Behat\Context;
 
 use Behat\Behat\Context\Context;
 use Doctrine\DBAL\Connection;
@@ -32,7 +32,7 @@ class UserSetupContext implements Context
         $queryBuilder = $this->connection->createQueryBuilder();
         $update = $queryBuilder
             ->update('ezuser', 'u')
-            ->set('u.password_hash_type', self::UNSUPPORTED_USER_HASH)
+            ->set('password_hash_type', self::UNSUPPORTED_USER_HASH)
             ->andWhere(
                 $queryBuilder->expr()->eq('u.login', ':login')
             )

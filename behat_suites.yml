@@ -6,7 +6,7 @@ browser:
             contexts:
               - EzSystems\Behat\API\Context\TestContext
               - EzSystems\Behat\API\Context\UserContext
-              - Ibexa\User\Tests\Behat\Context\UserSetupContext
+              - Ibexa\User\Behat\Context\UserSetupContext
               - Ibexa\Behat\Browser\Context\BrowserContext
               - Ibexa\Behat\Browser\Context\AuthenticationContext
               - Behat\MinkExtension\Context\MinkContext

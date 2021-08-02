@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\User\Tests\Behat\Context;
+namespace Ibexa\User\Behat\Context;
 
 use Behat\Behat\Context\Context;
 use Doctrine\DBAL\Connection;

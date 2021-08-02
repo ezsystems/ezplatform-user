@@ -5,10 +5,9 @@
     "license": "GPL-2.0-only",
     "autoload": {
         "psr-4": {
-            "EzSystems\\EzPlatformUser\\Tests\\Behat\\": "tests/Behat/",
             "EzSystems\\EzPlatformUserBundle\\": "src/bundle/",
             "EzSystems\\EzPlatformUser\\": "src/lib/",
-            "Ibexa\\User\\Tests\\Behat\\": "tests/Behat/"
+            "Ibexa\\User\\": "src/lib/"
         }
     },
     "autoload-dev": {

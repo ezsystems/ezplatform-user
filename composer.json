@@ -51,7 +51,9 @@
         "matthiasnoback/symfony-dependency-injection-test": "4.1"
     },
     "scripts": {
-        "fix-cs": "@php ./vendor/bin/php-cs-fixer fix -v --show-progress=estimating"
+        "fix-cs": "php-cs-fixer fix -v --show-progress=estimating",
+        "check-cs": "@fix-cs --dry-run",
+        "test": "phpunit -c phpunit.xml"
     },
     "extra": {
         "branch-alias": {

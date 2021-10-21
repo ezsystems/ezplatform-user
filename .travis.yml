@@ -17,12 +17,6 @@ env:
 matrix:
   fast_finish: true
   include:
-  - name: PHP 7.3 Unit tests
-    php: 7.3
-    env: TEST_CONFIG="phpunit.xml"
-  - name: Code Style Check
-    php: 7.3
-    env: CHECK_CS=1
   - name: "User Integration tests"
     php: 7.3
     env:
@@ -40,18 +34,16 @@ before_install:
 
 install:
   - travis_retry composer install --prefer-dist --no-interaction --no-suggest
-  - if [ "${BEHAT_OPTS}" != "" ]; then ./vendor/bin/prepare_project_edition.sh oss ${PROJECT_VERSION} ${COMPOSE_FILE} ; fi
+  - ./vendor/bin/prepare_project_edition.sh oss ${PROJECT_VERSION} ${COMPOSE_FILE}
 
 before_script:
   - if [ "${SETUP_BEHAT_OPTS}" != "" ] ; then cd "$HOME/build/project"; docker-compose exec --user www-data app sh -c "vendor/bin/ezbehat $SETUP_BEHAT_OPTS" ; fi
 
 script:
-  - if [ "$TEST_CONFIG" != "" ] ; then php -d date.timezone=$TEST_TIMEZONE -d memory_limit=-1 vendor/bin/phpunit -c $TEST_CONFIG ; fi
-  - if [ "$CHECK_CS" == "1" ] ; then vendor/bin/check_cs.sh; fi
-  - if [ "${BEHAT_OPTS}" != "" ]; then cd "$HOME/build/project"; docker-compose exec --user www-data app sh -c "vendor/bin/ezbehat ${BEHAT_OPTS}" ; fi
+  - cd "$HOME/build/project"; docker-compose exec --user www-data app sh -c "vendor/bin/ezbehat ${BEHAT_OPTS}"
 
 after_script:
-  - if [ "${BEHAT_OPTS}" != "" ] ; then vendor/bin/ezreport ; fi
+  - vendor/bin/ezreport
 
 notifications:
   slack:

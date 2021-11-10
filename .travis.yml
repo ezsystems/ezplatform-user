@@ -17,10 +17,15 @@ env:
 matrix:
   fast_finish: true
   include:
-  - name: "User Integration tests"
+  - name: "User password format tests"
     php: 7.3
     env:
-      - BEHAT_OPTS="--profile=browser --suite=user -c=behat_ibexa_oss.yaml"
+      - BEHAT_OPTS="--profile=browser --suite=password -c=behat_ibexa_oss.yaml"
+  - name: "User login providers tests"
+    php: 7.3
+    env:
+      - SETUP_BEHAT_OPTS="--mode=standard --profile=setup --suite=login-methods -c=behat_ibexa_oss.yaml"
+      - BEHAT_OPTS="--profile=browser --suite=providers -c=behat_ibexa_oss.yaml"
 
 branches:
   only:

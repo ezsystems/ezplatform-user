@@ -27,8 +27,8 @@
         <note>key: ezplatform.change_user_password.old_password</note>
       </trans-unit>
       <trans-unit id="859bfc3d21113eecb4a19d4a9305f2519eb4b331" resname="ezplatform.forgot_user_password.email">
-        <source>Enter your email address:</source>
-        <target state="new">Enter your email address:</target>
+        <source>Enter your email</source>
+        <target state="new">Enter your email</target>
         <note>key: ezplatform.forgot_user_password.email</note>
       </trans-unit>
       <trans-unit id="ffb6990d5e75fe6dc86e94166b77e40a79e4e2a3" resname="ezplatform.forgot_user_password.login">
@@ -36,10 +36,10 @@
         <target state="new">Enter your login:</target>
         <note>key: ezplatform.forgot_user_password.login</note>
       </trans-unit>
-      <trans-unit id="0f7bbe027d2c53c78c7b3ce938af6c0ef6c1c2e2" resname="ezplatform.forgot_user_password.reset">
-        <source>Reset</source>
-        <target state="new">Reset</target>
-        <note>key: ezplatform.forgot_user_password.reset</note>
+      <trans-unit id="0f7bbe027d2c53c78c7b3ce938af6c0ef6c1c2e2" resname="ezplatform.forgot_user_password.send">
+        <source>Send</source>
+        <target state="new">Send</target>
+        <note>key: ezplatform.forgot_user_password.send</note>
       </trans-unit>
       <trans-unit id="877b8a2a4e3b2c7c137b7776a54cd7531421e5d3" resname="ezplatform.reset_user_password.confirm_new_password">
         <source>Confirm password</source>

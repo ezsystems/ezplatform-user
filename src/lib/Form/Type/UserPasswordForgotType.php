@@ -22,12 +22,12 @@ class UserPasswordForgotType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'required' => true,
-                'label' => /** @Desc("Enter your email address:") */ 'ezplatform.forgot_user_password.email',
+                'label' => /** @Desc("Enter your email") */ 'ezplatform.forgot_user_password.email',
             ])
             ->add(
                 'reset',
                 SubmitType::class,
-                ['label' => /** @Desc("Reset") */ 'ezplatform.forgot_user_password.reset']
+                ['label' => /** @Desc("Send") */ 'ezplatform.forgot_user_password.send']
             );
     }
 

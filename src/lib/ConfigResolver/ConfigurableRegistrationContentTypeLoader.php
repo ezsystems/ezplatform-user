@@ -23,7 +23,7 @@ class ConfigurableRegistrationContentTypeLoader extends ConfigurableSudoReposito
                     $this->getRepository()
                         ->getContentTypeService()
                         ->loadContentTypeByIdentifier(
-                            $this->getParam('contentTypeIdentifier')
+                            $this->configResoler->getParameter('user_registration.user_type_identifier')
                         );
             }
         );
@@ -31,6 +31,5 @@ class ConfigurableRegistrationContentTypeLoader extends ConfigurableSudoReposito
 
     protected function configureOptions(OptionsResolver $optionsResolver)
     {
-        $optionsResolver->setRequired('contentTypeIdentifier');
     }
 }

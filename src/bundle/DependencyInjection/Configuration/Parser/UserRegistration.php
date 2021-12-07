@@ -25,6 +25,10 @@ class UserRegistration extends AbstractParser
             ->arrayNode('user_registration')
                 ->info('User registration configuration')
                 ->children()
+                    ->scalarNode('user_type_identifier')
+                        ->info('Content type identifier used for registration.')
+                        ->defaultValue('uer')
+                    ->end()
                     ->scalarNode('group_id')
                         ->info('Content id of the user group where users who register are created.')
                         ->defaultValue(11)
@@ -51,6 +55,13 @@ class UserRegistration extends AbstractParser
         }
 
         $settings = $scopeSettings['user_registration'];
+
+        if (!empty($settings['user_type_identifier'])) {
+            $contextualizer->setContextualParameter(
+                'user_registration.user_type_identifier',
+                $currentScope,
+                $settings['user_type_identifier']);
+        }
 
         if (!empty($settings['group_id'])) {
             $contextualizer->setContextualParameter(

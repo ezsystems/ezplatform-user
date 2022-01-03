@@ -1,0 +1,30 @@
+
+name: Browser tests
+
+on:
+    push:
+        branches:
+            - main
+            - '[0-9]+.[0-9]+'
+    pull_request: ~
+
+jobs:
+    password-format:
+        name: "User password format tests"
+        uses: ibexa/gh-workflows/.github/workflows/browser-tests.yml@main
+        with:
+            project-edition: 'oss'
+            project-version: '^3.3.x-dev'
+            test-suite:  '--profile=browser --suite=password'
+        secrets:
+            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    login-providers:
+        name: "User login providers tests"
+        uses: ibexa/gh-workflows/.github/workflows/browser-tests.yml@main
+        with:
+            project-edition: 'oss'
+            project-version: '^3.3.x-dev'
+            test-suite:  '--profile=browser --suite=providers'
+            test-setup-phase-1: '--mode=standard --profile=setup --suite=login-methods'
+        secrets:
+            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

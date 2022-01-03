@@ -17,7 +17,7 @@ env:
 matrix:
   fast_finish: true
   include:
-  - name: "User password format tests"
+  - name: ""
     php: 7.3
     env:
       - BEHAT_OPTS="--profile=browser --suite=password -c=behat_ibexa_oss.yaml"

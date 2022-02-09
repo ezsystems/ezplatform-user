@@ -71,11 +71,11 @@ class DateTimeExtension extends AbstractExtension
     {
         return [
             new TwigFilter('ez_short_datetime', function ($date, $timezone = null) { return $this->format($this->shortDateTimeFormatter, $date, $timezone); }),
-            new TwigFilter('ez_short_date', function ($date, $timezone = null) { return $this->format($this->shortDateFormatter, $date, $timezone); }),
-            new TwigFilter('ez_short_time', function ($date, $timezone = null) { return $this->format($this->shortTimeFormatter, $date, $timezone); }),
+            new TwigFilter('ez_short_date', function ($date, $timezone = 'UTC') { return $this->format($this->shortDateFormatter, $date, $timezone); }),
+            new TwigFilter('ez_short_time', function ($date, $timezone = 'UTC') { return $this->format($this->shortTimeFormatter, $date, $timezone); }),
             new TwigFilter('ez_full_datetime', function ($date, $timezone = null) { return $this->format($this->fullDateTimeFormatter, $date, $timezone); }),
-            new TwigFilter('ez_full_date', function ($date, $timezone = null) { return $this->format($this->fullDateFormatter, $date, $timezone); }),
-            new TwigFilter('ez_full_time', function ($date, $timezone = null) { return $this->format($this->fullTimeFormatter, $date, $timezone); }),
+            new TwigFilter('ez_full_date', function ($date, $timezone = 'UTC') { return $this->format($this->fullDateFormatter, $date, $timezone); }),
+            new TwigFilter('ez_full_time', function ($date, $timezone = 'UTC') { return $this->format($this->fullTimeFormatter, $date, $timezone); }),
         ];
     }
 

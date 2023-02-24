@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformUser\Form\Type;
 
 use eZ\Publish\API\Repository\Values\ContentType\ContentType;
+use eZ\Publish\API\Repository\Values\User\User;
 use EzSystems\EzPlatformUser\Form\Data\UserPasswordResetData;
 use EzSystems\EzPlatformUser\Validator\Constraints\Password;
 use Symfony\Component\Form\AbstractType;
@@ -30,7 +31,12 @@ class UserPasswordResetType extends AbstractType
                 'first_options' => ['label' => /** @Desc("New password") */ 'ezplatform.reset_user_password.new_password'],
                 'second_options' => ['label' => /** @Desc("Confirm password") */ 'ezplatform.reset_user_password.confirm_new_password'],
                 'constraints' => [
-                    new Password(['contentType' => $options['content_type']]),
+                    new Password(
+                        [
+                            'contentType' => $options['content_type'],
+                            'user' => $options['user'] ?? null,
+                        ]
+                    ),
                 ],
             ])
             ->add(
@@ -40,10 +46,12 @@ class UserPasswordResetType extends AbstractType
             );
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setRequired('content_type');
+        $resolver->setDefined('user');
         $resolver->setAllowedTypes('content_type', ContentType::class);
+        $resolver->setAllowedTypes('user', User::class);
         $resolver->setDefaults([
             'data_class' => UserPasswordResetData::class,
             'translation_domain' => 'forms',

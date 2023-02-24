@@ -53,7 +53,7 @@ class UserPasswordChangeType extends AbstractType
         $resolver->setRequired('content_type');
         $resolver->setDefined('user');
         $resolver->setAllowedTypes('content_type', ContentType::class);
-        $resolver->setAllowedTypes('user', User::class);
+        $resolver->setAllowedTypes('user', [User::class, 'null']);
         $resolver->setDefaults([
             'data_class' => UserPasswordChangeData::class,
             'translation_domain' => 'forms',

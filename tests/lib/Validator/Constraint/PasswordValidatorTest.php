@@ -11,6 +11,7 @@ namespace EzSystems\EzPlatformUser\Tests\Validator\Constraint;
 use eZ\Publish\API\Repository\UserService;
 use eZ\Publish\API\Repository\Values\ContentType\ContentType;
 use eZ\Publish\API\Repository\Values\User\PasswordValidationContext;
+use eZ\Publish\API\Repository\Values\User\User;
 use eZ\Publish\Core\FieldType\ValidationError;
 use EzSystems\EzPlatformUser\Validator\Constraints\Password;
 use EzSystems\EzPlatformUser\Validator\Constraints\PasswordValidator;
@@ -57,28 +58,37 @@ class PasswordValidatorTest extends TestCase
     {
         $password = 'pass';
         $contentType = $this->createMock(ContentType::class);
+        $user = $this->createMock(User::class);
 
         $this->userService
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('validatePassword')
-            ->willReturnCallback(function (string $actualPassword, PasswordValidationContext $actualContext) use (
-                $password,
-                $contentType
-            ): array {
-                $this->assertEquals($password, $actualPassword);
-                $this->assertInstanceOf(PasswordValidationContext::class, $actualContext);
-                $this->assertSame($contentType, $actualContext->contentType);
+            ->willReturnCallback(
+                function (string $actualPassword, PasswordValidationContext $actualContext) use (
+                    $password,
+                    $contentType,
+                    $user
+                ): array {
+                    self::assertEquals($password, $actualPassword);
+                    self::assertInstanceOf(PasswordValidationContext::class, $actualContext);
+                    self::assertSame($contentType, $actualContext->contentType);
+                    self::assertSame($user, $actualContext->user);
 
-                return [];
-            });
+                    return [];
+                }
+            );
 
         $this->executionContext
             ->expects($this->never())
             ->method('buildViolation');
 
-        $this->validator->validate($password, new Password([
-            'contentType' => $contentType,
-        ]));
+        $this->validator->validate(
+            $password,
+            new Password([
+                'contentType' => $contentType,
+                'user' => $user,
+            ])
+        );
     }
 
     public function testInvalid(): void

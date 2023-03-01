@@ -9,20 +9,21 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformUser\Form\Factory;
 
 use eZ\Publish\API\Repository\Values\ContentType\ContentType;
-use EzSystems\EzPlatformUser\Form\Data\UserPasswordForgotData;
+use eZ\Publish\API\Repository\Values\User\User;
 use EzSystems\EzPlatformUser\Form\Data\UserPasswordChangeData;
+use EzSystems\EzPlatformUser\Form\Data\UserPasswordForgotData;
+use EzSystems\EzPlatformUser\Form\Data\UserPasswordForgotWithLoginData;
+use EzSystems\EzPlatformUser\Form\Data\UserPasswordResetData;
 use EzSystems\EzPlatformUser\Form\Data\UserSettingUpdateData;
 use EzSystems\EzPlatformUser\Form\Type\UserPasswordChangeType;
 use EzSystems\EzPlatformUser\Form\Type\UserPasswordForgotType;
-use EzSystems\EzPlatformUser\Form\Data\UserPasswordForgotWithLoginData;
 use EzSystems\EzPlatformUser\Form\Type\UserPasswordForgotWithLoginType;
-use EzSystems\EzPlatformUser\Form\Data\UserPasswordResetData;
 use EzSystems\EzPlatformUser\Form\Type\UserPasswordResetType;
 use EzSystems\EzPlatformUser\Form\Type\UserSettingUpdateType;
 use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\Util\StringUtil;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class FormFactory
 {
@@ -45,7 +46,8 @@ class FormFactory
     public function changeUserPassword(
         ContentType $contentType,
         UserPasswordChangeData $data = null,
-        ?string $name = null
+        ?string $name = null,
+        ?User $user = null
     ): FormInterface {
         $name = $name ?: StringUtil::fqcnToBlockPrefix(UserPasswordChangeType::class);
 
@@ -53,7 +55,10 @@ class FormFactory
             $name,
             UserPasswordChangeType::class,
             $data,
-            ['content_type' => $contentType]
+            [
+                'content_type' => $contentType,
+                'user' => $user,
+            ]
         );
     }
 
@@ -102,13 +107,22 @@ class FormFactory
     public function resetUserPassword(
         UserPasswordResetData $data = null,
         ?string $name = null,
-        ContentType $contentType = null
+        ?ContentType $contentType = null,
+        ?User $user = null
     ): FormInterface {
         $name = $name ?: StringUtil::fqcnToBlockPrefix(UserPasswordResetType::class);
 
         $userContentType = $contentType ?? $data->getContentType();
 
-        return $this->formFactory->createNamed($name, UserPasswordResetType::class, $data, ['content_type' => $userContentType]);
+        return $this->formFactory->createNamed(
+            $name,
+            UserPasswordResetType::class,
+            $data,
+            [
+                'content_type' => $userContentType,
+                'user' => $user,
+            ]
+        );
     }
 
     /**

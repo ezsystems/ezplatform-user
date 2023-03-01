@@ -168,7 +168,12 @@ class PasswordResetController extends Controller
             return $view;
         }
         $userPasswordResetData = new UserPasswordResetData();
-        $form = $this->formFactory->resetUserPassword($userPasswordResetData, null, $user->getContentType());
+        $form = $this->formFactory->resetUserPassword(
+            $userPasswordResetData,
+            null,
+            $user->getContentType(),
+            $user
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

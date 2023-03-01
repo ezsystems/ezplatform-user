@@ -32,9 +32,13 @@ class PasswordValidator extends ConstraintValidator
 
         $passwordValidationContext = new PasswordValidationContext([
             'contentType' => $constraint->contentType,
+            'user' => $constraint->user,
         ]);
 
-        $validationErrors = $this->userService->validatePassword($value, $passwordValidationContext);
+        $validationErrors = $this->userService->validatePassword(
+            $value,
+            $passwordValidationContext
+        );
         if (!empty($validationErrors)) {
             $validationErrorsProcessor = $this->createValidationErrorsProcessor();
             $validationErrorsProcessor->processValidationErrors($validationErrors);

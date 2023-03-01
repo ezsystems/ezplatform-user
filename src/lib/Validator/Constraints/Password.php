@@ -21,6 +21,9 @@ class Password extends Constraint
     /** @var \eZ\Publish\API\Repository\Values\ContentType\ContentType|null */
     public $contentType;
 
+    /** @var \eZ\Publish\API\Repository\Values\User\User|null */
+    public $user;
+
     /**
      * {@inheritdoc}
      */
